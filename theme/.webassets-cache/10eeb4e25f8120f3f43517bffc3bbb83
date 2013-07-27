@@ -55,6 +55,9 @@ aside div#user_meta ul li a {
 .gcse .gsc-control-cse {
   padding-top: 0;
 }
+.clear {
+  clear: both;
+}
 main header {
   padding: 40px;
   border-top: #f8f8ff 1px solid;
