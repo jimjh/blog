@@ -1,5 +1,5 @@
 Date: 2013-07-27
-Title: Introducting Verbal, a Ruby Gem
+Title: Introducing Verbal, a Ruby Gem
 Category: Software
 Tags: ruby
 
