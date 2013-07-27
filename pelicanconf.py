@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Jim Lim'
 SITENAME = u'Ampersand'
-SITEURL = 'http://blog.jimjh.com'
+SITEURL = ''
 FEED_DOMAIN = 'http://feeds.feedburner.com'
 SITE_DOMAIN = 'http://blog.jimjh.com' # for generating external URLs
 
