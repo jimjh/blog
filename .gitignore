@@ -1,3 +1,4 @@
 *.pid
 .webassets-cache
 .*.un~
+output
