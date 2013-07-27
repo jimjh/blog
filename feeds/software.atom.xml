@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand</title><link href="http://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/software.atom.xml" rel="self"></link><id>http://blog.jimjh.com/</id><updated>2013-07-19T00:00:00-07:00</updated><entry><title>Making Conditional Requests with Peter Murach's gem</title><link href="http://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html" rel="alternate"></link><updated>2013-07-19T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-19:making-conditional-requests-with-peter-murachs-gem.html</id><summary type="html">&lt;p&gt;GitHub imposes a rate limit on API requests, and encourages developers to use &lt;a href="http://developer.github.com/v3/#conditional-requests"&gt;conditional requests&lt;/a&gt;. Here is how to do that using Peter's popular &lt;a href="https://github.com/peter-murach/github"&gt;github api gem&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand</title><link href="http://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/software.atom.xml" rel="self"></link><id>http://blog.jimjh.com/</id><updated>2013-07-27T00:00:00-07:00</updated><entry><title>Introducting Verbal</title><link href="http://blog.jimjh.com/introducting-verbal.html" rel="alternate"></link><updated>2013-07-27T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-27:introducting-verbal.html</id><summary type="html">&lt;p&gt;I recently released &lt;a href="https://rubygems.org/gems/verbal"&gt;Verbal&lt;/a&gt;, a ruby gem that provides a fluent
+DSL for creating regular expressions. It's a fork of jehna's popular
+&lt;a href="https://github.com/jehna/VerbalExpressions"&gt;VerbalExpressions&lt;/a&gt; javascript library. Detailed documentation and code
+examples are available at &lt;a href="http://rubydoc.info/gems/verbal/Verbal"&gt;rubydoc.info&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To create a regular expression that matches &lt;code&gt;http&lt;/code&gt;, &lt;code&gt;https&lt;/code&gt;, &lt;code&gt;ftp&lt;/code&gt;, and &lt;code&gt;sftp&lt;/code&gt;,
+one can use Verbal as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http&amp;#39;&lt;/span&gt;
+  &lt;span class="n"&gt;maybe&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;
+  &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;://&amp;#39;&lt;/span&gt;
+  &lt;span class="n"&gt;otherwise&lt;/span&gt;
+  &lt;span class="n"&gt;maybe&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;
+  &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ftp://&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that &lt;code&gt;verbal&lt;/code&gt; just a regular expression.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; 0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Capturing groups may be specified using &lt;code&gt;capture&lt;/code&gt;. For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;capture&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;anything&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="sr"&gt;/\sby\s/&lt;/span&gt;
+  &lt;span class="n"&gt;capture&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;anything&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;this is it by michael jackson&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; &amp;quot;this is it&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;More examples can be found in the &lt;a href="https://github.com/jimjh/verbal/tree/master/spec"&gt;RSpec specs&lt;/a&gt;.&lt;/p&gt;</summary><category term="ruby"></category></entry><entry><title>Making Conditional Requests with Peter Murach's gem</title><link href="http://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html" rel="alternate"></link><updated>2013-07-19T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-19:making-conditional-requests-with-peter-murachs-gem.html</id><summary type="html">&lt;p&gt;GitHub imposes a rate limit on API requests, and encourages developers to use &lt;a href="http://developer.github.com/v3/#conditional-requests"&gt;conditional requests&lt;/a&gt;. Here is how to do that using Peter's popular &lt;a href="https://github.com/peter-murach/github"&gt;github api gem&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Method A - Faraday HTTP Cache w. ActiveSupport::Cache&lt;/h2&gt;
 &lt;p&gt;This uses the &lt;a href="https://github.com/plataformatec/faraday-http-cache"&gt;faraday-http-cache gem&lt;/a&gt;, which takes care of expiration, etags, and response statuses.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5961836.js"&gt;&lt;/script&gt;
@@ -319,9 +352,9 @@ projects to allow easier tracking and regression. For example, I learnt that
 it's a good idea to prefix branch names with category tokens, such as
 &lt;code&gt;feature/&lt;/code&gt;, &lt;code&gt;bug/&lt;/code&gt;, or &lt;code&gt;chore/&lt;/code&gt;. This allows us to use wildcards when listing
 branches:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;bug&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;feature&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
-&lt;span class="n"&gt;feature&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;X49972617&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; git branch --list bug/*
+$&amp;gt; git branch --list feature/*
+feature/X49972617
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -329,11 +362,11 @@ branches:&lt;/p&gt;
 use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5798168.js"&gt;&lt;/script&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;49972617&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="cp"&gt;# Please enter the commit message for your changes. Lines starting&lt;/span&gt;
-&lt;span class="cp"&gt;# with &amp;#39;#&amp;#39; will be ignored, and an empty message aborts the commit.&lt;/span&gt;
-&lt;span class="cp"&gt;# On branch feature/X49972617&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; git commit
+[#49972617]
+# Please enter the commit message for your changes. Lines starting
+# with &amp;#39;#&amp;#39; will be ignored, and an empty message aborts the commit.
+# On branch feature/X49972617
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="git"></category></entry><entry><title>Deployment is Scary - Part 2</title><link href="http://blog.jimjh.com/deployment-is-scary-part-2.html" rel="alternate"></link><updated>2013-05-24T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-05-24:deployment-is-scary-part-2.html</id><summary type="html">&lt;p&gt;The is the second installation of a series of posts about my deployment experiences with Enteract. Part 1 is available &lt;a href="http://blog.jimjh.com/deployment-is-scary-part-1.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this post, I will focus on our use of &lt;a href="https://github.com/lostisland/faraday"&gt;Faraday&lt;/a&gt; and &lt;a href="http://upstart.ubuntu.com/"&gt;Upstart&lt;/a&gt; for some simple monitoring.&lt;/p&gt;
 &lt;h2&gt;Faraday&lt;/h2&gt;
