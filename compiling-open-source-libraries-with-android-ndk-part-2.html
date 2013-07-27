@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+    <link rel="stylesheet" href="./theme/css/style.min.css?6e298118">
+  
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
+  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jim Lim">
+
+  <meta property="og:site_name" content="Ampersand">
+    <meta property="fb:admins" content="jimjh">
+  
+    <link href="http://feeds.feedburner.com/jimjh/blog" type="application/atom+xml" rel="alternate" title="Ampersand Full Atom Feed" />
+      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+  
+  <meta name="keywords" content="android, ndk">
+<meta name="description" content="Compiling open source libraries with Android NDK: Part 2 by Jim Lim">
+<meta property="og:description" content="Compiling open source libraries with Android NDK: Part 2 by Jim Lim">
+<meta property="og:type" content="article">
+<meta property="og:article:author" content="Jim Lim">
+<meta property="og:title" content="Compiling open source libraries with Android NDK: Part 2">
+<meta property="og:url" content="http://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">
+
+  <title>
+    Compiling open source libraries with Android NDK: Part 2  </title>
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href=".">
+                <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
+              </a>
+      <h2><a href=".">Jim Lim</a></h2>
+      <p></p>
+      <ul>
+                <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
+                                        <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
+                      </ul>
+      <div id="mc_embed_signup">
+  <form action="http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+  </form>
+</div>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <p>Posted on Mon 01 July 2013</p>
+    </header>
+
+    <article>
+  <div id="article_title">
+    <h3><a href="./compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h3>
+  </div>
+  <div id="article_text">
+    <p><em>This is a repost from my old blog.</em></p>
+<p>For the second part of this series, we will deal with the compiling of open
+source libraries that have several makefiles.</p>
+<p>Android NDK r5 added support for prebuilt libraries and also included
+standalone toolchains that could be used to compile open-source libraries for
+Android. These are very useful, and lets you tap into the pool of open-source
+goodies that desktop developers enjoy. Essentially, we will be using the same
+makefiles but with a cross-compiler.</p>
+<p>I am using Mac OS X, but the steps should also work on a Linux machine. If you
+are a Windows user and know how to compile open-source libraries for Android on
+a Windows machine, please leave a comment.</p>
+<p>Here, I will use the fftw3 library as an example. Get the library from the
+<a href="http://www.fftw.org/download.html">FFTW</a> website.</p>
+<ol>
+<li>Use Eclipse to create a new Android project (let’s name it <code>FourierTest</code>) in
+your workspace. This uses Android ADT to create the files required by
+<code>ndk-build</code>.</li>
+<li>Unpack the fftw3 library in a directory parallel to the project directory
+that you have just created.</li>
+<li>
+<p>Inside the project directory, create a new <code>build.sh</code> file with the following
+contents:</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<span class="c"># FourierTest/build.sh</span>
+<span class="c"># Compiles fftw3 for Android</span>
+<span class="c"># Make sure you have NDK_ROOT defined in .bashrc or .bash_profile</span>
+
+<span class="nv">INSTALL_DIR</span><span class="o">=</span><span class="s2">&quot;`pwd`/jni/fftw3&quot;</span>
+<span class="nv">SRC_DIR</span><span class="o">=</span><span class="s2">&quot;`pwd`/../fftw-3.2.2&quot;</span>
+
+<span class="nb">cd</span> <span class="nv">$SRC_DIR</span>
+
+<span class="nb">export</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$NDK_ROOT/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/:$PATH&quot;</span>
+<span class="nb">export </span><span class="nv">SYS_ROOT</span><span class="o">=</span><span class="s2">&quot;$NDK_ROOT/platforms/android-8/arch-arm/&quot;</span>
+<span class="nb">export </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-gcc --sysroot=$SYS_ROOT&quot;</span>
+<span class="nb">export </span><span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ld&quot;</span>
+<span class="nb">export </span><span class="nv">AR</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ar&quot;</span>
+<span class="nb">export </span><span class="nv">RANLIB</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ranlib&quot;</span>
+<span class="nb">export </span><span class="nv">STRIP</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-strip&quot;</span>
+
+mkdir -p <span class="nv">$INSTALL_DIR</span>
+./configure --host<span class="o">=</span>arm-eabi --build<span class="o">=</span>i386-apple-darwin10.8.0
+--prefix<span class="o">=</span><span class="nv">$INSTALL_DIR</span> <span class="nv">LIBS</span><span class="o">=</span><span class="s2">&quot;-lc -lgcc&quot;</span>
+
+make
+make install
+
+<span class="nb">exit </span>0
+</pre></div>
+
+
+<p>At this point, your directory structure should look like the following:</p>
+<div class="highlight"><pre><span class="nt">&lt;workspace&gt;</span>/
+    FourierTest/
+        AndroidManifest.xml
+        build.sh
+        ...
+        src/
+    fftw-3.2.2/
+        configure
+        ...
+</pre></div>
+
+
+<p>The <code>build.sh</code> script given above tells the makefile to use the Android
+cross-compiler instead of the system's compiler. In particular,</p>
+<ul>
+<li><code>INSTALL_DIR</code> tells make to install the compiled library in our project's jni directory</li>
+<li><code>PATH</code> tells make to look for our tool chain in the NDK directory. Note that
+you might have to change this value - explore your NDK directory to make sure
+that the path exists</li>
+<li><code>SYS_ROOT</code> tells make where to look for system libraries and header files</li>
+<li><code>./configure --host=arm-eabi --build=i386-apple-darwin10.8.0</code> tells make that
+we are cross-compiling using a i386 architecture for an ARM architecture.</li>
+</ul>
+<p>You most likely have to change the <code>PATH</code> variable and the <code>--build</code> parameter.</p>
+</li>
+<li>
+<p>Open up Terminal and cd to your project directory</p>
+</li>
+<li>Run <code>build.sh</code></li>
+<li>
+<p>The compiled library will be installed in <code>FourierTest/jni/fftw3</code>. To use this
+library, create the following <code>Android.mk</code> file in <code>FourierTest/jni/fftw3</code>:</p>
+<div class="highlight"><pre><span class="c"># FourierTest/jni/fftw3/Android.mk</span>
+<span class="nv">LOCAL_PATH</span> <span class="o">:=</span> <span class="k">$(</span>call my-dir<span class="k">)</span>
+
+<span class="cp">include $(CLEAR_VARS)</span>
+
+<span class="nv">LOCAL_MODULE</span> <span class="o">:=</span> fftw3
+
+<span class="nv">LOCAL_SRC_FILES</span> <span class="o">:=</span> lib/libfftw3.a
+<span class="nv">LOCAL_EXPORT_C_INCLUDES</span> <span class="o">:=</span> <span class="k">$(</span>LOCAL_PATH<span class="k">)</span>/include
+
+<span class="cp">include $(PREBUILT_STATIC_LIBRARY)</span>
+</pre></div>
+
+
+</li>
+</ol>
+  </div>
+  <div id="article_meta">
+    <p>Category: <a href="./category/software.html">Software</a></p>
+        <p>Tags:
+            <a href="./tag/android.html">android</a>,            <a href="./tag/ndk.html">ndk</a>          </p>
+      </div>
+</article>
+
+    <footer>
+      <p><a href="./" class="button_accent">&larr; Back to Index</a></p>
+  <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
+
+    <div id="ending_message">
+      <p>
+<a href='http://jimjh.com'>Jim Lim</a> &sdot;
+<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
+&sdot;
+<a href='https://github.com/jimjh'>GitHub</a> &sdot;
+<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+ &sdot; Theme by Giulio Fidente.</p>
+    </div>
+  </main>
+  </body>
+</html>
