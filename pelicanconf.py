@@ -58,6 +58,7 @@ STATIC_PATHS = ['images', 'downloads']
 WEBASSETS    = True
 FILES_TO_COPY = (
     ('extra/favicon.ico', 'favicon.ico'),
+    ('extra/CNAME', 'CNAME'),
 )
 
 FEED_ALL_RSS     = 'jimjh/blog'
