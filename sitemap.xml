@@ -4,463 +4,463 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>http://blog.jimjh.com/index.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/index.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/archives.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/archives.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tags.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tags.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/categories.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/categories.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/event-tracking-with-google-analytics-and-launchrock.html</loc>
+<loc>/event-tracking-with-google-analytics-and-launchrock.html</loc>
 <lastmod>2013-07-19T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html</loc>
+<loc>/making-conditional-requests-with-peter-murachs-gem.html</loc>
 <lastmod>2013-07-19T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/jquery-plugin-box-lid-menu.html</loc>
+<loc>/jquery-plugin-box-lid-menu.html</loc>
 <lastmod>2013-07-11T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html</loc>
+<loc>/a-short-tutorial-on-custom-storyboard-segues.html</loc>
 <lastmod>2013-07-01T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html</loc>
+<loc>/compiling-open-source-libraries-with-android-ndk-part-2.html</loc>
 <lastmod>2013-07-01T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/implementing-a-singleton-in-ios.html</loc>
+<loc>/implementing-a-singleton-in-ios.html</loc>
 <lastmod>2013-07-01T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html</loc>
+<loc>/using-karma-with-rails-and-jenkins-part-1.html</loc>
 <lastmod>2013-07-01T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/playing-with-stripe-ctf.html</loc>
+<loc>/playing-with-stripe-ctf.html</loc>
 <lastmod>2013-06-21T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/experimenting-with-git-hooks.html</loc>
+<loc>/experimenting-with-git-hooks.html</loc>
 <lastmod>2013-06-17T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/deployment-is-scary-part-2.html</loc>
+<loc>/deployment-is-scary-part-2.html</loc>
 <lastmod>2013-05-24T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/predicting-user-ratings-on-yelp.html</loc>
+<loc>/predicting-user-ratings-on-yelp.html</loc>
 <lastmod>2013-05-14T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/deployment-is-scary-part-1.html</loc>
+<loc>/deployment-is-scary-part-1.html</loc>
 <lastmod>2013-05-12T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/numbering-the-last-line-of-align-in-latex.html</loc>
+<loc>/numbering-the-last-line-of-align-in-latex.html</loc>
 <lastmod>2013-03-30T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/some-custom-matchers-for-rspec-with-shoulda.html</loc>
+<loc>/some-custom-matchers-for-rspec-with-shoulda.html</loc>
 <lastmod>2013-03-28T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/deploying-a-thrift-server-with-capistrano.html</loc>
+<loc>/deploying-a-thrift-server-with-capistrano.html</loc>
 <lastmod>2013-03-20T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/monopoly-heat-map.html</loc>
+<loc>/monopoly-heat-map.html</loc>
 <lastmod>2012-11-19T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/passwordless-kerberized-ssh-for-cmus-unix-machines.html</loc>
+<loc>/passwordless-kerberized-ssh-for-cmus-unix-machines.html</loc>
 <lastmod>2012-11-08T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/backbone-faye-and-reaction.html</loc>
+<loc>/backbone-faye-and-reaction.html</loc>
 <lastmod>2012-11-02T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/hello-world.html</loc>
+<loc>/hello-world.html</loc>
 <lastmod>2012-10-24T00:00:00-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/category/analytics.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/category/analytics.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/category/blog.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/category/blog.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/category/random.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/category/random.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/category/software.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/category/software.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/category/writing.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/category/writing.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/storyboards.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/storyboards.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/security.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/security.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/cocoa.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/cocoa.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/analytics.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/analytics.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/unix.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/unix.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/visualization.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/visualization.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/git.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/git.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/capistrano.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/capistrano.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/rails.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/rails.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/shoulda.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/shoulda.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/heatmap.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/heatmap.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/matlab.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/matlab.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/factory_girl.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/factory_girl.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/test.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/test.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/jenkins.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/jenkins.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/android.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/android.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/thrift.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/thrift.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/css.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/css.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/kerberos.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/kerberos.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/javascript.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/javascript.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/ios.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/ios.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/rspec.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/rspec.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/ssh.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/ssh.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/ruby.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/ruby.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/blogging.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/blogging.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/bash.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/bash.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/github-api.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/github-api.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/jquery.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/jquery.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/latex.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/latex.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/ndk.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/ndk.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/yelp.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/yelp.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/monopoly.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/monopoly.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/machine-learning.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/machine-learning.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/mvc.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/mvc.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/karma.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/karma.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/segues.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/segues.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/tag/cmu.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/tag/cmu.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.jimjh.com/author/jim-lim.html</loc>
-<lastmod>2013-07-27T12:30:53-00:00</lastmod>
+<loc>/author/jim-lim.html</loc>
+<lastmod>2013-07-27T12:46:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
