@@ -52,6 +52,9 @@ FOOTER_TEXT   = """
 <a href='https://github.com/jimjh'>GitHub</a> &sdot;
 <a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
 <a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+&sdot;
+<a href="http://www.ontoplist.com/" title="Online Marketing"
+target="_blank">ontoplist</a>
 """
 
 STATIC_PATHS = ['images', 'downloads']
