@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand</title><link href="http://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/software.atom.xml" rel="self"></link><id>http://blog.jimjh.com/</id><updated>2013-07-27T00:00:00-07:00</updated><entry><title>Introducing Verbal, a Ruby Gem</title><link href="http://blog.jimjh.com/introducing-verbal-a-ruby-gem.html" rel="alternate"></link><updated>2013-07-27T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-27:introducing-verbal-a-ruby-gem.html</id><summary type="html">&lt;p&gt;I recently released &lt;a href="https://rubygems.org/gems/verbal"&gt;Verbal&lt;/a&gt;, a ruby gem that provides a fluent
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand</title><link href="http://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/software.atom.xml" rel="self"></link><id>http://blog.jimjh.com/</id><updated>2013-07-30T00:00:00-07:00</updated><entry><title>Thoughts from Reading Code - Foreman: Part 1</title><link href="http://blog.jimjh.com/thoughts-from-reading-code-foreman-part-1.html" rel="alternate"></link><updated>2013-07-30T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-30:thoughts-from-reading-code-foreman-part-1.html</id><summary type="html">&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Code Style - Raising Exceptions with a Bang&lt;/h3&gt;
+&lt;p&gt;You might occasionally encounter code that looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="no"&gt;MyException&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;oops&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="n"&gt;some_condition&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;some_other_condition&lt;/span&gt;
+    &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;meaningful error message&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="no"&gt;AnotherException&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;oops&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="n"&gt;do_something_useful&lt;/span&gt;
+  &lt;span class="n"&gt;do_some_other_useful_thing&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This seems perfectly normal - &lt;code&gt;start&lt;/code&gt; validates a few conditions (possibly derived from the context or environment), and decides if it is OK to continue with the operation. However, such validations get in the way of readability, and are often duplicated in other methods. To keep things SOLID and DRY, let's extract these out into private methods.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;check_some_condition&lt;/span&gt;
+  &lt;span class="n"&gt;check_some_other_condition&lt;/span&gt;
+  &lt;span class="n"&gt;do_something_useful&lt;/span&gt;
+  &lt;span class="n"&gt;do_some_other_useful_thing&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Much better. The code is a lot easier to read, but the helper methods have masked their side effects. (In this case, exceptions are raised and output is printed when some conditions are not met.) This can be confusing as the code base grows and becomes more complicated. A new team member would take a longer time to go through the code and learn that the &lt;code&gt;check_*&lt;/code&gt; methods have potential side effects. To fix this, let's add a &lt;code&gt;!&lt;/code&gt; to the end of their names.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;check_some_condition!&lt;/span&gt;
+  &lt;span class="n"&gt;check_some_other_condition!&lt;/span&gt;
+  &lt;span class="n"&gt;do_something_useful&lt;/span&gt;
+  &lt;span class="n"&gt;do_some_other_useful_thing&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;With this edit, the &lt;code&gt;start&lt;/code&gt; method's purpose and operations become immediately apparent.&lt;/p&gt;
+&lt;h3&gt;Technique - Loading Configuration Files&lt;/h3&gt;
+&lt;p&gt;Using Thor, one can easily create a command-line interface by defining options for tasks and accessing arguments via the &lt;code&gt;options&lt;/code&gt; hash. For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;method_option&lt;/span&gt; &lt;span class="ss"&gt;:color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;:boolean&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="c1"&gt;# …&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;adds a &lt;code&gt;start&lt;/code&gt; task that accepts a &lt;code&gt;--color&lt;/code&gt; option. It is often useful to allow the user to specify frequently used configuration options with a configuration file, such as &lt;code&gt;.rspec&lt;/code&gt; and &lt;code&gt;.yardopts&lt;/code&gt;. With Thor, the &lt;code&gt;options&lt;/code&gt; getter method provides a convenient place to merge options from the configuration file and from the command-line.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;options&lt;/span&gt;
+  &lt;span class="n"&gt;original&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;super&lt;/span&gt;                                 &lt;span class="c1"&gt;# get original options hash&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;original&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists?&lt;/span&gt; &lt;span class="no"&gt;CONFIG_FILE&lt;/span&gt;
+  &lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="ss"&gt;YAML&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ss"&gt;:load_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;CONFIG_FILE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;  &lt;span class="c1"&gt;# read from config file&lt;/span&gt;
+  &lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;original&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                         &lt;span class="c1"&gt;# merge&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that options provided on the command-line override the options given in the configuration file.&lt;/p&gt;</summary><category term="ruby"></category><category term="reading"></category></entry><entry><title>Introducing Verbal, a Ruby Gem</title><link href="http://blog.jimjh.com/introducing-verbal-a-ruby-gem.html" rel="alternate"></link><updated>2013-07-27T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-27:introducing-verbal-a-ruby-gem.html</id><summary type="html">&lt;p&gt;I recently released &lt;a href="https://rubygems.org/gems/verbal"&gt;Verbal&lt;/a&gt;, a ruby gem that provides a fluent
 DSL for creating regular expressions. It's a fork of jehna's popular
 &lt;a href="https://github.com/jehna/VerbalExpressions"&gt;VerbalExpressions&lt;/a&gt; javascript library. Detailed documentation and code
 examples are available at &lt;a href="http://rubydoc.info/gems/verbal/Verbal"&gt;rubydoc.info&lt;/a&gt;.&lt;/p&gt;
