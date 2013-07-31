@@ -31,7 +31,8 @@ DEFAULT_LANG = u'en'
 TYPOGRIFY = False
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+FEED_ALL_RSS     = 'jimjh/blog'
+FEED_ALL_ATOM    = 'jimjh/blog'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
@@ -63,9 +64,6 @@ FILES_TO_COPY = (
     ('extra/favicon.ico', 'favicon.ico'),
     ('extra/CNAME', 'CNAME'),
 )
-
-FEED_ALL_RSS     = 'jimjh/blog'
-FEED_ALL_ATOM    = 'jimjh/blog'
 
 DISQUS_SITENAME  = 'jimjh'
 GOOGLE_ANALYTICS = 'UA-5604647-6'
