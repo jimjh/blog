@@ -31,12 +31,12 @@ Next, open up the storyboard in XCode and click on the _segue_. In other words,
 click on the arrow pointing from the first view controller to the second view
 controller.
 
-![Segue](images/2013/07/01/braces.png)
+![Segue](|filename|/images/2013/07/01/braces.png)
 
 Hit `Alt+Cmd+0` to open up the Utilities pane. Navigate to the Attributes
 Inspector, choose `Custom` for _Style_ and input `JHCustomSegue` for _Segue Class_.
 
-![Inspector](images/2013/07/01/inspector.png)
+![Inspector](|filename|/images/2013/07/01/inspector.png)
 
 Now, run your app in the simulator. You should be able to flip from the first
 view controller to the second by tapping on the button at the top right-hand

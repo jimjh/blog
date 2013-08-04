@@ -10,7 +10,7 @@ Several weeks ago, Yelp launched a [dataset challenge][yelp] and released data o
 The dataset arrived in a tarball that unpacks into a directory of JSON files. Each JSON file could be imported into MongoDB relatively easily with the following command:
 
     $> mongoimport --db yelp --collection reviews --drop --file <filename>
-    
+
 However, since Yelp mangled the primary keys before exporting the dataset, we need to change the primary keys to consecutive integers before we can import the data into MatLab as a sparse matrix. This can be done using the following script (also available from the git repository):
 
 <script src="https://gist.github.com/jimjh/5581460.js"></script>
@@ -58,5 +58,5 @@ I will post updates here if I figure out what is going wrong.
 
 
   [yelp]: https://www.yelp.com/dataset_challenge/dataset
-  [netflix]: http://blog.jimjh.com/static/downloads/2013/05/12/netflix.pdf
+  [netflix]: |filename|/downloads/2013/05/12/netflix.pdf
   [github]: https://github.com/jimjh/yelp-dataset-challenge

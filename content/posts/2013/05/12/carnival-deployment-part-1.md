@@ -43,7 +43,7 @@ The entire JMX file is available [here][jmx].
   [rds]: http://aws.amazon.com/rds/
   [jmeter]: http://jmeter.apache.org/usermanual/build-web-test-plan.html
   [eager]: http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations
-  [jmeter-tree]: images/2013/05/12/jmeter-tree.png
-  [jmeter-login]: images/2013/05/12/jmeter-login.png
-  [load-test]: images/2013/05/12/load-test.png
-  [jmx]: downloads/2013/05/12/enteract.jmx
+  [jmeter-tree]: |filename|/images/2013/05/12/jmeter-tree.png
+  [jmeter-login]: |filename|/images/2013/05/12/jmeter-login.png
+  [load-test]: |filename|/images/2013/05/12/load-test.png
+  [jmx]: |filename|/downloads/2013/05/12/enteract.jmx

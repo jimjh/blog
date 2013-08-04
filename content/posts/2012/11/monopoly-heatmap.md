@@ -14,4 +14,4 @@ Here is a preview:
 Check it out [here][github].
 
   [github]: http://jimjh.com/monopoly-heatmap/
-  [heatmap]: images/2012/11/heatmap.png 'Monopoly Heat Map'
+  [heatmap]: |filename|/images/2012/11/heatmap.png 'Monopoly Heat Map'
