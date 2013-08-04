@@ -31,8 +31,7 @@ DEFAULT_LANG = u'en'
 TYPOGRIFY = False
 
 # Feed generation is usually not desired when developing
-FEED_ALL_RSS     = 'jimjh/blog'
-FEED_ALL_ATOM    = 'jimjh/blog'
+FEED_ALL_ATOM    = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
@@ -65,8 +64,6 @@ FILES_TO_COPY = (
     ('extra/CNAME', 'CNAME'),
 )
 
-DISQUS_SITENAME  = 'jimjh'
-GOOGLE_ANALYTICS = 'UA-5604647-6'
 USER_LOGO_URL    = 'http://blog.jimjh.com/static/images/jimjh.png'
 FB_ADMIN         = 'jimjh'
 MAILCHIMP_URL    = 'http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799'
