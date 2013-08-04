@@ -81,7 +81,7 @@
 <p>The application was deployed on Amazon's <a href="http://aws.amazon.com/elasticbeanstalk/">Elastic Beanstalk</a>, which has auto-scaling built in. However, this also meant that the application could have several web servers working off a single <a href="http://aws.amazon.com/rds/">RDS</a> server, which could cause some performance issues. Our goals for load testing were two-fold: first, we wished to ascertain the effectiveness of our auto-scaling policies; second, we wanted to ensure that the response times were reasonable even at twice the maximum expected load.</p>
 <h2>JMeter</h2>
 <p>JMeter was not the simplest tool for load testing, but developers (and ops engineers) seemed to agree that it was amongst the most powerful. The <a href="http://jmeter.apache.org/usermanual/build-web-test-plan.html">user manual</a> provides detailed instructions for building a web test plan. In addition to a thread group and a config element for HTTP request defaults, we also added a HTTP cookie manager for maintaining sessions. The following screenshot captures the hierarchy of our setup.</p>
-<p><img alt="image" src="images/2013/05/12/jmeter-tree.png" /></p>
+<p><img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/jmeter-tree.png" /></p>
 <h3>Extract CSRF Token</h3>
 <p>Before our test user could login, it had to find the CSRF token on the page and submit that along with its credentials for Rails to accept the request. To do this, we added a HTTP Request to our thread group (or, more accurately, a request <em>sampler</em>). This sampler issues GET requests to <code>/users/sign_in</code>, and, using a Regular Expression Extractor (available under <em>Post Processors</em>), searches for the CSRF token with the following regex</p>
 <div class="highlight"><pre><span class="n">input</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;authenticity_token&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;(.*?)&quot;</span>
@@ -91,13 +91,13 @@
 <p>The matched token is stored in the <code>LOGIN_AUTH_TOKEN</code> variable for JMeter to use in subsequent requests.</p>
 <h3>Authenticate User</h3>
 <p>Next, we added another request sampler that issues POST requests to <code>/users/sign_in</code> with the user's email, password, and the CSRF token from the previous step. (I forgot to encode the CSRF token and spent a great amount of time wondering why Rails occasionally rejected requests from this sampler.) The following screenshot showed our configuration.</p>
-<p><img alt="image" src="images/2013/05/12/jmeter-login.png" /></p>
+<p><img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/jmeter-login.png" /></p>
 <h3>Do Something</h3>
 <p>Finally, we added request samplers to perform some action on the application. In my case, I was mainly worried about I/O performance, and thus added actions that would force read/writes to the database. Note that if some of these actions require CSRF tokens, in which case one could use the CSRF extraction described above and a HTTP Header Manager to include the <code>X-CSRF</code> header in the request. We also found it useful to include a response assertion to verify the status code of the response.</p>
 <h3>Measure Response Times</h3>
 <p>After some tinkering (such as using <a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations">eager loading</a> to reduce the number of database calls), we managed to improve the application's performance to (what I thought was) a reasonable level.</p>
-<p>The entire JMX file is available <a href="downloads/2013/05/12/enteract.jmx">here</a>.</p>
-<p><img alt="image" src="images/2013/05/12/load-test.png" /></p>
+<p>The entire JMX file is available <a href="http://blog.jimjh.com/static/downloads/2013/05/12/enteract.jmx">here</a>.</p>
+<p><img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/load-test.png" /></p>
   </div>
   <div id="article_meta">
     <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
