@@ -2,3 +2,4 @@
 .webassets-cache
 .*.un~
 output
+*.pyc

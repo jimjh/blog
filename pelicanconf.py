@@ -6,7 +6,6 @@ AUTHOR = u'Jim Lim'
 SITENAME = u'Ampersand'
 SITEURL = ''
 FEED_DOMAIN = 'http://feeds.feedburner.com'
-SITE_DOMAIN = 'http://blog.jimjh.com' # for generating external URLs
 
 PLUGIN_PATH = '../pelican-plugins'
 PLUGINS = ['assets', 'sitemap']

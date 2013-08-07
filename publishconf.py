@@ -12,6 +12,7 @@ from pelicanconf import *
 
 SITEURL = 'http://blog.jimjh.com'
 RELATIVE_URLS = False
+FEED_DOMAIN = 'http://feeds.feedburner.com'
 
 FEED_ALL_RSS  = 'jimjh/blog'
 FEED_ALL_ATOM = None
