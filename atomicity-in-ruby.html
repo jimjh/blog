@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+  
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
+  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jim Lim">
+
+  <meta property="og:site_name" content="Ampersand">
+    <meta property="fb:admins" content="jimjh">
+  
+      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+  
+    <meta name="keywords" content="ruby, concurrency">
+  <meta name="description" content="Atomicity in Ruby by Jim Lim">
+  <meta property="og:description" content="Atomicity in Ruby by Jim Lim">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Jim Lim">
+  <meta property="og:title" content="Atomicity in Ruby">
+  <meta property="og:url" content="http://blog.jimjh.com/atomicity-in-ruby.html">
+
+  <title>
+    Atomicity in Ruby  </title>
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://blog.jimjh.com">
+                <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
+              </a>
+      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
+      <p></p>
+      <ul>
+                <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
+                                        <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
+                      </ul>
+      <div id="mc_embed_signup">
+  <form action="http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+  </form>
+</div>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+        <p>Posted on Wed 07 August 2013</p>
+    </header>
+
+      <article>
+    <div id="article_title">
+      <h3><a href="http://blog.jimjh.com/atomicity-in-ruby.html">Atomicity in Ruby</a></h3>
+    </div>
+    <div id="article_text">
+      <p>While reading foreman's source code, I noticed that it was using deferred
+signal handling, as follows:</p>
+<div class="highlight"><pre><span class="nb">trap</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="p">{</span> <span class="no">Thread</span><span class="o">.</span><span class="n">main</span><span class="o">[</span><span class="ss">:signal_queue</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="n">sig</span> <span class="p">;</span> <span class="n">notice_signal</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>It's important to note that the append operation <code>&lt;&lt;</code> is not atomic. In other
+words, while <code>sig</code> is being appended to <code>:signal_queue</code>, another signal could
+come in, interrupting the operation. In this particular case, the order of
+signals would be affected, but that doesn't hurt the grand scheme of things.</p>
+<p>This piqued my curiosity about atomicity in Ruby. Using a simple Mutex would
+not work, since signals can interrupt synchronized code. The <a href="https://github.com/headius/ruby-atomic">atomic
+gem</a> seems like a good start, but I wonder if there are any operations
+in Ruby that are guaranteed to be atomic. I posted a <a href="http://stackoverflow.com/questions/18113522/are-there-any-operations-methods-in-ruby-that-are-guaranteed-documented-to-be-at">question on
+StackOverflow</a>, and will update this post as answers come in.</p>
+    </div>
+    <div id="article_meta">
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
+            <p>Tags:
+                <a href="http://blog.jimjh.com/tag/ruby.html">ruby</a>,                <a href="http://blog.jimjh.com/tag/concurrency.html">concurrency</a>              </p>
+          </div>
+  </article>
+
+    <footer>
+        <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+    <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
+
+    <div id="ending_message">
+      <p>
+<a href='http://jimjh.com'>Jim Lim</a> &sdot;
+<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
+&sdot;
+<a href='https://github.com/jimjh'>GitHub</a> &sdot;
+<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+&sdot;
+<a href="http://www.ontoplist.com/" title="Online Marketing"
+target="_blank">ontoplist</a>
+ &sdot; Theme by Giulio Fidente.</p>
+    </div>
+  </main>
+  </body>
+</html>

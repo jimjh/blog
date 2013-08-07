@@ -92,6 +92,20 @@
 
     <article>
   <div id="article_title">
+    <h3><a href="http://blog.jimjh.com/playing-with-stripe-ctf.html">Playing with Stripe CTF</a></h3>
+  </div>
+  <div id="article_text">
+    <p>I was playing around with Stripe's <a href="https://github.com/stripe-ctf/stripe-ctf-2.0">source code</a> for last year's CTF,
+and from what I could see online, most people solved Level 4 by using XSS in
+the password field. But look at the following line in <code>srv.rb</code>:</p>
+<div class="highlight"><pre><span class="k">unless</span> <span class="n">username</span> <span class="o">=~</span> <span class="sr">/^\w+$/</span>
+  <span class="n">ie</span><span class="p">(</span><span class="s2">&quot;Invalid username. Usernames must ...</span></pre></div>
+    <a href='http://blog.jimjh.com/playing-with-stripe-ctf.html'>More</a>
+  </div>
+</article>
+<hr />
+<article>
+  <div id="article_title">
     <h3><a href="http://blog.jimjh.com/experimenting-with-git-hooks.html">Experimenting with Git Hooks</a></h3>
   </div>
   <div id="article_text">
@@ -203,20 +217,6 @@ Monopoly board. It's done using canvas on HTML5.</p>
     <p>If you use SSH frequently to access <code>unix.andrew.cmu.edu</code>, you must have tried at some point to set up <a href="http://osxdaily.com/2012/05/25/how-to-set-up-a-password-less-ssh-login/">passwordless login</a> using public/private keys. That didn't work for me, and when I did <code>ssh -vv unix.andrew.cmu.edu</code>, it always failed at</p>
 <div class="highlight"><pre><span class="n">debug2</span><span class="o">:</span> <span class="n">we</span> <span class="n">did ...</span></pre></div>
     <a href='http://blog.jimjh.com/passwordless-kerberized-ssh-for-cmus-unix-machines.html'>More</a>
-  </div>
-</article>
-<hr />
-<article>
-  <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/backbone-faye-and-reaction.html">Backbone, Faye, and Reaction</a></h3>
-  </div>
-  <div id="article_text">
-    <p>I was jealous of what MeteorJS did for NodeJS developers, and decided to steal
-some of their ideas for Rails. The result is the <a href="https://github.com/jimjh/reaction">reaction gem</a>, and
-a demo app can be downloaded from <a href="https://github.com/jimjh/reaction-todos">here</a>.</p>
-<h2>Transparent Synchronization</h2>
-<p>Using Reaction, you write your app like a usual Backbone app. However, instead ...</p>
-    <a href='http://blog.jimjh.com/backbone-faye-and-reaction.html'>More</a>
   </div>
 </article>
 

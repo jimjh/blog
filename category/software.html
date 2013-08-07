@@ -71,6 +71,24 @@
 
     <article>
   <div id="article_title">
+    <h3><a href="http://blog.jimjh.com/atomicity-in-ruby.html">Atomicity in Ruby</a></h3>
+  </div>
+  <div id="article_text">
+    <p>While reading foreman's source code, I noticed that it was using deferred
+signal handling, as follows:</p>
+<div class="highlight"><pre><span class="nb">trap</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="p">{</span> <span class="no">Thread</span><span class="o">.</span><span class="n">main</span><span class="o">[</span><span class="ss">:signal_queue</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="n">sig</span> <span class="p">;</span> <span class="n">notice_signal</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>It's important to note that the append operation <code>&lt;&lt;</code> is not atomic. In other
+words, while <code>sig</code> is being appended to <code>:signal_queue</code>, another signal could
+come ...</p>
+    <a href='http://blog.jimjh.com/atomicity-in-ruby.html'>More</a>
+  </div>
+</article>
+<hr />
+<article>
+  <div id="article_title">
     <h3><a href="http://blog.jimjh.com/thoughts-from-reading-code-foreman-part-1.html">Thoughts from Reading Code - Foreman: Part 1</a></h3>
   </div>
   <div id="article_text">
@@ -190,19 +208,6 @@ the password field. But look at the following line in <code>srv.rb</code>:</p>
 <div class="highlight"><pre><span class="k">unless</span> <span class="n">username</span> <span class="o">=~</span> <span class="sr">/^\w+$/</span>
   <span class="n">ie</span><span class="p">(</span><span class="s2">&quot;Invalid username. Usernames must ...</span></pre></div>
     <a href='http://blog.jimjh.com/playing-with-stripe-ctf.html'>More</a>
-  </div>
-</article>
-<hr />
-<article>
-  <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/experimenting-with-git-hooks.html">Experimenting with Git Hooks</a></h3>
-  </div>
-  <div id="article_text">
-    <p>I have been trying to follow a more disciplined approach to branching in my
-projects to allow easier tracking and regression. For example, I learnt that
-it's a good idea to prefix branch names with category tokens, such as
-<code>feature/</code>, <code>bug/</code>, or <code>chore/</code>. This allows us to use wildcards ...</p>
-    <a href='http://blog.jimjh.com/experimenting-with-git-hooks.html'>More</a>
   </div>
 </article>
 

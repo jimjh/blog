@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Tue, 30 Jul 2013 00:00:00 -0700</lastBuildDate><item><title>Thoughts from Reading Code - Foreman: Part 1</title><link>http://blog.jimjh.com/thoughts-from-reading-code-foreman-part-1.html</link><description>&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Wed, 07 Aug 2013 00:00:00 -0700</lastBuildDate><item><title>Atomicity in Ruby</title><link>http://blog.jimjh.com/atomicity-in-ruby.html</link><description>&lt;p&gt;While reading foreman's source code, I noticed that it was using deferred
+signal handling, as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;trap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sig&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="no"&gt;Thread&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:signal_queue&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;sig&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;notice_signal&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It's important to note that the append operation &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; is not atomic. In other
+words, while &lt;code&gt;sig&lt;/code&gt; is being appended to &lt;code&gt;:signal_queue&lt;/code&gt;, another signal could
+come in, interrupting the operation. In this particular case, the order of
+signals would be affected, but that doesn't hurt the grand scheme of things.&lt;/p&gt;
+&lt;p&gt;This piqued my curiosity about atomicity in Ruby. Using a simple Mutex would
+not work, since signals can interrupt synchronized code. The &lt;a href="https://github.com/headius/ruby-atomic"&gt;atomic
+gem&lt;/a&gt; seems like a good start, but I wonder if there are any operations
+in Ruby that are guaranteed to be atomic. I posted a &lt;a href="http://stackoverflow.com/questions/18113522/are-there-any-operations-methods-in-ruby-that-are-guaranteed-documented-to-be-at"&gt;question on
+StackOverflow&lt;/a&gt;, and will update this post as answers come in.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Wed, 07 Aug 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-08-07:atomicity-in-ruby.html</guid><category>ruby</category><category>concurrency</category></item><item><title>Thoughts from Reading Code - Foreman: Part 1</title><link>http://blog.jimjh.com/thoughts-from-reading-code-foreman-part-1.html</link><description>&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Code Style - Raising Exceptions with a Bang&lt;/h3&gt;
 &lt;p&gt;You might occasionally encounter code that looks like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
