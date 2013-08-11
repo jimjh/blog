@@ -84,24 +84,6 @@ To ...</p>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/atomicity-in-ruby.html">Atomicity in Ruby</a></h3>
-  </div>
-  <div id="article_text">
-    <p>While reading foreman's source code, I noticed that it was using deferred
-signal handling, as follows:</p>
-<div class="highlight"><pre><span class="nb">trap</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="p">{</span> <span class="no">Thread</span><span class="o">.</span><span class="n">main</span><span class="o">[</span><span class="ss">:signal_queue</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="n">sig</span> <span class="p">;</span> <span class="n">notice_signal</span> <span class="p">}</span>
-</pre></div>
-
-
-<p>It's important to note that the append operation <code>&lt;&lt;</code> is not atomic. In other
-words, while <code>sig</code> is being appended to <code>:signal_queue</code>, another signal could
-come ...</p>
-    <a href='http://blog.jimjh.com/atomicity-in-ruby.html'>More</a>
-  </div>
-</article>
-<hr />
-<article>
-  <div id="article_title">
     <h3><a href="http://blog.jimjh.com/backbone-faye-and-reaction.html">Backbone, Faye, and Reaction</a></h3>
   </div>
   <div id="article_text">
@@ -197,6 +179,21 @@ it's a good idea to prefix branch names with category tokens, such as
 <p>I first tried using Wordpress, then migrated to Tumblr. Hope this works better!
 Old posts are still accessible at <a href="http://jim-lim.tumblr.com">tumblr</a>. This one is starting anew.</p>
     <a href='http://blog.jimjh.com/hello-world.html'>More</a>
+  </div>
+</article>
+<hr />
+<article>
+  <div id="article_title">
+    <h3><a href="http://blog.jimjh.com/implementing-a-singleton-in-ios.html">Implementing a Singleton in iOS</a></h3>
+  </div>
+  <div id="article_text">
+    <p><em>This is a repost from my old blog.</em></p>
+<p>While I was at Apple’s Cocoa Camp over summer, one of the speakers talked
+rather passionately about the proper, thread-safe way to implement a singleton
+in iOS, which I thought deserves more attention than it currently does on the
+<a href="https://encrypted.google.com/search?q=ios+singleton&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t">Web</a>.</p>
+<h2>The ...</h2>
+    <a href='http://blog.jimjh.com/implementing-a-singleton-in-ios.html'>More</a>
   </div>
 </article>
 
