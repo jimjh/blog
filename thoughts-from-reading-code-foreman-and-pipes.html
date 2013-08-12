@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+  
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
+  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jim Lim">
+
+  <meta property="og:site_name" content="Ampersand">
+    <meta property="fb:admins" content="jimjh">
+  
+      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+  
+    <meta name="keywords" content="ruby, reading">
+  <meta name="description" content="Thoughts from Reading Code - Foreman and Pipes by Jim Lim">
+  <meta property="og:description" content="Thoughts from Reading Code - Foreman and Pipes by Jim Lim">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Jim Lim">
+  <meta property="og:title" content="Thoughts from Reading Code - Foreman and Pipes">
+  <meta property="og:url" content="http://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html">
+
+  <title>
+    Thoughts from Reading Code - Foreman and Pipes  </title>
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://blog.jimjh.com">
+                <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
+              </a>
+      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
+      <p></p>
+      <ul>
+                <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
+                                        <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
+                      </ul>
+      <div id="mc_embed_signup">
+  <form action="http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+  </form>
+</div>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+        <p>Posted on Mon 12 August 2013</p>
+    </header>
+
+      <article>
+    <div id="article_title">
+      <h3><a href="http://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html">Thoughts from Reading Code - Foreman and Pipes</a></h3>
+    </div>
+    <div id="article_text">
+      <h3>Using Pipes for Cheap IPC</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Pipeline_(Unix)">UNIX pipe</a> is a unidirectional interprocess communication channel with
+a read end and a write end. You have probably used pipes in the command line.
+For example,</p>
+<div class="highlight"><pre><span class="nv">$ </span>git ls-files | xargs grep foo
+</pre></div>
+
+
+<p>This executes both commands concurrently and creates a pipe for interprocess
+communication. The output from <code>git ls-files</code> is redirected to the write end of
+the pipe, and the input to <code>xargs grep foo</code> is redirected from the read end.</p>
+<p>Within foreman, pipes are used to aggregate output from the child process it
+manages. A simplified structure of the code is as follows:</p>
+<div class="highlight"><pre><span class="c1"># single process example</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">create_process</span>
+<span class="n">reader</span><span class="p">,</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">create_pipe</span>
+
+<span class="c1"># invokes POSIX::Spawn, with STDOUT duped to the pipe</span>
+<span class="n">process</span><span class="o">.</span><span class="n">run</span> <span class="ss">output</span><span class="p">:</span> <span class="n">writer</span>
+<span class="n">watch_for_output</span> <span class="n">reader</span>
+</pre></div>
+
+
+<h3>Reading from Multiple Pipes</h3>
+<p>Of course, Foreman is more useful when it's used to manage multiple processes.
+Most of the above is still valid, but <code>watch_for_output</code> must be able to read
+from multiple pipes concurrently. Two techniques come to mind: use separate
+threads for each pipe, or use an event-based approach such as <code>select</code>. Foreman
+uses the latter, because it's harder to coordinate multiple threads with signal
+handlers. The former also costs more memory, since it uses a whole stack for
+each thread. (For a more detailed comparison of these strategies, please refer
+to <a href="http://www.kegel.com/c10k.html#strategies">The C10K problem</a>.)</p>
+<p>Inside <a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/engine.rb">Foreman::Engine</a>, <code>select</code> is used in the following way:</p>
+<div class="highlight"><pre><span class="kp">loop</span> <span class="k">do</span>
+  <span class="n">io</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="vi">@readers</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="c1"># block until a fd is ready</span>
+  <span class="n">io</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">reader</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">reader</span><span class="o">.</span><span class="n">eof?</span>
+      <span class="vi">@readers</span><span class="o">.</span><span class="n">delete_if</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span> <span class="n">value</span> <span class="o">==</span> <span class="n">reader</span> <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="c1"># read from read end of pipe, send to STDOUT/log file</span>
+      <span class="n">output</span> <span class="n">reader</span><span class="o">.</span><span class="n">gets</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<h3>Deferring Signals</h3>
+<p>Foreman also listens for the <code>TERM</code>, <code>INT</code>, and <code>HUP</code> signals, and terminates
+all child processes when one of them is received. However, it's difficult to
+write reentrant signal handlers in Ruby, since developers do not have complete
+control over which C functions are called. Thus, it's usually recommended to
+<a href="http://blog.rubybestpractices.com/posts/ewong/016-Implementing-Signal-Handlers.html">defer signal handling</a> by pushing signals onto a queue and handling
+them sequentially. For example,</p>
+<div class="highlight"><pre><span class="c1"># push signals onto a queue</span>
+<span class="nb">trap</span><span class="p">(</span><span class="s1">&#39;INT&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="n">some_queue</span> <span class="o">&lt;&lt;</span> <span class="ss">:INT</span> <span class="p">}</span>
+
+<span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+  <span class="n">process_queue</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>This presents new problems. In the <code>select</code> example above, the thread is
+blocked while waiting for one or more of the file descriptors to become ready.
+We need a way to interrupt the thread so that it may exit gracefully when a
+signal is received. Moreover, <code>process_queue</code> needs to know when a signal has
+been received, so that it does not have to poll the queue for changes. To solve
+these, Foreman uses the self-pipe trick.</p>
+<h4>The Self-Pipe Trick</h4>
+<p>A self-pipe is a pipe that is not shared outside the process that created the
+pipe. In the scenario described above, Foreman creates a self-pipe and adds it
+to the list of inputs that <code>select</code> waits on.</p>
+<div class="highlight"><pre><span class="n">io</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">[</span><span class="n">self_pipe_read</span><span class="o">]</span> <span class="o">+</span> <span class="vi">@readers</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then, whenever <code>select</code> needs to be interrupted, a dummy value is written on
+the write end of the self-pipe, causing <code>select</code> to return. The code following
+<code>select</code> will have to determine if <code>select</code> has found valid input from one of
+the readers, or if it was interrupted for another reason. For Foreman, it needs
+to check if there are pending signals in the queue that needs to be handled.</p>
+<p>This kills two birds with one stone.</p>
+<div class="highlight"><pre><span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+  <span class="n">io</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">[</span><span class="n">self_pipe_read</span><span class="o">]</span> <span class="o">+</span> <span class="vi">@readers</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+  <span class="n">process_queue</span>
+  <span class="n">io</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">reader</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">reader</span><span class="o">.</span><span class="n">eof?</span>
+    <span class="vi">@readers</span><span class="o">.</span><span class="n">delete_if</span> <span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span> <span class="n">value</span> <span class="o">==</span> <span class="n">reader</span> <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="c1"># read from read end of pipe, send to STDOUT/log file</span>
+    <span class="n">output</span> <span class="n">reader</span><span class="o">.</span><span class="n">gets</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+    </div>
+    <div id="article_meta">
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
+            <p>Tags:
+                <a href="http://blog.jimjh.com/tag/ruby.html">ruby</a>,                <a href="http://blog.jimjh.com/tag/reading.html">reading</a>              </p>
+          </div>
+  </article>
+
+    <footer>
+        <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+    <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
+
+    <div id="ending_message">
+      <p>
+<a href='http://jimjh.com'>Jim Lim</a> &sdot;
+<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
+&sdot;
+<a href='https://github.com/jimjh'>GitHub</a> &sdot;
+<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+&sdot;
+<a href="http://www.ontoplist.com/" title="Online Marketing"
+target="_blank">ontoplist</a>
+ &sdot; Theme by Giulio Fidente.</p>
+    </div>
+  </main>
+  </body>
+</html>

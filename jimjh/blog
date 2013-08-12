@@ -1,5 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Tue, 30 Jul 2013 00:00:00 -0700</lastBuildDate><item><title>Thoughts from Reading Code - Foreman</title><link>http://blog.jimjh.com/thoughts-from-reading-code-foreman.html</link><description>&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Mon, 12 Aug 2013 00:00:00 -0700</lastBuildDate><item><title>Thoughts from Reading Code - Foreman and Pipes</title><link>http://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html</link><description>&lt;h3&gt;Using Pipes for Cheap IPC&lt;/h3&gt;
+&lt;p&gt;A &lt;a href="https://en.wikipedia.org/wiki/Pipeline_(Unix)"&gt;UNIX pipe&lt;/a&gt; is a unidirectional interprocess communication channel with
+a read end and a write end. You have probably used pipes in the command line.
+For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git ls-files | xargs grep foo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This executes both commands concurrently and creates a pipe for interprocess
+communication. The output from &lt;code&gt;git ls-files&lt;/code&gt; is redirected to the write end of
+the pipe, and the input to &lt;code&gt;xargs grep foo&lt;/code&gt; is redirected from the read end.&lt;/p&gt;
+&lt;p&gt;Within foreman, pipes are used to aggregate output from the child process it
+manages. A simplified structure of the code is as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# single process example&lt;/span&gt;
+&lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_process&lt;/span&gt;
+&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;writer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_pipe&lt;/span&gt;
+
+&lt;span class="c1"&gt;# invokes POSIX::Spawn, with STDOUT duped to the pipe&lt;/span&gt;
+&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="ss"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;writer&lt;/span&gt;
+&lt;span class="n"&gt;watch_for_output&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Reading from Multiple Pipes&lt;/h3&gt;
+&lt;p&gt;Of course, Foreman is more useful when it's used to manage multiple processes.
+Most of the above is still valid, but &lt;code&gt;watch_for_output&lt;/code&gt; must be able to read
+from multiple pipes concurrently. Two techniques come to mind: use separate
+threads for each pipe, or use an event-based approach such as &lt;code&gt;select&lt;/code&gt;. Foreman
+uses the latter, because it's harder to coordinate multiple threads with signal
+handlers. The former also costs more memory, since it uses a whole stack for
+each thread. (For a more detailed comparison of these strategies, please refer
+to &lt;a href="http://www.kegel.com/c10k.html#strategies"&gt;The C10K problem&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;Inside &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/engine.rb"&gt;Foreman::Engine&lt;/a&gt;, &lt;code&gt;select&lt;/code&gt; is used in the following way:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kp"&gt;loop&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# block until a fd is ready&lt;/span&gt;
+  &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eof?&lt;/span&gt;
+      &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;delete_if&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+      &lt;span class="c1"&gt;# read from read end of pipe, send to STDOUT/log file&lt;/span&gt;
+      &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gets&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Deferring Signals&lt;/h3&gt;
+&lt;p&gt;Foreman also listens for the &lt;code&gt;TERM&lt;/code&gt;, &lt;code&gt;INT&lt;/code&gt;, and &lt;code&gt;HUP&lt;/code&gt; signals, and terminates
+all child processes when one of them is received. However, it's difficult to
+write reentrant signal handlers in Ruby, since developers do not have complete
+control over which C functions are called. Thus, it's usually recommended to
+&lt;a href="http://blog.rubybestpractices.com/posts/ewong/016-Implementing-Signal-Handlers.html"&gt;defer signal handling&lt;/a&gt; by pushing signals onto a queue and handling
+them sequentially. For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# push signals onto a queue&lt;/span&gt;
+&lt;span class="nb"&gt;trap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;INT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;some_queue&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="ss"&gt;:INT&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="no"&gt;Thread&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;process_queue&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This presents new problems. In the &lt;code&gt;select&lt;/code&gt; example above, the thread is
+blocked while waiting for one or more of the file descriptors to become ready.
+We need a way to interrupt the thread so that it may exit gracefully when a
+signal is received. Moreover, &lt;code&gt;process_queue&lt;/code&gt; needs to know when a signal has
+been received, so that it does not have to poll the queue for changes. To solve
+these, Foreman uses the self-pipe trick.&lt;/p&gt;
+&lt;h4&gt;The Self-Pipe Trick&lt;/h4&gt;
+&lt;p&gt;A self-pipe is a pipe that is not shared outside the process that created the
+pipe. In the scenario described above, Foreman creates a self-pipe and adds it
+to the list of inputs that &lt;code&gt;select&lt;/code&gt; waits on.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;self_pipe_read&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, whenever &lt;code&gt;select&lt;/code&gt; needs to be interrupted, a dummy value is written on
+the write end of the self-pipe, causing &lt;code&gt;select&lt;/code&gt; to return. The code following
+&lt;code&gt;select&lt;/code&gt; will have to determine if &lt;code&gt;select&lt;/code&gt; has found valid input from one of
+the readers, or if it was interrupted for another reason. For Foreman, it needs
+to check if there are pending signals in the queue that needs to be handled.&lt;/p&gt;
+&lt;p&gt;This kills two birds with one stone.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;Thread&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;self_pipe_read&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;process_queue&lt;/span&gt;
+  &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eof?&lt;/span&gt;
+    &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;delete_if&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="c1"&gt;# read from read end of pipe, send to STDOUT/log file&lt;/span&gt;
+    &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gets&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Mon, 12 Aug 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-08-12:thoughts-from-reading-code-foreman-and-pipes.html</guid><category>ruby</category><category>reading</category></item><item><title>Thoughts from Reading Code - Foreman</title><link>http://blog.jimjh.com/thoughts-from-reading-code-foreman.html</link><description>&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Code Style - Raising Exceptions with a Bang&lt;/h3&gt;
 &lt;p&gt;You might occasionally encounter code that looks like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
