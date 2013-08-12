@@ -1,5 +1,5 @@
 Date: 2013-07-30
-Title: Thoughts from Reading Code - Foreman: Part 1
+Title: Thoughts from Reading Code - Foreman
 Category: Software
 Tags: ruby, reading
 
@@ -19,7 +19,7 @@ You might occasionally encounter code that looks like this:
       do_something_useful
       do_some_other_useful_thing
     end
-    
+
 This seems perfectly normal - `start` validates a few conditions (possibly derived from the context or environment), and decides if it is OK to continue with the operation. However, such validations get in the way of readability, and are often duplicated in other methods. To keep things SOLID and DRY, let's extract these out into private methods.
 
     :::ruby
@@ -29,7 +29,7 @@ This seems perfectly normal - `start` validates a few conditions (possibly deriv
       do_something_useful
       do_some_other_useful_thing
     end
-    
+
 Much better. The code is a lot easier to read, but the helper methods have masked their side effects. (In this case, exceptions are raised and output is printed when some conditions are not met.) This can be confusing as the code base grows and becomes more complicated. A new team member would take a longer time to go through the code and learn that the `check_*` methods have potential side effects. To fix this, let's add a `!` to the end of their names.
 
     :::ruby
@@ -39,7 +39,7 @@ Much better. The code is a lot easier to read, but the helper methods have maske
       do_something_useful
       do_some_other_useful_thing
     end
-    
+
 With this edit, the `start` method's purpose and operations become immediately apparent.
 
 ### Technique - Loading Configuration Files
@@ -51,7 +51,7 @@ Using Thor, one can easily create a command-line interface by defining options f
     def start()
       # …
     end
-    
+
 adds a `start` task that accepts a `--color` option. It is often useful to allow the user to specify frequently used configuration options with a configuration file, such as `.rspec` and `.yardopts`. With Thor, the `options` getter method provides a convenient place to merge options from the configuration file and from the command-line.
 
     :::ruby
