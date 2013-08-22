@@ -97,14 +97,16 @@ This kills two birds with one stone.
 
     :::ruby
     Thread.new do
-      io = IO.select([self_pipe_read] + @readers.values, nil, nil, 30)
-      process_queue
-      io.first.each do |reader|
-      if reader.eof?
-        @readers.delete_if { |key, value| value == reader }
-      else
-        # read from read end of pipe, send to STDOUT/log file
-        output reader.gets
+      loop do
+        io = IO.select([self_pipe_read] + @readers.values, nil, nil, 30)
+        process_queue
+        io.first.each do |reader|
+        if reader.eof?
+          @readers.delete_if { |key, value| value == reader }
+        else
+          # read from read end of pipe, send to STDOUT/log file
+          output reader.gets
+        end
       end
     end
 
