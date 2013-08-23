@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
 
-    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+    <link rel="stylesheet" href="./theme/css/style.min.css?c7aeff9b">
   
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
   <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
@@ -16,42 +16,27 @@
   <meta property="og:site_name" content="Ampersand">
     <meta property="fb:admins" content="jimjh">
   
-      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-  
+    
     <meta name="description" content="Posts and Writings by Jim Lim on Software">
   <meta property="og:description" content="Posts and Writings by Jim Lim on Software">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ampersand">
-  <meta property="og:url" content="http://blog.jimjh.com/">
+  <meta property="og:url" content="./">
 
   <title>
     Ampersand  </title>
 
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-5604647-6']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-</head>
+  </head>
 
 <body>
   <aside>
     <div id="user_meta">
-      <a href="http://blog.jimjh.com">
+      <a href=".">
                 <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
               </a>
-      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href=".">Jim Lim</a></h2>
       <p></p>
       <ul>
-                <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
                                         <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
                       </ul>
       <div id="mc_embed_signup">
@@ -67,9 +52,9 @@
     <header>
             <div>
         <p class='top-nav'>
-        <a href="http://blog.jimjh.com">Index</a> &#124;
-        <a href="http://blog.jimjh.com/archives.html">Archives</a> &#124;
-        <a href="http://blog.jimjh.com/tags.html">Tags</a>
+        <a href=".">Index</a> &#124;
+        <a href="./archives.html">Archives</a> &#124;
+        <a href="./tags.html">Tags</a>
         </p>
         <script>
   (function() {
@@ -92,19 +77,19 @@
 
     <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html">How to Create a Websocket Server in Ruby</a></h3>
+    <h3><a href="./how-to-create-a-websocket-server-in-ruby.html">How to Create a Websocket Server in Ruby</a></h3>
   </div>
   <div id="article_text">
     <p>This is a short tutorial on creating a websocket server in Ruby using James Coglan's <a href="https://github.com/faye/websocket-driver-ruby">websocket driver</a>. The complete example is available on <a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb">github</a>.</p>
 <h3>About Websocket Driver</h3>
 <p>The <a href="http://rubygems.org/gems/websocket-driver">websocket-driver</a> gem decouples the websocket protocol from the I/O layer, providing drivers that handle the websocket procotol (handshakes, upgrades etc ...</p>
-    <a href='http://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html'>More</a>
+    <a href='./how-to-create-a-websocket-server-in-ruby.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html">Thoughts from Reading Code - Foreman and Pipes</a></h3>
+    <h3><a href="./thoughts-from-reading-code-foreman-and-pipes.html">Thoughts from Reading Code - Foreman and Pipes</a></h3>
   </div>
   <div id="article_text">
     <h3>Using Pipes for Cheap IPC</h3>
@@ -117,26 +102,26 @@ For example,</p>
 
 <p>This executes both commands concurrently and creates a pipe for interprocess
 communication ...</p>
-    <a href='http://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html'>More</a>
+    <a href='./thoughts-from-reading-code-foreman-and-pipes.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/thoughts-from-reading-code-foreman.html">Thoughts from Reading Code - Foreman</a></h3>
+    <h3><a href="./thoughts-from-reading-code-foreman.html">Thoughts from Reading Code - Foreman</a></h3>
   </div>
   <div id="article_text">
     <p>I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's <a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb">cli.rb</a>.</p>
 <h3>Code Style - Raising Exceptions with a Bang</h3>
 <p>You might occasionally encounter code that looks like this:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil ...</span></pre></div>
-    <a href='http://blog.jimjh.com/thoughts-from-reading-code-foreman.html'>More</a>
+    <a href='./thoughts-from-reading-code-foreman.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/introducing-verbal-a-ruby-gem.html">Introducing Verbal, a Ruby Gem</a></h3>
+    <h3><a href="./introducing-verbal-a-ruby-gem.html">Introducing Verbal, a Ruby Gem</a></h3>
   </div>
   <div id="article_text">
     <p>I recently released <a href="https://rubygems.org/gems/verbal">Verbal</a>, a ruby gem that provides a fluent
@@ -145,46 +130,46 @@ DSL for creating regular expressions. It's a fork of jehna's popular
 examples are available at <a href="http://rubydoc.info/gems/verbal/Verbal">rubydoc.info</a>.</p>
 <p>To create a regular expression that matches <code>http</code>, <code>https</code>, <code>ftp</code>, and <code>sftp</code>,
 one ...</p>
-    <a href='http://blog.jimjh.com/introducing-verbal-a-ruby-gem.html'>More</a>
+    <a href='./introducing-verbal-a-ruby-gem.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/event-tracking-with-google-analytics-and-launchrock.html">Event Tracking with Google Analytics and LaunchRock</a></h3>
+    <h3><a href="./event-tracking-with-google-analytics-and-launchrock.html">Event Tracking with Google Analytics and LaunchRock</a></h3>
   </div>
   <div id="article_text">
     <p>It's easy to create a landing page with LaunchRock, but getting meaningful analytics out of it is more difficult. For example, I still have not figured out a way to run a Google Analytics experiment on LaunchRock - using custom Javascript code in LaunchRock sometimes crashes the previewer, forcing me ...</p>
-    <a href='http://blog.jimjh.com/event-tracking-with-google-analytics-and-launchrock.html'>More</a>
+    <a href='./event-tracking-with-google-analytics-and-launchrock.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html">Making Conditional Requests with Peter Murach's gem</a></h3>
+    <h3><a href="./making-conditional-requests-with-peter-murachs-gem.html">Making Conditional Requests with Peter Murach's gem</a></h3>
   </div>
   <div id="article_text">
     <p>GitHub imposes a rate limit on API requests, and encourages developers to use <a href="http://developer.github.com/v3/#conditional-requests">conditional requests</a>. Here is how to do that using Peter's popular <a href="https://github.com/peter-murach/github">github api gem</a>.</p>
 <h2>Method A - Faraday HTTP Cache w. ActiveSupport::Cache</h2>
 <p>This uses the <a href="https://github.com/plataformatec/faraday-http-cache">faraday-http-cache gem</a>, which takes care of expiration, etags, and response statuses ...</p>
-    <a href='http://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html'>More</a>
+    <a href='./making-conditional-requests-with-peter-murachs-gem.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/jquery-plugin-box-lid-menu.html">jQuery Plugin - Box Lid Menu</a></h3>
+    <h3><a href="./jquery-plugin-box-lid-menu.html">jQuery Plugin - Box Lid Menu</a></h3>
   </div>
   <div id="article_text">
     <p>Smashing Magazine wrote <a href="http://www.smashingmagazine.com/2013/07/11/innovative-navigation-designs/">a piece</a> about <a href="http://www.toybox.co.nz/">Toybox</a>'s navigation menu today, describing the user experience as "peeking behind the page or the lid of a toybox". I really liked the design, took a shot at creating a <a href="https://github.com/jimjh/box-lid/">jQuery plugin</a> to replicate the effect. Here is a <a href="http://jimjh.com/box-lid/">demo</a>.</p>
 <p>Most of the ...</p>
-    <a href='http://blog.jimjh.com/jquery-plugin-box-lid-menu.html'>More</a>
+    <a href='./jquery-plugin-box-lid-menu.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html">A Short Tutorial on Custom Storyboard Segues</a></h3>
+    <h3><a href="./a-short-tutorial-on-custom-storyboard-segues.html">A Short Tutorial on Custom Storyboard Segues</a></h3>
   </div>
   <div id="article_text">
     <p><em>This is a repost from my old blog.</em></p>
@@ -192,13 +177,13 @@ one ...</p>
 <p>Suppose you don't want to <em>push</em> between view controllers. In particular,
 suppose you want first view controller to <em>flip</em> to the second view controller.
 To ...</p>
-    <a href='http://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html'>More</a>
+    <a href='./a-short-tutorial-on-custom-storyboard-segues.html'>More</a>
   </div>
 </article>
 <hr />
 <article>
   <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h3>
+    <h3><a href="./compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h3>
   </div>
   <div id="article_text">
     <p><em>This is a repost from my old blog.</em></p>
@@ -206,8 +191,48 @@ To ...</p>
 source libraries that have several makefiles.</p>
 <p>Android NDK r5 added support for prebuilt libraries and also included
 standalone toolchains that could be used to compile open-source libraries ...</p>
-    <a href='http://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html'>More</a>
+    <a href='./compiling-open-source-libraries-with-android-ndk-part-2.html'>More</a>
   </div>
+</article>
+<hr />
+<article>
+  <div id="article_title">
+    <h3><a href="./implementing-a-singleton-in-ios.html">Implementing a Singleton in iOS</a></h3>
+  </div>
+  <div id="article_text">
+    <p><em>This is a repost from my old blog.</em></p>
+<p>While I was at Apple’s Cocoa Camp over summer, one of the speakers talked
+rather passionately about the proper, thread-safe way to implement a singleton
+in iOS, which I thought deserves more attention than it currently does on the
+<a href="https://encrypted.google.com/search?q=ios+singleton&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t">Web</a>.</p>
+<h2>The ...</h2>
+    <a href='./implementing-a-singleton-in-ios.html'>More</a>
+  </div>
+</article>
+
+    <footer>
+      <p id="paginator">
+<a href="./index2.html" class="button_accent">&larr; Older Posts</a>
+
+</p>
+    </footer>
+
+    <div id="ending_message">
+      <p>
+<a href='http://jimjh.com'>Jim Lim</a> &sdot;
+<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
+&sdot;
+<a href='https://github.com/jimjh'>GitHub</a> &sdot;
+<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+&sdot;
+<a href="http://www.ontoplist.com/" title="Online Marketing"
+target="_blank">ontoplist</a>
+ &sdot; Theme by Giulio Fidente.</p>
+    </div>
+  </main>
+  </body>
+</html>div>
 </article>
 <hr />
 <article>

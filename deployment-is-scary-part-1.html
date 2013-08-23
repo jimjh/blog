@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
 
-    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+    <link rel="stylesheet" href="./theme/css/style.min.css?c7aeff9b">
   
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
   <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
@@ -16,44 +16,29 @@
   <meta property="og:site_name" content="Ampersand">
     <meta property="fb:admins" content="jimjh">
   
-      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-  
+    
     <meta name="keywords" content="ruby, rails">
   <meta name="description" content="Deployment is Scary - Part 1 by Jim Lim">
   <meta property="og:description" content="Deployment is Scary - Part 1 by Jim Lim">
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Jim Lim">
   <meta property="og:title" content="Deployment is Scary - Part 1">
-  <meta property="og:url" content="http://blog.jimjh.com/deployment-is-scary-part-1.html">
+  <meta property="og:url" content="./deployment-is-scary-part-1.html">
 
   <title>
     Deployment is Scary - Part 1  </title>
 
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-5604647-6']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-</head>
+  </head>
 
 <body>
   <aside>
     <div id="user_meta">
-      <a href="http://blog.jimjh.com">
+      <a href=".">
                 <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
               </a>
-      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href=".">Jim Lim</a></h2>
       <p></p>
       <ul>
-                <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
                                         <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
                       </ul>
       <div id="mc_embed_signup">
@@ -72,7 +57,7 @@
 
       <article>
     <div id="article_title">
-      <h3><a href="http://blog.jimjh.com/deployment-is-scary-part-1.html">Deployment is Scary - Part 1</a></h3>
+      <h3><a href="./deployment-is-scary-part-1.html">Deployment is Scary - Part 1</a></h3>
     </div>
     <div id="article_text">
       <p>As part of a class project, I was given the opportunity to field a Rails application at <a href="http://www.contrib.andrew.cmu.edu/~sc0v/">Spring Carnival</a>, an annual event held by Carnegie Mellon University (official <a href="http://www.hss.cmu.edu/pressreleases/pressreleases/IScarnivalcontest.html">press release</a>.) Here, I will describe a subset of the risk mitigation strategies that we used to avoid hacking and maximize uptime.</p>
@@ -81,7 +66,7 @@
 <p>The application was deployed on Amazon's <a href="http://aws.amazon.com/elasticbeanstalk/">Elastic Beanstalk</a>, which has auto-scaling built in. However, this also meant that the application could have several web servers working off a single <a href="http://aws.amazon.com/rds/">RDS</a> server, which could cause some performance issues. Our goals for load testing were two-fold: first, we wished to ascertain the effectiveness of our auto-scaling policies; second, we wanted to ensure that the response times were reasonable even at twice the maximum expected load.</p>
 <h2>JMeter</h2>
 <p>JMeter was not the simplest tool for load testing, but developers (and ops engineers) seemed to agree that it was amongst the most powerful. The <a href="http://jmeter.apache.org/usermanual/build-web-test-plan.html">user manual</a> provides detailed instructions for building a web test plan. In addition to a thread group and a config element for HTTP request defaults, we also added a HTTP cookie manager for maintaining sessions. The following screenshot captures the hierarchy of our setup.</p>
-<p><img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/jmeter-tree.png" /></p>
+<p><img alt="image" src="./static/images/2013/05/12/jmeter-tree.png" /></p>
 <h3>Extract CSRF Token</h3>
 <p>Before our test user could login, it had to find the CSRF token on the page and submit that along with its credentials for Rails to accept the request. To do this, we added a HTTP Request to our thread group (or, more accurately, a request <em>sampler</em>). This sampler issues GET requests to <code>/users/sign_in</code>, and, using a Regular Expression Extractor (available under <em>Post Processors</em>), searches for the CSRF token with the following regex</p>
 <div class="highlight"><pre><span class="n">input</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;authenticity_token&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;(.*?)&quot;</span>
@@ -91,41 +76,24 @@
 <p>The matched token is stored in the <code>LOGIN_AUTH_TOKEN</code> variable for JMeter to use in subsequent requests.</p>
 <h3>Authenticate User</h3>
 <p>Next, we added another request sampler that issues POST requests to <code>/users/sign_in</code> with the user's email, password, and the CSRF token from the previous step. (I forgot to encode the CSRF token and spent a great amount of time wondering why Rails occasionally rejected requests from this sampler.) The following screenshot showed our configuration.</p>
-<p><img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/jmeter-login.png" /></p>
+<p><img alt="image" src="./static/images/2013/05/12/jmeter-login.png" /></p>
 <h3>Do Something</h3>
 <p>Finally, we added request samplers to perform some action on the application. In my case, I was mainly worried about I/O performance, and thus added actions that would force read/writes to the database. Note that if some of these actions require CSRF tokens, in which case one could use the CSRF extraction described above and a HTTP Header Manager to include the <code>X-CSRF</code> header in the request. We also found it useful to include a response assertion to verify the status code of the response.</p>
 <h3>Measure Response Times</h3>
 <p>After some tinkering (such as using <a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations">eager loading</a> to reduce the number of database calls), we managed to improve the application's performance to (what I thought was) a reasonable level.</p>
-<p>The entire JMX file is available <a href="http://blog.jimjh.com/static/downloads/2013/05/12/enteract.jmx">here</a>.</p>
-<p><img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/load-test.png" /></p>
+<p>The entire JMX file is available <a href="./static/downloads/2013/05/12/enteract.jmx">here</a>.</p>
+<p><img alt="image" src="./static/images/2013/05/12/load-test.png" /></p>
     </div>
     <div id="article_meta">
-      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
+      <p>Category: <a href="./category/software.html">Software</a></p>
             <p>Tags:
-                <a href="http://blog.jimjh.com/tag/ruby.html">ruby</a>,                <a href="http://blog.jimjh.com/tag/rails.html">rails</a>              </p>
+                <a href="./tag/ruby.html">ruby</a>,                <a href="./tag/rails.html">rails</a>              </p>
           </div>
   </article>
 
     <footer>
-        <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
-    <div id="comments">
-    <div id="respond">
-      <div id="disqus_thread"></div>
-          <script type="text/javascript">
-              var disqus_shortname = 'jimjh';
-
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div><!-- #respond -->
-</div><!-- #comments -->
-    </footer>
+        <p><a href="./" class="button_accent">&larr; Back to Index</a></p>
+      </footer>
 
     <div id="ending_message">
       <p>

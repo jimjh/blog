@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
 
-    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?c7aeff9b">
   
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
   <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
@@ -31,6 +31,8 @@
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-5604647-6']);
   _gaq.push(['_trackPageview']);
+
+  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
