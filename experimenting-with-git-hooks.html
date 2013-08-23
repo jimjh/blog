@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
 
-    <link rel="stylesheet" href="./theme/css/style.min.css?3afacc2d">
+    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
   
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
   <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
@@ -16,29 +16,46 @@
   <meta property="og:site_name" content="Ampersand">
     <meta property="fb:admins" content="jimjh">
   
-    
+      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+  
     <meta name="keywords" content="bash, git">
   <meta name="description" content="Experimenting with Git Hooks by Jim Lim">
   <meta property="og:description" content="Experimenting with Git Hooks by Jim Lim">
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Jim Lim">
   <meta property="og:title" content="Experimenting with Git Hooks">
-  <meta property="og:url" content="./experimenting-with-git-hooks.html">
+  <meta property="og:url" content="http://blog.jimjh.com/experimenting-with-git-hooks.html">
 
   <title>
     Experimenting with Git Hooks  </title>
 
-  </head>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
 
 <body>
   <aside>
     <div id="user_meta">
-      <a href=".">
+      <a href="http://blog.jimjh.com">
                 <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
               </a>
-      <h2><a href=".">Jim Lim</a></h2>
+      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
       <p></p>
       <ul>
+                <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
                                         <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
                       </ul>
       <div id="mc_embed_signup">
@@ -57,7 +74,7 @@
 
       <article>
     <div id="article_title">
-      <h3><a href="./experimenting-with-git-hooks.html">Experimenting with Git Hooks</a></h3>
+      <h3><a href="http://blog.jimjh.com/experimenting-with-git-hooks.html">Experimenting with Git Hooks</a></h3>
     </div>
     <div id="article_text">
       <p>I have been trying to follow a more disciplined approach to branching in my
@@ -83,15 +100,32 @@ use a simple hook to prepend all of my commit messages with the story ID.</p>
 </pre></div>
     </div>
     <div id="article_meta">
-      <p>Category: <a href="./category/software.html">Software</a></p>
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
             <p>Tags:
-                <a href="./tag/bash.html">bash</a>,                <a href="./tag/git.html">git</a>              </p>
+                <a href="http://blog.jimjh.com/tag/bash.html">bash</a>,                <a href="http://blog.jimjh.com/tag/git.html">git</a>              </p>
           </div>
   </article>
 
     <footer>
-        <p><a href="./" class="button_accent">&larr; Back to Index</a></p>
-      </footer>
+        <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+    <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
 
     <div id="ending_message">
       <p>

@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
 
-    <link rel="stylesheet" href="./theme/css/style.min.css?c7aeff9b">
+    <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
   
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
   <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
@@ -16,29 +16,46 @@
   <meta property="og:site_name" content="Ampersand">
     <meta property="fb:admins" content="jimjh">
   
-    
+      <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+  
     <meta name="keywords" content="machine learning, matlab, yelp">
   <meta name="description" content="Predicting User Ratings on Yelp by Jim Lim">
   <meta property="og:description" content="Predicting User Ratings on Yelp by Jim Lim">
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Jim Lim">
   <meta property="og:title" content="Predicting User Ratings on Yelp">
-  <meta property="og:url" content="./predicting-user-ratings-on-yelp.html">
+  <meta property="og:url" content="http://blog.jimjh.com/predicting-user-ratings-on-yelp.html">
 
   <title>
     Predicting User Ratings on Yelp  </title>
 
-  </head>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
 
 <body>
   <aside>
     <div id="user_meta">
-      <a href=".">
+      <a href="http://blog.jimjh.com">
                 <img src="http://blog.jimjh.com/static/images/jimjh.png" alt="logo">
               </a>
-      <h2><a href=".">Jim Lim</a></h2>
+      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
       <p></p>
       <ul>
+                <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
                                         <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
                       </ul>
       <div id="mc_embed_signup">
@@ -57,10 +74,10 @@
 
       <article>
     <div id="article_title">
-      <h3><a href="./predicting-user-ratings-on-yelp.html">Predicting User Ratings on Yelp</a></h3>
+      <h3><a href="http://blog.jimjh.com/predicting-user-ratings-on-yelp.html">Predicting User Ratings on Yelp</a></h3>
     </div>
     <div id="article_text">
-      <p>Several weeks ago, Yelp launched a <a href="https://www.yelp.com/dataset_challenge/dataset">dataset challenge</a> and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my <a href="./static/downloads/2013/05/12/netflix.pdf">Netflix project</a>  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a <a href="https://github.com/jimjh/yelp-dataset-challenge">git repository</a>.</p>
+      <p>Several weeks ago, Yelp launched a <a href="https://www.yelp.com/dataset_challenge/dataset">dataset challenge</a> and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my <a href="http://blog.jimjh.com/static/downloads/2013/05/12/netflix.pdf">Netflix project</a>  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a <a href="https://github.com/jimjh/yelp-dataset-challenge">git repository</a>.</p>
 <h2>Transforming the Data</h2>
 <p>The dataset arrived in a tarball that unpacks into a directory of JSON files. Each JSON file could be imported into MongoDB relatively easily with the following command:</p>
 <div class="highlight"><pre><span class="err">$</span><span class="o">&gt;</span> <span class="nx">mongoimport</span> <span class="o">--</span><span class="nb">db</span> <span class="nx">yelp</span> <span class="o">--</span><span class="nx">collection</span> <span class="nx">reviews</span> <span class="o">--</span><span class="nx">drop</span> <span class="o">--</span><span class="nb">file</span> <span class="o">&lt;</span><span class="nb">filename</span><span class="o">&gt;</span>
@@ -73,7 +90,7 @@
 <p>The <code>reviews</code> collection may be exported to a CSV file that can be imported into MatLab.</p>
 <h2>Decomposing the Matrix</h2>
 <p>Using a <em>latent factor model</em>, we assume that each business has a set of features, and each user has a certain preference for each feature. Then, the rating that a user gives to a business <code>r_ij</code> is the dot product of the business's feature vector <code>b_i</code> and the user's preferences vector <code>u_j</code>. Putting everything together, we get <code>B × U = R</code>, where <code>B</code> is the features matrix, <code>U</code> is the preferences matrix, and <code>R</code> is the ratings matrix.</p>
-<p>The goal of the alternating least squares algorithm is thus to determine the matrices <code>B</code> and <code>U</code>, and then use these for predicting unknown ratings. (The full explanation of the model and the algorithm are available in my <a href="./static/downloads/2013/05/12/netflix.pdf">project report</a>.)</p>
+<p>The goal of the alternating least squares algorithm is thus to determine the matrices <code>B</code> and <code>U</code>, and then use these for predicting unknown ratings. (The full explanation of the model and the algorithm are available in my <a href="http://blog.jimjh.com/static/downloads/2013/05/12/netflix.pdf">project report</a>.)</p>
 <p>Note that the model doesn't know exactly what these features are - it just guesses at a reasonable number of features.</p>
 <h2>Measuring the Results</h2>
 <p>The entire ratings matrix <code>R</code> was too large for my Macbook to handle, and I took a random sample of 2000 users and 2000 businesses, which gave me about 1780 known ratings. The model has two parameters: the number of latent factors, and the regularization factor (lambda). I fixed the number of latent factors at 20, and then used 5-fold cross validation to determine the best value for lambda.</p>
@@ -105,15 +122,32 @@
 <p>I will post updates here if I figure out what is going wrong.</p>
     </div>
     <div id="article_meta">
-      <p>Category: <a href="./category/software.html">Software</a></p>
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
             <p>Tags:
-                <a href="./tag/machine-learning.html">machine learning</a>,                <a href="./tag/matlab.html">matlab</a>,                <a href="./tag/yelp.html">yelp</a>              </p>
+                <a href="http://blog.jimjh.com/tag/machine-learning.html">machine learning</a>,                <a href="http://blog.jimjh.com/tag/matlab.html">matlab</a>,                <a href="http://blog.jimjh.com/tag/yelp.html">yelp</a>              </p>
           </div>
   </article>
 
     <footer>
-        <p><a href="./" class="button_accent">&larr; Back to Index</a></p>
-      </footer>
+        <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+    <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
 
     <div id="ending_message">
       <p>
