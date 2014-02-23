@@ -18,16 +18,16 @@
 
   <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
 
-  <meta name="keywords" content="ruby, security">
-  <meta name="description" content="Playing with Stripe CTF by Jim Lim">
-  <meta property="og:description" content="Playing with Stripe CTF by Jim Lim">
+  <meta name="keywords" content="ruby, stripe">
+  <meta name="description" content="Stripe CTF 2014, Level 0 by Jim Lim">
+  <meta property="og:description" content="Stripe CTF 2014, Level 0 by Jim Lim">
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Jim Lim">
-  <meta property="og:title" content="Playing with Stripe CTF">
-  <meta property="og:url" content="http://blog.jimjh.com/playing-with-stripe-ctf.html">
+  <meta property="og:title" content="Stripe CTF 2014, Level 0">
+  <meta property="og:url" content="http://blog.jimjh.com/stripe-ctf-2014-level-0.html">
 
   <title>
-Playing with Stripe CTF  </title>
+Stripe CTF 2014, Level 0  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -67,54 +67,78 @@ Playing with Stripe CTF  </title>
 
   <main>
     <header>
-  <p>Posted on Fri 21 June 2013</p>
+  <p>Posted on Sun 23 February 2014</p>
     </header>
 
   <article>
     <div id="article_title">
-      <h3><a href="http://blog.jimjh.com/playing-with-stripe-ctf.html">Playing with Stripe CTF</a></h3>
+      <h3><a href="http://blog.jimjh.com/stripe-ctf-2014-level-0.html">Stripe CTF 2014, Level 0</a></h3>
     </div>
     <div id="article_text">
-      <p>I was playing around with Stripe's <a href="https://github.com/stripe-ctf/stripe-ctf-2.0">source code</a> for last year's CTF,
-and from what I could see online, most people solved Level 4 by using XSS in
-the password field. But look at the following line in <code>srv.rb</code>:</p>
-<div class="highlight"><pre><span class="k">unless</span> <span class="n">username</span> <span class="o">=~</span> <span class="sr">/^\w+$/</span>
-  <span class="n">ie</span><span class="p">(</span><span class="s2">&quot;Invalid username. Usernames must match /^\w+$/&quot;</span><span class="p">,</span> <span class="ss">:register</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
+      <p>I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.</p>
+<h3>Level 0</h3>
+<p>The first level was pretty easy, and mainly served as an introduction/tutorial
+for participating in the CTF. We were given the following code, and asked to
+improve its running time:</p>
+<script src="https://gist.github.com/jimjh/9178255.js"></script>
 
+<p>This looks like a simple spellchecker. Given an input of size <em>m</em> and a
+dictionary of size <em>n</em>, the above implementation has a running time of O(<em>mn</em>).
+The easiest way to get past this level is to use a hash set, instead of an
+array, for the dictionary. This reduces the running time to O(<em>m</em>).</p>
+<p>To get on the leader board, we needed to put in more work. It quickly became
+clear (through profiling) that most of the time was spent reading and
+initializing the dictionary. I tried generating/serializing the set beforehand
+and loading it (using <code>Marshal#load</code>) at runtime, but that did not yield any
+significant improvements. Next, I tried rewriting the code in Java, and tuning
+the JVM to squeeze more performance out of it. I eventually settled on the
+following flags, which brought the running time from ~0.3 seconds to ~0.2
+seconds.</p>
+<script src="https://gist.github.com/jimjh/9178295.js"></script>
 
-<p>Turns out there is a hole here as well due to the way Ruby treats the <code>^</code> and
-<code>$</code> metacharacters. According to the <a href="http://www.ruby-doc.org/core-1.9.2/Regexp.html#label-Anchors">documentation</a>, the <code>^</code> anchor
-matches the beginning of a <em>line</em>, instead of the entire string. Thus</p>
-<div class="highlight"><pre><span class="nb">puts</span> <span class="s2">&quot;match&quot;</span> <span class="k">if</span> <span class="s2">&quot;&lt;script&gt;&quot;</span> <span class="o">=~</span> <span class="sr">/^\w$/</span>     <span class="c1"># doesn&#39;t print anything</span>
-<span class="nb">puts</span> <span class="s2">&quot;match&quot;</span> <span class="k">if</span> <span class="s2">&quot;&lt;script&gt;</span><span class="se">\n</span><span class="s2">x&quot;</span> <span class="o">=~</span> <span class="sr">/^\w$/</span>  <span class="c1">#&gt;&gt; match</span>
-</pre></div>
-
-
-<p>This allows us to use the <code>username</code> field as an attack vector.</p>
-<div class="highlight"><pre><span class="n">xss</span> <span class="o">=</span> <span class="o">&lt;&lt;-</span><span class="no">eos</span>
-<span class="sh">&lt;script&gt;</span>
-<span class="sh">$.post(&#39;/transfer&#39;, { to: &#39;me&#39;, amount: &#39;10&#39; });</span>
-<span class="sh">&lt;/script&gt;</span>
-<span class="sh">x</span>
-<span class="no">eos</span>
-<span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">post_form</span> <span class="n">uri</span><span class="p">,</span> <span class="p">{</span> <span class="ss">username</span><span class="p">:</span> <span class="n">xss</span><span class="p">,</span> <span class="ss">password</span><span class="p">:</span> <span class="s1">&#39;x&#39;</span> <span class="p">}</span>
-</pre></div>
-
-
-<p>Trips me up every time. Use <code>\A</code> and <code>\z</code> to match the beginning and end of a
-line in ruby.</p>
-<h3>References</h3>
+<p>Again, I tried using Java to serialize and deserialize the hash set, but that
+didn't yield any improvements. Using nio's <code>MappedByteBuffer</code> didn't help either.</p>
+<p>I also tried using gperf to see if it could find a reasonable perfect hash
+function for the dictionary, but it took too many hours to generate and
+compile, and I gave up. At this point I decided to move on to the next level.
+However, here are some ideas that might have worked:</p>
 <ul>
-<li><a href="http://blog.ioactive.com/2012/08/stripe-ctf-20-write-up.html#level4">IOActive</a></li>
-<li><a href="http://blog.spiderlabs.com/2012/08/stripe-ctf-walkthrough.html">SpiderLabs</a></li>
+<li>implement a hash map in C,  pre-process the dictionary, persist it to disk,
+then use mmap to load the set at runtime</li>
+<li>implement a bloom filter in C, then use mmap to load the filter at runtime</li>
 </ul>
+<p>Note that using a bloom filter is probabilistic - it could get you on the
+leader board if you push enough times.</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ruby Array</td>
+<td>7.15 s</td>
+</tr>
+<tr>
+<td>Ruby Hash Map</td>
+<td>0.386 s</td>
+</tr>
+<tr>
+<td>Java with Flags</td>
+<td>0.253 s</td>
+</tr>
+</tbody>
+</table>
+<p>(I didn't bother to calculate the exact variance - the numbers of significant
+figures indicate my "feel" of the deviation.)</p>
+<p>I uploaded <a href="https://github.com/jimjh/stripe-level0">some of my work</a> to GitHub. Take a shot.</p>
     </div>
     <div id="article_meta">
       <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
       <p>Tags:
-        <a href="http://blog.jimjh.com/tag/ruby.html">ruby</a>,        <a href="http://blog.jimjh.com/tag/security.html">security</a>      </p>
+        <a href="http://blog.jimjh.com/tag/ruby.html">ruby</a>,        <a href="http://blog.jimjh.com/tag/stripe.html">stripe</a>      </p>
     </div>
   </article>
 

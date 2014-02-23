@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Wed, 21 Aug 2013 00:00:00 -0700</lastBuildDate><item><title>How to Create a Websocket Server in Ruby</title><link>http://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html</link><description>&lt;p&gt;This is a short tutorial on creating a websocket server in Ruby using James Coglan's &lt;a href="https://github.com/faye/websocket-driver-ruby"&gt;websocket driver&lt;/a&gt;. The complete example is available on &lt;a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb"&gt;github&lt;/a&gt;.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Sun, 23 Feb 2014 00:00:00 -0800</lastBuildDate><item><title>Stripe CTF 2014, Level 0</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-0.html</link><description>&lt;p&gt;I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.&lt;/p&gt;
+&lt;h3&gt;Level 0&lt;/h3&gt;
+&lt;p&gt;The first level was pretty easy, and mainly served as an introduction/tutorial
+for participating in the CTF. We were given the following code, and asked to
+improve its running time:&lt;/p&gt;
+&lt;script src="https://gist.github.com/jimjh/9178255.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;This looks like a simple spellchecker. Given an input of size &lt;em&gt;m&lt;/em&gt; and a
+dictionary of size &lt;em&gt;n&lt;/em&gt;, the above implementation has a running time of O(&lt;em&gt;mn&lt;/em&gt;).
+The easiest way to get past this level is to use a hash set, instead of an
+array, for the dictionary. This reduces the running time to O(&lt;em&gt;m&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;To get on the leader board, we needed to put in more work. It quickly became
+clear (through profiling) that most of the time was spent reading and
+initializing the dictionary. I tried generating/serializing the set beforehand
+and loading it (using &lt;code&gt;Marshal#load&lt;/code&gt;) at runtime, but that did not yield any
+significant improvements. Next, I tried rewriting the code in Java, and tuning
+the JVM to squeeze more performance out of it. I eventually settled on the
+following flags, which brought the running time from ~0.3 seconds to ~0.2
+seconds.&lt;/p&gt;
+&lt;script src="https://gist.github.com/jimjh/9178295.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Again, I tried using Java to serialize and deserialize the hash set, but that
+didn't yield any improvements. Using nio's &lt;code&gt;MappedByteBuffer&lt;/code&gt; didn't help either.&lt;/p&gt;
+&lt;p&gt;I also tried using gperf to see if it could find a reasonable perfect hash
+function for the dictionary, but it took too many hours to generate and
+compile, and I gave up. At this point I decided to move on to the next level.
+However, here are some ideas that might have worked:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;implement a hash map in C,  pre-process the dictionary, persist it to disk,
+then use mmap to load the set at runtime&lt;/li&gt;
+&lt;li&gt;implement a bloom filter in C, then use mmap to load the filter at runtime&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that using a bloom filter is probabilistic - it could get you on the
+leader board if you push enough times.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Strategy&lt;/th&gt;
+&lt;th&gt;Time&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Ruby Array&lt;/td&gt;
+&lt;td&gt;7.15 s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ruby Hash Map&lt;/td&gt;
+&lt;td&gt;0.386 s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java with Flags&lt;/td&gt;
+&lt;td&gt;0.253 s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;(I didn't bother to calculate the exact variance - the numbers of significant
+figures indicate my "feel" of the deviation.)&lt;/p&gt;
+&lt;p&gt;I uploaded &lt;a href="https://github.com/jimjh/stripe-level0"&gt;some of my work&lt;/a&gt; to GitHub. Take a shot.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 23 Feb 2014 00:00:00 -0800</pubDate><guid>tag:blog.jimjh.com,2014-02-23:stripe-ctf-2014-level-0.html</guid><category>ruby</category><category>stripe</category></item><item><title>How to Create a Websocket Server in Ruby</title><link>http://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html</link><description>&lt;p&gt;This is a short tutorial on creating a websocket server in Ruby using James Coglan's &lt;a href="https://github.com/faye/websocket-driver-ruby"&gt;websocket driver&lt;/a&gt;. The complete example is available on &lt;a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;About Websocket Driver&lt;/h3&gt;
 &lt;p&gt;The &lt;a href="http://rubygems.org/gems/websocket-driver"&gt;websocket-driver&lt;/a&gt; gem decouples the websocket protocol from the I/O layer, providing drivers that handle the websocket procotol (handshakes, upgrades etc) on any compatible I/O. It can be used with Rack, EventMachine, or just plain TCP. The examples for EventMachine and Rack are available in the documentation.&lt;/p&gt;
 &lt;h4&gt;Using Plain TCP&lt;/h4&gt;
@@ -258,10 +316,10 @@ To achieve this, you need a &lt;a href="https://developer.apple.com/library/ios/
 &lt;p&gt;Next, open up the storyboard in XCode and click on the &lt;em&gt;segue&lt;/em&gt;. In other words,
 click on the arrow pointing from the first view controller to the second view
 controller.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Segue" src="http://blog.jimjh.com/static/images/2013/07/01/braces.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Segue" src="http://blog.jimjh.com/images/2013/07/01/braces.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Hit &lt;code&gt;Alt+Cmd+0&lt;/code&gt; to open up the Utilities pane. Navigate to the Attributes
 Inspector, choose &lt;code&gt;Custom&lt;/code&gt; for &lt;em&gt;Style&lt;/em&gt; and input &lt;code&gt;JHCustomSegue&lt;/code&gt; for &lt;em&gt;Segue Class&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Inspector" src="http://blog.jimjh.com/static/images/2013/07/01/inspector.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inspector" src="http://blog.jimjh.com/images/2013/07/01/inspector.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Now, run your app in the simulator. You should be able to flip from the first
 view controller to the second by tapping on the button at the top right-hand
 corner.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Mon, 01 Jul 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-07-01:a-short-tutorial-on-custom-storyboard-segues.html</guid><category>ios</category><category>storyboards</category><category>segues</category></item><item><title>Compiling open source libraries with Android NDK: Part 2</title><link>http://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html</link><description>&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
@@ -346,10 +404,8 @@ we are cross-compiling using a i386 architecture for an ARM architecture.&lt;/li
 &lt;p&gt;Open up Terminal and cd to your project directory&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;Run &lt;code&gt;build.sh&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The compiled library will be installed in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;. To use this
-library, create the following &lt;code&gt;Android.mk&lt;/code&gt; file in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# FourierTest/jni/fftw3/Android.mk&lt;/span&gt;
+&lt;li&gt;The compiled library will be installed in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;. To use this
+library, create the following &lt;code&gt;Android.mk&lt;/code&gt; file in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;:&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# FourierTest/jni/fftw3/Android.mk&lt;/span&gt;
 &lt;span class="nv"&gt;LOCAL_PATH&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;call my-dir&lt;span class="k"&gt;)&lt;/span&gt;
 
 &lt;span class="cp"&gt;include $(CLEAR_VARS)&lt;/span&gt;
@@ -578,7 +634,7 @@ use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&
 &lt;p&gt;The configuration file that worked for me is as follows:&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5646473.js"&gt;&lt;/script&gt;
 
-&lt;p&gt;There is probably an easier to set this up that uses a shorter command.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Fri, 24 May 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-05-24:deployment-is-scary-part-2.html</guid><category>ruby</category><category>rails</category></item><item><title>Predicting User Ratings on Yelp</title><link>http://blog.jimjh.com/predicting-user-ratings-on-yelp.html</link><description>&lt;p&gt;Several weeks ago, Yelp launched a &lt;a href="https://www.yelp.com/dataset_challenge/dataset"&gt;dataset challenge&lt;/a&gt; and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my &lt;a href="http://blog.jimjh.com/static/downloads/2013/05/12/netflix.pdf"&gt;Netflix project&lt;/a&gt;  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a &lt;a href="https://github.com/jimjh/yelp-dataset-challenge"&gt;git repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is probably an easier to set this up that uses a shorter command.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Fri, 24 May 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-05-24:deployment-is-scary-part-2.html</guid><category>ruby</category><category>rails</category></item><item><title>Predicting User Ratings on Yelp</title><link>http://blog.jimjh.com/predicting-user-ratings-on-yelp.html</link><description>&lt;p&gt;Several weeks ago, Yelp launched a &lt;a href="https://www.yelp.com/dataset_challenge/dataset"&gt;dataset challenge&lt;/a&gt; and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my &lt;a href="http://blog.jimjh.com/downloads/2013/05/12/netflix.pdf"&gt;Netflix project&lt;/a&gt;  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a &lt;a href="https://github.com/jimjh/yelp-dataset-challenge"&gt;git repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Transforming the Data&lt;/h2&gt;
 &lt;p&gt;The dataset arrived in a tarball that unpacks into a directory of JSON files. Each JSON file could be imported into MongoDB relatively easily with the following command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;mongoimport&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;db&lt;/span&gt; &lt;span class="nx"&gt;yelp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;collection&lt;/span&gt; &lt;span class="nx"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;drop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
@@ -591,7 +647,7 @@ use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&
 &lt;p&gt;The &lt;code&gt;reviews&lt;/code&gt; collection may be exported to a CSV file that can be imported into MatLab.&lt;/p&gt;
 &lt;h2&gt;Decomposing the Matrix&lt;/h2&gt;
 &lt;p&gt;Using a &lt;em&gt;latent factor model&lt;/em&gt;, we assume that each business has a set of features, and each user has a certain preference for each feature. Then, the rating that a user gives to a business &lt;code&gt;r_ij&lt;/code&gt; is the dot product of the business's feature vector &lt;code&gt;b_i&lt;/code&gt; and the user's preferences vector &lt;code&gt;u_j&lt;/code&gt;. Putting everything together, we get &lt;code&gt;B × U = R&lt;/code&gt;, where &lt;code&gt;B&lt;/code&gt; is the features matrix, &lt;code&gt;U&lt;/code&gt; is the preferences matrix, and &lt;code&gt;R&lt;/code&gt; is the ratings matrix.&lt;/p&gt;
-&lt;p&gt;The goal of the alternating least squares algorithm is thus to determine the matrices &lt;code&gt;B&lt;/code&gt; and &lt;code&gt;U&lt;/code&gt;, and then use these for predicting unknown ratings. (The full explanation of the model and the algorithm are available in my &lt;a href="http://blog.jimjh.com/static/downloads/2013/05/12/netflix.pdf"&gt;project report&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The goal of the alternating least squares algorithm is thus to determine the matrices &lt;code&gt;B&lt;/code&gt; and &lt;code&gt;U&lt;/code&gt;, and then use these for predicting unknown ratings. (The full explanation of the model and the algorithm are available in my &lt;a href="http://blog.jimjh.com/downloads/2013/05/12/netflix.pdf"&gt;project report&lt;/a&gt;.)&lt;/p&gt;
 &lt;p&gt;Note that the model doesn't know exactly what these features are - it just guesses at a reasonable number of features.&lt;/p&gt;
 &lt;h2&gt;Measuring the Results&lt;/h2&gt;
 &lt;p&gt;The entire ratings matrix &lt;code&gt;R&lt;/code&gt; was too large for my Macbook to handle, and I took a random sample of 2000 users and 2000 businesses, which gave me about 1780 known ratings. The model has two parameters: the number of latent factors, and the regularization factor (lambda). I fixed the number of latent factors at 20, and then used 5-fold cross validation to determine the best value for lambda.&lt;/p&gt;
@@ -626,7 +682,7 @@ use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&
 &lt;p&gt;The application was deployed on Amazon's &lt;a href="http://aws.amazon.com/elasticbeanstalk/"&gt;Elastic Beanstalk&lt;/a&gt;, which has auto-scaling built in. However, this also meant that the application could have several web servers working off a single &lt;a href="http://aws.amazon.com/rds/"&gt;RDS&lt;/a&gt; server, which could cause some performance issues. Our goals for load testing were two-fold: first, we wished to ascertain the effectiveness of our auto-scaling policies; second, we wanted to ensure that the response times were reasonable even at twice the maximum expected load.&lt;/p&gt;
 &lt;h2&gt;JMeter&lt;/h2&gt;
 &lt;p&gt;JMeter was not the simplest tool for load testing, but developers (and ops engineers) seemed to agree that it was amongst the most powerful. The &lt;a href="http://jmeter.apache.org/usermanual/build-web-test-plan.html"&gt;user manual&lt;/a&gt; provides detailed instructions for building a web test plan. In addition to a thread group and a config element for HTTP request defaults, we also added a HTTP cookie manager for maintaining sessions. The following screenshot captures the hierarchy of our setup.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/jmeter-tree.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="http://blog.jimjh.com/images/2013/05/12/jmeter-tree.png" /&gt;&lt;/p&gt;
 &lt;h3&gt;Extract CSRF Token&lt;/h3&gt;
 &lt;p&gt;Before our test user could login, it had to find the CSRF token on the page and submit that along with its credentials for Rails to accept the request. To do this, we added a HTTP Request to our thread group (or, more accurately, a request &lt;em&gt;sampler&lt;/em&gt;). This sampler issues GET requests to &lt;code&gt;/users/sign_in&lt;/code&gt;, and, using a Regular Expression Extractor (available under &lt;em&gt;Post Processors&lt;/em&gt;), searches for the CSRF token with the following regex&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;input&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;authenticity_token&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;(.*?)&amp;quot;&lt;/span&gt;
@@ -636,13 +692,13 @@ use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&
 &lt;p&gt;The matched token is stored in the &lt;code&gt;LOGIN_AUTH_TOKEN&lt;/code&gt; variable for JMeter to use in subsequent requests.&lt;/p&gt;
 &lt;h3&gt;Authenticate User&lt;/h3&gt;
 &lt;p&gt;Next, we added another request sampler that issues POST requests to &lt;code&gt;/users/sign_in&lt;/code&gt; with the user's email, password, and the CSRF token from the previous step. (I forgot to encode the CSRF token and spent a great amount of time wondering why Rails occasionally rejected requests from this sampler.) The following screenshot showed our configuration.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/jmeter-login.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="http://blog.jimjh.com/images/2013/05/12/jmeter-login.png" /&gt;&lt;/p&gt;
 &lt;h3&gt;Do Something&lt;/h3&gt;
 &lt;p&gt;Finally, we added request samplers to perform some action on the application. In my case, I was mainly worried about I/O performance, and thus added actions that would force read/writes to the database. Note that if some of these actions require CSRF tokens, in which case one could use the CSRF extraction described above and a HTTP Header Manager to include the &lt;code&gt;X-CSRF&lt;/code&gt; header in the request. We also found it useful to include a response assertion to verify the status code of the response.&lt;/p&gt;
 &lt;h3&gt;Measure Response Times&lt;/h3&gt;
 &lt;p&gt;After some tinkering (such as using &lt;a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations"&gt;eager loading&lt;/a&gt; to reduce the number of database calls), we managed to improve the application's performance to (what I thought was) a reasonable level.&lt;/p&gt;
-&lt;p&gt;The entire JMX file is available &lt;a href="http://blog.jimjh.com/static/downloads/2013/05/12/enteract.jmx"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="http://blog.jimjh.com/static/images/2013/05/12/load-test.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 12 May 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-05-12:deployment-is-scary-part-1.html</guid><category>ruby</category><category>rails</category></item><item><title>Numbering the Last Line of Align* in LaTex</title><link>http://blog.jimjh.com/numbering-the-last-line-of-align-in-latex.html</link><description>&lt;p&gt;On numerous occasions, I find myself trying to number the last line (and &lt;em&gt;only&lt;/em&gt;
+&lt;p&gt;The entire JMX file is available &lt;a href="http://blog.jimjh.com/downloads/2013/05/12/enteract.jmx"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="http://blog.jimjh.com/images/2013/05/12/load-test.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 12 May 2013 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2013-05-12:deployment-is-scary-part-1.html</guid><category>ruby</category><category>rails</category></item><item><title>Numbering the Last Line of Align* in LaTex</title><link>http://blog.jimjh.com/numbering-the-last-line-of-align-in-latex.html</link><description>&lt;p&gt;On numerous occasions, I find myself trying to number the last line (and &lt;em&gt;only&lt;/em&gt;
 the last line!) of a long series of derivations in an &lt;code&gt;align*&lt;/code&gt; environment. I
 usually switch to the &lt;code&gt;align&lt;/code&gt; environment and use &lt;code&gt;\notag&lt;/code&gt; to turn off the
 number on each line except the last.&lt;/p&gt;
@@ -718,7 +774,7 @@ pong!
 heat map showing the relative probabilities of landing on each square of the
 Monopoly board. It's done using canvas on HTML5.&lt;/p&gt;
 &lt;p&gt;Here is a preview:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Monopoly Heat Map" src="http://blog.jimjh.com/static/images/2012/11/heatmap.png" title="Monopoly Heat Map" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Monopoly Heat Map" src="http://blog.jimjh.com/images/2012/11/heatmap.png" title="Monopoly Heat Map" /&gt;&lt;/p&gt;
 &lt;p&gt;Check it out &lt;a href="http://jimjh.com/monopoly-heatmap/"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Mon, 19 Nov 2012 00:00:00 -0800</pubDate><guid>tag:blog.jimjh.com,2012-11-19:monopoly-heat-map.html</guid><category>monopoly</category><category>heatmap</category><category>visualization</category></item><item><title>Passwordless Kerberized SSH for CMU's UNIX machines</title><link>http://blog.jimjh.com/passwordless-kerberized-ssh-for-cmus-unix-machines.html</link><description>&lt;p&gt;If you use SSH frequently to access &lt;code&gt;unix.andrew.cmu.edu&lt;/code&gt;, you must have tried at some point to set up &lt;a href="http://osxdaily.com/2012/05/25/how-to-set-up-a-password-less-ssh-login/"&gt;passwordless login&lt;/a&gt; using public/private keys. That didn't work for me, and when I did &lt;code&gt;ssh -vv unix.andrew.cmu.edu&lt;/code&gt;, it always failed at&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;debug2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;did&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;disable&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
