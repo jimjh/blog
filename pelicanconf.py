@@ -56,12 +56,8 @@ FOOTER_TEXT   = """
 target="_blank">ontoplist</a>
 """
 
-STATIC_PATHS = ['images', 'downloads']
+STATIC_PATHS = ['images', 'downloads', 'favicon.ico', 'CNAME']
 WEBASSETS    = True
-FILES_TO_COPY = (
-    ('extra/favicon.ico', 'favicon.ico'),
-    ('extra/CNAME', 'CNAME'),
-)
 
 USER_LOGO_URL    = 'http://blog.jimjh.com/static/images/jimjh.png'
 FB_ADMIN         = 'jimjh'
