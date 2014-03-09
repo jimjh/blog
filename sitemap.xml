@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/index.html</loc>
-<lastmod>2014-03-08T17:23:35-00:00</lastmod>
+<lastmod>2014-03-08T17:59:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/archives.html</loc>
-<lastmod>2014-03-08T17:23:35-00:00</lastmod>
+<lastmod>2014-03-08T17:59:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/tags.html</loc>
-<lastmod>2014-03-08T17:23:35-00:00</lastmod>
+<lastmod>2014-03-08T17:59:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/categories.html</loc>
-<lastmod>2014-03-08T17:23:35-00:00</lastmod>
+<lastmod>2014-03-08T17:59:39-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.jimjh.com/stripe-ctf-2014-level-1.html</loc>
+<lastmod>2014-03-08T00:00:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -222,7 +229,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/category/software.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-03-08T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -404,7 +411,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/tag/ruby.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-03-08T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -502,14 +509,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/tag/stripe.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-03-08T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/author/jim-lim.html</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-03-08T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
