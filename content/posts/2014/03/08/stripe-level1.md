@@ -4,7 +4,7 @@ Category: Software
 Tags: ruby, stripe
 
 This is the second installment of a series on Stripe's CTF 2014. You may wish
-to start from [level 0](|filename|/stripe-ctf-2014-level-0.html).
+to start from [level 0]({filename}../../02/23/stripe-level0.md).
 
 ### Level 1
 
