@@ -6,6 +6,6 @@ $ pelican-themes -i pelican-svbhack
 $ git clone git@github.com:getpelican/pelican-plugins.git
 $ pip install pelican webassets cssmin markdown
 $ sudo npm install less -g
-$ sudo ln -s /usr/bin/{less,lessc}
+$ sudo ln -s /usr/local/share/npm/bin/lessc /usr/local/bin/lessc
 ```
 
