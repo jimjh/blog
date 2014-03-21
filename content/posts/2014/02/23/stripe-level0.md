@@ -51,7 +51,8 @@ Other things I tried but didn't work:
 - serializing the set beforehand and deserializing it (using `Marshal#load`, or
 Java's equivalent) at runtime
 - using nio's `MappedByteBuffer` to load the hash set (didn't expect this to
-make a huge difference anyway)
+make a huge difference anyway, since I still had to copy the bytes into user
+space to re-construct the set.)
 
 I also tried using gperf to try finding a reasonable perfect hash function for
 the dictionary, but it took too many hours to generate and compile, and I gave
