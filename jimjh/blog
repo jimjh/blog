@@ -18,7 +18,7 @@ to start from &lt;a href="|filename|/stripe-ctf-2014-level-0.html"&gt;level 0&lt
 &lt;p&gt;A GPU miner would certainly be much faster. The implementation is left as an exercise for the reader.&lt;/p&gt;
 &lt;p&gt;I uploaded some of my work on &lt;a href="https://github.com/jimjh/stripe-level1"&gt;Github&lt;/a&gt;. Give it a shot.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sat, 08 Mar 2014 00:00:00 -0800</pubDate><guid>tag:blog.jimjh.com,2014-03-08:stripe-ctf-2014-level-1.html</guid><category>ruby</category><category>stripe</category></item><item><title>Stripe CTF 2014, Level 0</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-0.html</link><description>&lt;p&gt;I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.&lt;/p&gt;
 &lt;h3&gt;Level 0&lt;/h3&gt;
-&lt;p&gt;The first level was pretty easy, and mainly served as an introduction/tutorial
+&lt;p&gt;The first level was a breeze, and mainly served as an introduction/tutorial
 for participating in the CTF. We were given the following code, and asked to
 improve its running time:&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/9178255.js"&gt;&lt;/script&gt;
@@ -26,30 +26,25 @@ improve its running time:&lt;/p&gt;
 &lt;p&gt;This looks like a simple spellchecker. Given an input of size &lt;em&gt;m&lt;/em&gt; and a
 dictionary of size &lt;em&gt;n&lt;/em&gt;, the above implementation has a running time of O(&lt;em&gt;mn&lt;/em&gt;).
 The easiest way to get past this level is to use a hash set, instead of an
-array, for the dictionary. This reduces the running time to O(&lt;em&gt;m&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;To get on the leader board, we needed to put in more work. It quickly became
-clear (through profiling) that most of the time was spent reading and
-initializing the dictionary. I tried generating/serializing the set beforehand
-and loading it (using &lt;code&gt;Marshal#load&lt;/code&gt;) at runtime, but that did not yield any
-significant improvements. Next, I tried rewriting the code in Java, and tuning
-the JVM to squeeze more performance out of it. I eventually settled on the
-following flags, which brought the running time from ~0.3 seconds to ~0.2
-seconds.&lt;/p&gt;
+array, to hold the dictionary. This reduces the running time to O(&lt;em&gt;m&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Next, I tried rewriting the code in Java, and tuning the JVM to squeeze more
+performance out of it. I eventually settled on the following flags, which
+brought the running time from ~0.3 seconds to ~0.2 seconds.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/9178295.js"&gt;&lt;/script&gt;
 
-&lt;p&gt;Again, I tried using Java to serialize and deserialize the hash set, but that
-didn't yield any improvements. Using nio's &lt;code&gt;MappedByteBuffer&lt;/code&gt; didn't help either.&lt;/p&gt;
-&lt;p&gt;I also tried using gperf to see if it could find a reasonable perfect hash
-function for the dictionary, but it took too many hours to generate and
-compile, and I gave up. At this point I decided to move on to the next level.
-However, here are some ideas that might have worked:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;implement a hash map in C,  pre-process the dictionary, persist it to disk,
-then use mmap to load the set at runtime&lt;/li&gt;
-&lt;li&gt;implement a bloom filter in C, then use mmap to load the filter at runtime&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note that using a bloom filter is probabilistic - it could get you on the
-leader board if you push enough times.&lt;/p&gt;
+&lt;p&gt;Most of the gains came from setting the initial heap size with &lt;code&gt;Xms&lt;/code&gt; (to avoid
+increasing the heap size at runtime) and setting the initial capacity for the
+hashmap to some reasonably large number (to avoid expanding and copying the
+set's contents at runtime.) The latter works because the same dictionary is
+used every time, and we know the exact number of elements that will be added to
+the set.&lt;/p&gt;
+&lt;p&gt;To get on the leader board, we needed to put in more work. It quickly became
+clear (through profiling) that most of the time was spent reading and
+initializing the dictionary. This can be dramatically reduced by pre-processing
+the hash set and then using mmap to load it into memory. (You could also get
+fancier and use &lt;code&gt;objcopy&lt;/code&gt; to create a compiled object that could be linked into
+the executable.) For this, I implemented &lt;a href="https://github.com/jimjh/stripe-level0"&gt;my own hashset&lt;/a&gt; that uses
+contiguous memory and can be loaded using mmap.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -70,10 +65,28 @@ leader board if you push enough times.&lt;/p&gt;
 &lt;td&gt;Java with Flags&lt;/td&gt;
 &lt;td&gt;0.253 s&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C with mmap&lt;/td&gt;
+&lt;td&gt;0.008 s&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;(I didn't bother to calculate the exact variance - the numbers of significant
-figures indicate my "feel" of the deviation.)&lt;/p&gt;
+&lt;p&gt;Other things I tried but didn't work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;serializing the set beforehand and deserializing it (using &lt;code&gt;Marshal#load&lt;/code&gt;, or
+Java's equivalent) at runtime&lt;/li&gt;
+&lt;li&gt;using nio's &lt;code&gt;MappedByteBuffer&lt;/code&gt; to load the hash set (didn't expect this to
+make a huge difference anyway)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also tried using gperf to try finding a reasonable perfect hash function for
+the dictionary, but it took too many hours to generate and compile, and I gave
+up. At this point I decided to move on to the next level.  However, here are
+some ideas that might have worked:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;implementing a bloom filter in C, then using mmap to load the filter at runtime&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that using a bloom filter is probabilistic - it could get you on the
+leader board if you pushed enough times.&lt;/p&gt;
 &lt;p&gt;I uploaded &lt;a href="https://github.com/jimjh/stripe-level0"&gt;some of my work&lt;/a&gt; to GitHub. Take a shot.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 23 Feb 2014 00:00:00 -0800</pubDate><guid>tag:blog.jimjh.com,2014-02-23:stripe-ctf-2014-level-0.html</guid><category>ruby</category><category>stripe</category></item><item><title>How to Create a Websocket Server in Ruby</title><link>http://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html</link><description>&lt;p&gt;This is a short tutorial on creating a websocket server in Ruby using James Coglan's &lt;a href="https://github.com/faye/websocket-driver-ruby"&gt;websocket driver&lt;/a&gt;. The complete example is available on &lt;a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;About Websocket Driver&lt;/h3&gt;
 &lt;p&gt;The &lt;a href="http://rubygems.org/gems/websocket-driver"&gt;websocket-driver&lt;/a&gt; gem decouples the websocket protocol from the I/O layer, providing drivers that handle the websocket procotol (handshakes, upgrades etc) on any compatible I/O. It can be used with Rack, EventMachine, or just plain TCP. The examples for EventMachine and Rack are available in the documentation.&lt;/p&gt;

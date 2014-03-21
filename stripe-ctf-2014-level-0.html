@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
 
-  <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+  <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?f38a5311">
 
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
   <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
@@ -79,7 +79,7 @@ Stripe CTF 2014, Level 0  </title>
     <div id="article_text">
       <p>I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.</p>
 <h3>Level 0</h3>
-<p>The first level was pretty easy, and mainly served as an introduction/tutorial
+<p>The first level was a breeze, and mainly served as an introduction/tutorial
 for participating in the CTF. We were given the following code, and asked to
 improve its running time:</p>
 <script src="https://gist.github.com/jimjh/9178255.js"></script>
@@ -87,30 +87,25 @@ improve its running time:</p>
 <p>This looks like a simple spellchecker. Given an input of size <em>m</em> and a
 dictionary of size <em>n</em>, the above implementation has a running time of O(<em>mn</em>).
 The easiest way to get past this level is to use a hash set, instead of an
-array, for the dictionary. This reduces the running time to O(<em>m</em>).</p>
-<p>To get on the leader board, we needed to put in more work. It quickly became
-clear (through profiling) that most of the time was spent reading and
-initializing the dictionary. I tried generating/serializing the set beforehand
-and loading it (using <code>Marshal#load</code>) at runtime, but that did not yield any
-significant improvements. Next, I tried rewriting the code in Java, and tuning
-the JVM to squeeze more performance out of it. I eventually settled on the
-following flags, which brought the running time from ~0.3 seconds to ~0.2
-seconds.</p>
+array, to hold the dictionary. This reduces the running time to O(<em>m</em>).</p>
+<p>Next, I tried rewriting the code in Java, and tuning the JVM to squeeze more
+performance out of it. I eventually settled on the following flags, which
+brought the running time from ~0.3 seconds to ~0.2 seconds.</p>
 <script src="https://gist.github.com/jimjh/9178295.js"></script>
 
-<p>Again, I tried using Java to serialize and deserialize the hash set, but that
-didn't yield any improvements. Using nio's <code>MappedByteBuffer</code> didn't help either.</p>
-<p>I also tried using gperf to see if it could find a reasonable perfect hash
-function for the dictionary, but it took too many hours to generate and
-compile, and I gave up. At this point I decided to move on to the next level.
-However, here are some ideas that might have worked:</p>
-<ul>
-<li>implement a hash map in C,  pre-process the dictionary, persist it to disk,
-then use mmap to load the set at runtime</li>
-<li>implement a bloom filter in C, then use mmap to load the filter at runtime</li>
-</ul>
-<p>Note that using a bloom filter is probabilistic - it could get you on the
-leader board if you push enough times.</p>
+<p>Most of the gains came from setting the initial heap size with <code>Xms</code> (to avoid
+increasing the heap size at runtime) and setting the initial capacity for the
+hashmap to some reasonably large number (to avoid expanding and copying the
+set's contents at runtime.) The latter works because the same dictionary is
+used every time, and we know the exact number of elements that will be added to
+the set.</p>
+<p>To get on the leader board, we needed to put in more work. It quickly became
+clear (through profiling) that most of the time was spent reading and
+initializing the dictionary. This can be dramatically reduced by pre-processing
+the hash set and then using mmap to load it into memory. (You could also get
+fancier and use <code>objcopy</code> to create a compiled object that could be linked into
+the executable.) For this, I implemented <a href="https://github.com/jimjh/stripe-level0">my own hashset</a> that uses
+contiguous memory and can be loaded using mmap.</p>
 <table>
 <thead>
 <tr>
@@ -131,10 +126,28 @@ leader board if you push enough times.</p>
 <td>Java with Flags</td>
 <td>0.253 s</td>
 </tr>
+<tr>
+<td>C with mmap</td>
+<td>0.008 s</td>
+</tr>
 </tbody>
 </table>
-<p>(I didn't bother to calculate the exact variance - the numbers of significant
-figures indicate my "feel" of the deviation.)</p>
+<p>Other things I tried but didn't work:</p>
+<ul>
+<li>serializing the set beforehand and deserializing it (using <code>Marshal#load</code>, or
+Java's equivalent) at runtime</li>
+<li>using nio's <code>MappedByteBuffer</code> to load the hash set (didn't expect this to
+make a huge difference anyway)</li>
+</ul>
+<p>I also tried using gperf to try finding a reasonable perfect hash function for
+the dictionary, but it took too many hours to generate and compile, and I gave
+up. At this point I decided to move on to the next level.  However, here are
+some ideas that might have worked:</p>
+<ul>
+<li>implementing a bloom filter in C, then using mmap to load the filter at runtime</li>
+</ul>
+<p>Note that using a bloom filter is probabilistic - it could get you on the
+leader board if you pushed enough times.</p>
 <p>I uploaded <a href="https://github.com/jimjh/stripe-level0">some of my work</a> to GitHub. Take a shot.</p>
     </div>
     <div id="article_meta">
