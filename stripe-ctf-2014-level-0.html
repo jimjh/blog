@@ -137,7 +137,8 @@ contiguous memory and can be loaded using mmap.</p>
 <li>serializing the set beforehand and deserializing it (using <code>Marshal#load</code>, or
 Java's equivalent) at runtime</li>
 <li>using nio's <code>MappedByteBuffer</code> to load the hash set (didn't expect this to
-make a huge difference anyway)</li>
+make a huge difference anyway, since I still had to copy the bytes into user
+space to re-construct the set.)</li>
 </ul>
 <p>I also tried using gperf to try finding a reasonable perfect hash function for
 the dictionary, but it took too many hours to generate and compile, and I gave
