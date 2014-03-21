@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Sat, 08 Mar 2014 00:00:00 -0800</lastBuildDate><item><title>Stripe CTF 2014, Level 1</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-1.html</link><description>&lt;p&gt;This is the second installment of a series on Stripe's CTF 2014. You may wish
-to start from &lt;a href="|filename|/stripe-ctf-2014-level-0.html"&gt;level 0&lt;/a&gt;.&lt;/p&gt;
+to start from &lt;a href="http://blog.jimjh.com/stripe-ctf-2014-level-0.html"&gt;level 0&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Level 1&lt;/h3&gt;
 &lt;p&gt;Level 1 proposed a crypto-currency named Gitcoin that used Git's SHA1 hashes. The player was provided with a git repository and asked to create a commit with a SHA1 that is lexicographically less than a given value &lt;em&gt;i.e.&lt;/em&gt; difficulty. Moreover, the commit must include an update to the ledger that awards a single Gitcoin to the player. It's a lot like Bitcoin mining, and the player's miner raced against Stripe's bot to push the commit to the remote repository.&lt;/p&gt;
 &lt;p&gt;The general solution was to try many different git commits by altering a token/nonce in the commit message until the desired SHA1 was found.&lt;/p&gt;
