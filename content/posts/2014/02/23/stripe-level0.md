@@ -27,8 +27,8 @@ brought the running time from ~0.3 seconds to ~0.2 seconds.
 Most of the gains came from setting the initial heap size with `Xms` (to avoid
 increasing the heap size at runtime) and setting the initial capacity for the
 hashmap to some reasonably large number (to avoid expanding and copying the
-set's contents at runtime.) The latter works because the same dictionary is
-used every time, and we know the exact number of elements that will be added to
+set's contents at runtime.) The latter worked because the same dictionary was
+used every time, and we knew the exact number of elements that would be added to
 the set.
 
 To get on the leader board, we needed to put in more work. It quickly became
