@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Sat, 08 Mar 2014 00:00:00 -0800</lastBuildDate><item><title>Stripe CTF 2014, Level 1</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-1.html</link><description>&lt;p&gt;This is the second installment of a series on Stripe's CTF 2014. You may wish
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Sun, 30 Mar 2014 00:00:00 -0700</lastBuildDate><item><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</link><description>&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
+&lt;p&gt;In the third level of Stripe’s CTF, participants were tasked to build a proxy
+to defend a couple of backend servers against a DDOS attack. The proxy needed
+to do the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distribute requests across a number of backend servers&lt;/li&gt;
+&lt;li&gt;reject requests from attackers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is an &lt;a href="https://github.com/jimjh/stripe-level2"&gt;easy solution&lt;/a&gt; - track the
+number of requests coming from each IP address, and, with each request, update
+the mean and standard deviation. Then, assuming a normal distribution,
+calculate the z-score for each IP address. If the z-score is larger than some
+tolerance figure, block the IP address.  (Determining the tolerance figure
+requires some trial-and-error.)&lt;/p&gt;
+&lt;p&gt;Here is a &lt;a href="https://github.com/jimjh/stripe-level2/tree/nginx"&gt;cooler solution&lt;/a&gt;
+- download and build nginx, and use it to forward requests to the backend
+servers. Finally, adjust the parameters in the nginx configuration, using the
+&lt;code&gt;limit_req&lt;/code&gt; module to handle bursts and block elephants.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 30 Mar 2014 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2014-03-30:stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</guid><category>nodejs</category><category>stripe</category></item><item><title>Stripe CTF 2014, Level 1</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-1.html</link><description>&lt;p&gt;This is the second installment of a series on Stripe's CTF 2014. You may wish
 to start from &lt;a href="http://blog.jimjh.com/stripe-ctf-2014-level-0.html"&gt;level 0&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Level 1&lt;/h3&gt;
 &lt;p&gt;Level 1 proposed a crypto-currency named Gitcoin that used Git's SHA1 hashes. The player was provided with a git repository and asked to create a commit with a SHA1 that is lexicographically less than a given value &lt;em&gt;i.e.&lt;/em&gt; difficulty. Moreover, the commit must include an update to the ledger that awards a single Gitcoin to the player. It's a lot like Bitcoin mining, and the player's miner raced against Stripe's bot to push the commit to the remote repository.&lt;/p&gt;
