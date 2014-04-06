@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/index.html</loc>
-<lastmod>2014-03-30T10:19:05-00:00</lastmod>
+<lastmod>2014-04-06T15:54:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/archives.html</loc>
-<lastmod>2014-03-30T10:19:05-00:00</lastmod>
+<lastmod>2014-04-06T15:54:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/tags.html</loc>
-<lastmod>2014-03-30T10:19:05-00:00</lastmod>
+<lastmod>2014-04-06T15:54:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/categories.html</loc>
-<lastmod>2014-03-30T10:19:05-00:00</lastmod>
+<lastmod>2014-04-06T15:54:48-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html</loc>
+<lastmod>2014-04-06T00:00:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -236,7 +243,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/category/software.html</loc>
-<lastmod>2014-03-30T00:00:00-00:00</lastmod>
+<lastmod>2014-04-06T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -300,6 +307,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://blog.jimjh.com/tag/git.html</loc>
 <lastmod>2013-06-17T00:00:00-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://blog.jimjh.com/tag/scala.html</loc>
+<lastmod>2014-04-06T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -523,14 +537,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://blog.jimjh.com/tag/stripe.html</loc>
-<lastmod>2014-03-30T00:00:00-00:00</lastmod>
+<lastmod>2014-04-06T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://blog.jimjh.com/author/jim-lim.html</loc>
-<lastmod>2014-03-30T00:00:00-00:00</lastmod>
+<lastmod>2014-04-06T00:00:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Sun, 30 Mar 2014 00:00:00 -0700</lastBuildDate><item><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</link><description>&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Sun, 06 Apr 2014 00:00:00 -0700</lastBuildDate><item><title>Stripe CTF 2014, Level 3 - Instant Code Search</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html</link><description>&lt;p&gt;The task was to write, in Scala:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;an indexer that scans a bunch of input files, and&lt;/li&gt;
+&lt;li&gt;a searcher that takes a query string and returns a list of lines containing it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It can be solved using the following:&lt;/p&gt;
+&lt;p&gt;In the indexer, tokenize each document, and create an inverted index of
+tokens to a sets of (file name, line number) tuples. In the searcher,
+break up the query string into tokens, and lookup the tokens in the
+index.&lt;/p&gt;
+&lt;p&gt;To enable substring search, use 3-character substrings of the tokens as
+keys in the index, instead of the entire token. Similarly, break up the
+query string into 3-character substrings, and return the intersection of
+all sets found in the inverted index for each substring.&lt;/p&gt;
+&lt;p&gt;Alternatively, one could use a suffix tree to enable substring search.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 06 Apr 2014 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2014-04-06:stripe-ctf-2014-level-3-instant-code-search.html</guid><category>scala</category><category>stripe</category></item><item><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</link><description>&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
 &lt;p&gt;In the third level of Stripe’s CTF, participants were tasked to build a proxy
 to defend a couple of backend servers against a DDOS attack. The proxy needed
 to do the following:&lt;/p&gt;

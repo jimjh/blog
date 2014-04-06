@@ -18,14 +18,16 @@
 
   <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
 
-  <meta name="description" content="Posts and Writings by Jim Lim on tag/stripe">
-  <meta property="og:description" content="Posts and Writings by Jim Lim on tag/stripe">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Tag: stripe">
-  <meta property="og:url" content="http://blog.jimjh.com/tag/stripe.html">
+  <meta name="keywords" content="scala, stripe">
+  <meta name="description" content="Stripe CTF 2014, Level 3 - Instant Code Search by Jim Lim">
+  <meta property="og:description" content="Stripe CTF 2014, Level 3 - Instant Code Search by Jim Lim">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Jim Lim">
+  <meta property="og:title" content="Stripe CTF 2014, Level 3 - Instant Code Search">
+  <meta property="og:url" content="http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html">
 
   <title>
-Tag: stripe  </title>
+Stripe CTF 2014, Level 3 - Instant Code Search  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -67,71 +69,56 @@ Tag: stripe  </title>
 
   <main>
     <header>
-<p>Tag: stripe
-</p>
+  <p>Posted on Sun 06 April 2014</p>
     </header>
 
-<article>
-  <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html">Stripe CTF 2014, Level 3 - Instant Code Search</a></h3>
-  </div>
-  <div id="article_text">
-    <p>The task was to write, in Scala:</p>
+  <article>
+    <div id="article_title">
+      <h3><a href="http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html">Stripe CTF 2014, Level 3 - Instant Code Search</a></h3>
+    </div>
+    <div id="article_text">
+      <p>The task was to write, in Scala:</p>
 <ul>
 <li>an indexer that scans a bunch of input files, and</li>
 <li>a searcher that takes a query string and returns a list of lines containing it</li>
 </ul>
 <p>It can be solved using the following:</p>
-<p>In the indexer, tokenize each document, and create an inverted index ...</p>
-    <a href='http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html'>More</a>
-  </div>
-</article>
-<hr />
-<article>
-  <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html">Stripe CTF 2014, Level 2 - Defending against a DDOS attack</a></h3>
-  </div>
-  <div id="article_text">
-    <p>If your service comes under a major DDOS attack, what would you do?</p>
-<p>In the third level of Stripe’s CTF, participants were tasked to build a proxy
-to defend a couple of backend servers against a DDOS attack. The proxy needed
-to do the following:</p>
-<ul>
-<li>distribute requests across a ...</li></ul>
-    <a href='http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html'>More</a>
-  </div>
-</article>
-<hr />
-<article>
-  <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/stripe-ctf-2014-level-1.html">Stripe CTF 2014, Level 1</a></h3>
-  </div>
-  <div id="article_text">
-    <p>This is the second installment of a series on Stripe's CTF 2014. You may wish
-to start from <a href="http://blog.jimjh.com/stripe-ctf-2014-level-0.html">level 0</a>.</p>
-<h3>Level 1</h3>
-<p>Level 1 proposed a crypto-currency named Gitcoin that used Git's SHA1 hashes. The player was provided with a git repository and asked to create a commit ...</p>
-    <a href='http://blog.jimjh.com/stripe-ctf-2014-level-1.html'>More</a>
-  </div>
-</article>
-<hr />
-<article>
-  <div id="article_title">
-    <h3><a href="http://blog.jimjh.com/stripe-ctf-2014-level-0.html">Stripe CTF 2014, Level 0</a></h3>
-  </div>
-  <div id="article_text">
-    <p>I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.</p>
-<h3>Level 0</h3>
-<p>The first level was a breeze, and mainly served as an introduction/tutorial
-for participating in the CTF. We were given the ...</p>
-    <a href='http://blog.jimjh.com/stripe-ctf-2014-level-0.html'>More</a>
-  </div>
-</article>
+<p>In the indexer, tokenize each document, and create an inverted index of
+tokens to a sets of (file name, line number) tuples. In the searcher,
+break up the query string into tokens, and lookup the tokens in the
+index.</p>
+<p>To enable substring search, use 3-character substrings of the tokens as
+keys in the index, instead of the entire token. Similarly, break up the
+query string into 3-character substrings, and return the intersection of
+all sets found in the inverted index for each substring.</p>
+<p>Alternatively, one could use a suffix tree to enable substring search.</p>
+    </div>
+    <div id="article_meta">
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
+      <p>Tags:
+        <a href="http://blog.jimjh.com/tag/scala.html">scala</a>,        <a href="http://blog.jimjh.com/tag/stripe.html">stripe</a>      </p>
+    </div>
+  </article>
 
     <footer>
-<p id="paginator">
+  <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+  <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
 
-</p>
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
     </footer>
 
     <div id="ending_message">
