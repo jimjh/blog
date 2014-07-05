@@ -21,3 +21,6 @@ query string into 3-character substrings, and return the intersection of
 all sets found in the inverted index for each substring.
 
 Alternatively, one could use a suffix tree to enable substring search.
+
+My various solutions can be found on these github
+[branches](https://github.com/jimjh/stripe-level3/branches).
