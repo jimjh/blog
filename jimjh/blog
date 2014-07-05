@@ -13,7 +13,9 @@ index.&lt;/p&gt;
 keys in the index, instead of the entire token. Similarly, break up the
 query string into 3-character substrings, and return the intersection of
 all sets found in the inverted index for each substring.&lt;/p&gt;
-&lt;p&gt;Alternatively, one could use a suffix tree to enable substring search.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 06 Apr 2014 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2014-04-06:stripe-ctf-2014-level-3-instant-code-search.html</guid><category>scala</category><category>stripe</category></item><item><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</link><description>&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
+&lt;p&gt;Alternatively, one could use a suffix tree to enable substring search.&lt;/p&gt;
+&lt;p&gt;My various solutions can be found on these github
+&lt;a href="https://github.com/jimjh/stripe-level3/branches"&gt;branches&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Sun, 06 Apr 2014 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2014-04-06:stripe-ctf-2014-level-3-instant-code-search.html</guid><category>scala</category><category>stripe</category></item><item><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</link><description>&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
 &lt;p&gt;In the third level of Stripe’s CTF, participants were tasked to build a proxy
 to defend a couple of backend servers against a DDOS attack. The proxy needed
 to do the following:&lt;/p&gt;
