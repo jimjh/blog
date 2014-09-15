@@ -48,7 +48,7 @@ close in on what you need.&lt;/p&gt;
 &lt;p&gt;Finally, form hypotheses from what you have learnt, and test these hypotheses.
 If necessary, validate your learning using tiny examples before trying to work
 it into your current project.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;If you are participating in an upcoming hackathon, practice these skills before
+&lt;p&gt;&lt;em&gt;If you are participating in an upcoming hackathon, practise these skills before
 the hackathon and get a 8 to 12-hour productivity edge.&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Mon, 15 Sep 2014 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2014-09-15:the-3-most-useful-skills-to-teach-at-a-hackathon.html</guid><category>hackathon</category><category>pennapps</category></item><item><title>Stripe CTF 2014, Level 3 - Instant Code Search</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html</link><description>&lt;p&gt;The task was to write, in Scala:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;an indexer that scans a bunch of input files, and&lt;/li&gt;
