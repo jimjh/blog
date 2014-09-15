@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
+  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jim Lim">
+
+  <meta property="og:site_name" content="Ampersand">
+  <meta property="fb:admins" content="jimjh">
+
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+
+  <meta name="keywords" content="hackathon, pennapps">
+  <meta name="description" content="The 3 Most Useful Skills to Teach at a Hackathon by Jim Lim">
+  <meta property="og:description" content="The 3 Most Useful Skills to Teach at a Hackathon by Jim Lim">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Jim Lim">
+  <meta property="og:title" content="The 3 Most Useful Skills to Teach at a Hackathon">
+  <meta property="og:url" content="http://blog.jimjh.com/the-3-most-useful-skills-to-teach-at-a-hackathon.html">
+
+  <title>
+The 3 Most Useful Skills to Teach at a Hackathon  </title>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
+</script>
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://blog.jimjh.com">
+        <img src="http://blog.jimjh.com/images/jimjh.png" alt="logo">
+      </a>
+      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
+      <p></p>
+      <ul>
+        <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
+        <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
+      </ul>
+<div id="mc_embed_signup">
+  <form action="http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+  </form>
+</div>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+  <p>Posted on Mon 15 September 2014</p>
+    </header>
+
+  <article>
+    <div id="article_title">
+      <h3><a href="http://blog.jimjh.com/the-3-most-useful-skills-to-teach-at-a-hackathon.html">The 3 Most Useful Skills to Teach at a Hackathon</a></h3>
+    </div>
+    <div id="article_text">
+      <p>I spent the weekend at PennApps, a hackathon organized by undergraduate
+students at UPenn. Quixey was the main sponsor, and it was a blast. I enjoyed
+mentoring, and especially had a great time pretending to know a lot about
+hardware :p</p>
+<p>While working with various teams, I noticed a pattern: although I was not an
+expert on many of the technologies they were working with, I was able to help
+them accelerate their hacks just by focusing on some fundamental engineering
+skills. Two of my teams won various prizes at PennApps, and I was beyond
+satisfied.</p>
+<h2>Learn to Use Git</h2>
+<p>If you are a college student, you probably did not get much practice working in
+teams on coding projects - PennApps X was a first for many of the students I
+worked with at the hackathon. Recognizing the need for version control and
+having a good understanding of the basics is a crucial for productive
+collaboration. As a participant, you must learn how to commit code, merge
+branches, resolve conflicts, and revert changes. This will allow you to divide
+and conquer, experiment with new ideas, and try out various implementations
+while keeping a safe checkpoint that you know how to revert to when things go
+wrong.</p>
+<p>If you find your self commenting out huge chunks of code and labeling them
+“Attempt 1”, or “Working!”, stop and <a href="https://try.github.io/levels/1/challenges/1">learn Git</a>.</p>
+<h2>Stop and Debug</h2>
+<p>Hackathons are frustrating, because your code doesn’t work most of the time.
+Yet, this is precisely the point - a hackathon is an intense period of learning
+during which you experiment with new APIs, SDKs, frameworks, and even
+languages. Expect problems and learn to fix them.</p>
+<p>Instead of throwing your hands in the air and yelling, “it doesn’t work!” learn
+to ask, “what is the error?” Rapidly narrow down the space of possible causes,
+using binary search if you can. Insert print statements, set breakpoints (if
+possible), and find error messages. Figure out how to reproduce the problem
+quickly and reliably. Unless you have noisy input or random variables, your
+code should behave deterministically. It is magic iff you don’t understand what
+you wrote.</p>
+<p>After the initial investigation, form a hypothesis about the cause and test it.
+Comment out chunks of code selectively to isolate the cause.</p>
+<p>(As a mentor, I usually think aloud as I work on debugging the problem to show
+them how to determine the cause of a problem and create a fix.)</p>
+<h2>Use Google (Intelligently)</h2>
+<p>You get stuck. A lot. Google is your friend, but sometimes it’s hard,
+especially if you don’t know what you are looking for.</p>
+<p>Start by figuring out specifically what you need to learn. What function do you
+need? What could it be called? If you were the engineer who built on the
+library/API/SDK, how would you implement it? Where would you put it?</p>
+<p>Start searching on Google. Speed read though the first few results to determine
+their relevance. Use related content to guess and discover keywords until you
+close in on what you need.</p>
+<p>Finally, form hypotheses from what you have learnt, and test these hypotheses.
+If necessary, validate your learning using tiny examples before trying to work
+it into your current project.</p>
+<p><em>If you are participating in an upcoming hackathon, practice these skills before
+the hackathon and get a 8 to 12-hour productivity edge.</em></p>
+    </div>
+    <div id="article_meta">
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
+      <p>Tags:
+        <a href="http://blog.jimjh.com/tag/hackathon.html">hackathon</a>,        <a href="http://blog.jimjh.com/tag/pennapps.html">pennapps</a>      </p>
+    </div>
+  </article>
+
+    <footer>
+  <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+  <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
+
+    <div id="ending_message">
+      <p>
+<a href='http://jimjh.com'>Jim Lim</a> &sdot;
+<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
+&sdot;
+<a href='https://github.com/jimjh'>GitHub</a> &sdot;
+<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+&sdot;
+<a href="http://www.ontoplist.com/" title="Online Marketing"
+target="_blank">ontoplist</a>
+ &sdot; Theme by Giulio Fidente.</p>
+    </div>
+  </main>
+</body>
+</html>
