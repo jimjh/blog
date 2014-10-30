@@ -77,7 +77,7 @@ dragon - an OSS File System for Hadoop  </title>
       <h3><a href="http://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html">dragon - an OSS File System for Hadoop</a></h3>
     </div>
     <div id="article_text">
-      <p>OSS is Aliyun’s offering of a distributed, highly available storage service.
+      <p><a href="http://www.aliyun.com/product/oss/">OSS</a> is Aliyun’s offering of a distributed, highly available storage service.
 dragon allows YARN applications (incl. MapReduce jobs) to read and write data
 to OSS through the HDFS API. This allows you to swap filesystems without
 modifying your YARN application, MapReduce job, Pig script, Hive script etc.</p>
@@ -93,7 +93,7 @@ The dragon jar may be built using</p>
 
 
 <p>To use dragon in your Hadoop cluster, add dragon and its dependencies to
-Hadoop’s classpath on our clusters. Then modify core-site.xml to add the
+Hadoop’s classpath on your clusters. Then modify core-site.xml to add the
 following properties</p>
 <div class="highlight"><pre><span class="nt">&lt;property&gt;</span>
     <span class="nt">&lt;name&gt;</span>fs.oss.impl<span class="nt">&lt;/name&gt;</span>

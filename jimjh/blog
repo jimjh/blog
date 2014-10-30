@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Wed, 29 Oct 2014 00:00:00 -0700</lastBuildDate><item><title>dragon - an OSS File System for Hadoop</title><link>http://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html</link><description>&lt;p&gt;OSS is Aliyun’s offering of a distributed, highly available storage service.
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ampersand</title><link>http://blog.jimjh.com/</link><description></description><atom:link href="http://feeds.feedburner.com/jimjh/blog" rel="self"></atom:link><lastBuildDate>Wed, 29 Oct 2014 00:00:00 -0700</lastBuildDate><item><title>dragon - an OSS File System for Hadoop</title><link>http://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html</link><description>&lt;p&gt;&lt;a href="http://www.aliyun.com/product/oss/"&gt;OSS&lt;/a&gt; is Aliyun’s offering of a distributed, highly available storage service.
 dragon allows YARN applications (incl. MapReduce jobs) to read and write data
 to OSS through the HDFS API. This allows you to swap filesystems without
 modifying your YARN application, MapReduce job, Pig script, Hive script etc.&lt;/p&gt;
@@ -15,7 +15,7 @@ The dragon jar may be built using&lt;/p&gt;
 
 
 &lt;p&gt;To use dragon in your Hadoop cluster, add dragon and its dependencies to
-Hadoop’s classpath on our clusters. Then modify core-site.xml to add the
+Hadoop’s classpath on your clusters. Then modify core-site.xml to add the
 following properties&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.oss.impl&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
