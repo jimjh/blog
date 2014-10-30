@@ -28,10 +28,10 @@ following properties&lt;/p&gt;
 &lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.oss.secretAccessKey&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;...&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;/property&gt;&lt;/p&gt;
 &lt;p&gt;This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the &lt;code&gt;oss://&lt;/code&gt; scheme.&lt;/p&gt;
 &lt;p&gt;You may verify that your setup works by running the following command&lt;/p&gt;
