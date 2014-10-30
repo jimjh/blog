@@ -83,12 +83,12 @@ to OSS through the HDFS API. This allows you to swap filesystems without
 modifying your YARN application, MapReduce job, Pig script, Hive script etc.</p>
 <p>The source code is available <a href="https://github.com/quixey/dragon-oss">on GitHub</a>.
 The dragon jar may be built using</p>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">gradlew</span> <span class="n">jar</span>
+<div class="highlight"><pre><span class="nv">$ </span>./gradlew jar
 </pre></div>
 
 
 <p>dragon’s dependencies may be downloaded using</p>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">gradlew</span> <span class="n">copyDeps</span>
+<div class="highlight"><pre><span class="nv">$ </span>./gradlew copyDeps
 </pre></div>
 
 
@@ -113,7 +113,7 @@ following properties</p>
 <p>This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the <code>oss://</code> scheme.</p>
 <p>You may verify that your setup works by running the following command</p>
-<div class="highlight"><pre><span class="n">hdfs</span> <span class="n">dfs</span> <span class="o">-</span><span class="n">ls</span> <span class="n">oss</span><span class="o">:</span><span class="c1">//your-bucket/</span>
+<div class="highlight"><pre><span class="nv">$ </span>hdfs dfs -ls oss://your-bucket/
 </pre></div>
     </div>
     <div id="article_meta">

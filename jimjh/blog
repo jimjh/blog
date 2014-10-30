@@ -5,12 +5,12 @@ to OSS through the HDFS API. This allows you to swap filesystems without
 modifying your YARN application, MapReduce job, Pig script, Hive script etc.&lt;/p&gt;
 &lt;p&gt;The source code is available &lt;a href="https://github.com/quixey/dragon-oss"&gt;on GitHub&lt;/a&gt;.
 The dragon jar may be built using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gradlew&lt;/span&gt; &lt;span class="n"&gt;jar&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./gradlew jar
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;dragon’s dependencies may be downloaded using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gradlew&lt;/span&gt; &lt;span class="n"&gt;copyDeps&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./gradlew copyDeps
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -35,7 +35,7 @@ following properties&lt;/p&gt;
 &lt;p&gt;This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the &lt;code&gt;oss://&lt;/code&gt; scheme.&lt;/p&gt;
 &lt;p&gt;You may verify that your setup works by running the following command&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;hdfs&lt;/span&gt; &lt;span class="n"&gt;dfs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="n"&gt;oss&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//your-bucket/&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hdfs dfs -ls oss://your-bucket/
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Lim</dc:creator><pubDate>Wed, 29 Oct 2014 00:00:00 -0700</pubDate><guid>tag:blog.jimjh.com,2014-10-29:dragon-an-oss-file-system-for-hadoop.html</guid><category>hadoop</category><category>oss</category></item><item><title>Stripe CTF 2014, Level 3 - Instant Code Search</title><link>http://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html</link><description>&lt;p&gt;The task was to write, in Scala:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;an indexer that scans a bunch of input files, and&lt;/li&gt;
