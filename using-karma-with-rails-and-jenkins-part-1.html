@@ -84,7 +84,7 @@ will cover e2e tests, if I get that sorted out.)</p>
 <p>An example project is available on <a href="https://github.com/jimjh/karma-rails">GitHub</a>.</p>
 <h2>Setup</h2>
 <p>First, install karma locally with</p>
-<div class="highlight"><pre><span class="err">$</span><span class="o">&gt;</span> <span class="n">npm</span> <span class="n">install</span> <span class="n">karma</span>
+<div class="highlight"><pre>$&gt; npm install karma
 </pre></div>
 
 
@@ -96,8 +96,8 @@ will cover e2e tests, if I get that sorted out.)</p>
 <p>Note that these are necessary even if you are using a CDN for these libraries.
 This ensures that your unit tests pass even without network access.</p>
 <p>Next, setup the spec directories,</p>
-<div class="highlight"><pre><span class="err">$</span><span class="o">&gt;</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">spec</span><span class="o">/</span><span class="n">javascripts</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">angular</span>
-<span class="err">$</span><span class="o">&gt;</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">spec</span><span class="o">/</span><span class="n">javascripts</span><span class="o">/</span><span class="n">unit</span>
+<div class="highlight"><pre>$&gt; mkdir -p spec/javascripts/lib/angular
+$&gt; mkdir -p spec/javascripts/unit
 </pre></div>
 
 
@@ -126,16 +126,16 @@ in the comments if you figure out a better way.</p>
 
 
 <p>Run tests using</p>
-<div class="highlight"><pre><span class="err">$</span><span class="o">&gt;</span> <span class="n">karma</span> <span class="n">start</span> <span class="n">config</span><span class="o">/</span><span class="n">karma</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">js</span>
+<div class="highlight"><pre>$&gt; karma start config/karma.conf.js
 </pre></div>
 
 
 <h2>Continuous Integration</h2>
 <p>To use Karma with Jenkins, update <code>karma.conf.js</code> to include</p>
-<div class="highlight"><pre><span class="n">junitReporter</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nl">outputFile:</span> <span class="err">&#39;</span><span class="n">spec</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">karma</span><span class="o">-</span><span class="n">unit</span><span class="p">.</span><span class="n">xml</span><span class="err">&#39;</span><span class="p">,</span>
-  <span class="nl">suite:</span> <span class="err">&#39;</span><span class="n">unit</span><span class="err">&#39;</span>
-<span class="p">};</span>
+<div class="highlight"><pre>junitReporter = {
+  outputFile: &#39;spec/reports/karma-unit.xml&#39;,
+  suite: &#39;unit&#39;
+};
 </pre></div>
 
 

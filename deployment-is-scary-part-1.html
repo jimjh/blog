@@ -86,7 +86,7 @@ Deployment is Scary - Part 1  </title>
 <p><img alt="image" src="http://blog.jimjh.com/images/2013/05/12/jmeter-tree.png" /></p>
 <h3>Extract CSRF Token</h3>
 <p>Before our test user could login, it had to find the CSRF token on the page and submit that along with its credentials for Rails to accept the request. To do this, we added a HTTP Request to our thread group (or, more accurately, a request <em>sampler</em>). This sampler issues GET requests to <code>/users/sign_in</code>, and, using a Regular Expression Extractor (available under <em>Post Processors</em>), searches for the CSRF token with the following regex</p>
-<div class="highlight"><pre><span class="n">input</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;authenticity_token&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;(.*?)&quot;</span>
+<div class="highlight"><pre>input name=&quot;authenticity_token&quot; type=&quot;hidden&quot; value=&quot;(.*?)&quot;
 </pre></div>
 
 

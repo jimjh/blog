@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="http://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
+
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
+  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jim Lim">
+
+  <meta property="og:site_name" content="Ampersand">
+  <meta property="fb:admins" content="jimjh">
+
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
+
+  <meta name="keywords" content="distributed, devops">
+  <meta name="description" content="Building Elastic Clusters by Jim Lim">
+  <meta property="og:description" content="Building Elastic Clusters by Jim Lim">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Jim Lim">
+  <meta property="og:title" content="Building Elastic Clusters">
+  <meta property="og:url" content="http://blog.jimjh.com/building-elastic-clusters.html">
+
+  <title>
+Building Elastic Clusters  </title>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5604647-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
+</script>
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://blog.jimjh.com">
+        <img src="http://blog.jimjh.com/images/jimjh.png" alt="logo">
+      </a>
+      <h2><a href="http://blog.jimjh.com">Jim Lim</a></h2>
+      <p></p>
+      <ul>
+        <li>
+          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
+        </li>
+        <li><a href="http://jimjh.com" target="_blank">Profile</a></li>
+      </ul>
+<div id="mc_embed_signup">
+  <form action="http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+  </form>
+</div>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+  <p>Posted on Mon 04 May 2015</p>
+    </header>
+
+  <article>
+    <div id="article_title">
+      <h3><a href="http://blog.jimjh.com/building-elastic-clusters.html">Building Elastic Clusters</a></h3>
+    </div>
+    <div id="article_text">
+      <p>(Authors: Jim Lim, <a href="http://addumb.com/">Adam Gray</a>)</p>
+<p>One of the main advantages of using a cloud provider, such as Amazon Web
+Services (AWS), is the ability to launch new instances on demand. However, it
+also means giving up control over physical machines and their retirement
+schedules; the cloud provider may terminate or retire a VM at any time for many
+reasons. As a business grows, the probability that one of our many VMs
+terminates on any given day increases, and it can rapidly become uneconomical
+to manually administer these instances.</p>
+<p>The answer to this problem is automation - distributed systems should recover
+from failures and grow automatically.</p>
+<p>At Quixey, we depend on distributed systems such as Zookeeper, Kafka, and
+Cassandra in various critical parts of our infrastructure e.g. service
+discovery, instrumentation, and storage for app-tier services. To ensure that
+these foundational services can respond to traffic spikes and VM retirement
+events, we have put in much effort into <a href="http://en.wikipedia.org/wiki/Elasticity_(data_store)#Clustering_elasticity">cluster elasticity</a>.</p>
+<h2>Making Kafka Elastic</h2>
+<p>Kafka is a distributed message system. Our Kafka clusters are configured with
+default <a href="http://kafka.apache.org/documentation.html#replication">replication factor</a> of 3 and a fixed number of <a href="http://kafka.apache.org/documentation.html#introduction">partitions</a> for each
+topic. In most cases, the clusters can tolerate up to 2 failures: at least one
+of the 3 replicas has to remain available.</p>
+<p>On AWS, Quixey uses <a href="http://aws.amazon.com/autoscaling/">Auto Scaling Groups</a> (ASG) to manage our Kafka clusters.
+Each ASG is configured with a lower bound on the the number of instances, and a
+scaling policy to increase the size of the cluster when necessary. When
+instances are terminated, or when certain CloudWatch metrics (e.g. network I/O,
+disk use) exceed their configured thresholds, new EC2 instances are launched.</p>
+<p>When a new instance is launched, it requests for a new broker ID using a tool
+called Bumper. Bumper increments an atomic integer on Zookeeper and copies it
+to a file on disk for use as the broker ID. Our provisioning tool then installs
+Kafka, starts the service, and runs a tool called Balancer. Balancer iterates
+through a list of strategies to determine the partitions to reassign to the new
+broker, such as under-replicated partitions. A different set of strategies can
+be written for each cloud; on AWS, for example, we are concerned about
+availability zone (AZ) outages, and want to ensure that each partition is
+replicated over multiple AZs.</p>
+<p>The above solution has been tested in production, and works reasonably well. We
+are working on Balancer strategies to automatically increase the number of
+partitions for heavy topics, so that their messages can be spread over more
+instances.</p>
+<h2>Making Zookeeper Elastic</h2>
+<p>Zookeeper is a coordination service. It uses <a href="http://web.stanford.edu/class/cs347/reading/zab.pdf">ZAB</a> for replication, which
+requires a quorum of servers to be up to remain available. For example, if we
+have 3 nodes in the ensemble, we can afford to lose up to one of them.</p>
+<p>Managing Zookeeper is slightly trickier than managing Kafka:  each Zookeeper
+server needs to have the entire list of server IDs and address/port combos. Any
+change to the set of members requires the administrator to update the
+configuration files across the ensemble and perform a <a href="https://issues.apache.org/jira/browse/ZOOKEEPER-107">rolling restart</a>. We tried
+various solutions, and ended up using Netflix’s <a href="https://github.com/Netflix/exhibitor">Exhibitor</a>. Exhibitor is not as
+mature as Zookeeper and has some rough edges, but we got it to do what we
+wanted with a few slight modifications.</p>
+<p>It works as follows: Exhibitor maintains a shared configuration on S3 or <a href="http://www.aliyun.com/product/oss/">OSS</a>,
+and each instance in the cluster runs a pair of Exhibitor and Zookeeper
+processes. Each Exhibitor process polls the shared configuration for changes,
+and triggers a rolling restart when the list of members in the shared
+configuration is updated.</p>
+<p>In the event of an instance failure/termination, the relevant ASG launches a
+replacement instance, which obtains a new identifier and adds itself to the
+shared configuration. The Exhibitor processes will detect the change and
+trigger a rolling restart across the ensemble to keep the configurations in
+sync. Note that Exhibitor’s polling frequency is configurable.</p>
+<p>Currently, the Zookeeper ASGs are configured to maintain the ensemble at a
+fixed size; we intend to create policies that will increase the number of
+<a href="http://zookeeper.apache.org/doc/r3.4.5/zookeeperObservers.html">observers</a> as the number of clients grows to improve read performance.</p>
+<h2>Enforcing Discipline</h2>
+<p>Modern Internet operations practices shrug off constraints on the uptime of any
+specific single server by making all servers “trashable.” Working in the cloud
+with on-demand instances allows us to terminate instances at the first sign of
+trouble, such as <a href="http://en.wikipedia.org/wiki/Cloud_computing_issues#Performance_interference_and_noisy_neighbors">noisy neighbors</a> or hardware degradation. We can even do this
+automatically when a server fails a health check for the service it is
+providing (e.g. we cannot produce and consume a message in Kafka using that
+server).</p>
+<p>In an ideal deployment, humans should be paged only in extraordinary and
+unexpected situations. Instance termination and traffic spikes are expected,
+and should be handled by automation tools. This helps us focus more on
+throughput and overall uptime and less on diagnosing individual problems. To
+prevent future reoccurrences of issues, logs can be copied to S3/OSS for
+post-mortem analysis of the system as a whole, rather than a case-by-case
+examination of the nitty-gritty details.</p>
+<p>As organizations mature and grow, they can no longer afford to handcraft and
+tend to each <a href="https://blog.engineyard.com/2014/pets-vs-cattle">pet instance</a>. The realities of cloud services, such as VM
+terminations and noisy neighbors, prod us to invest time into configuration
+automation and make sure that every instance is <a href="http://martinfowler.com/bliki/PhoenixServer.html">reproducible</a>. Such discipline
+can be enforced by terminating instances regularly and exercising the
+automation scripts to prevent configuration drift, but that’s a topic for
+another post.</p>
+    </div>
+    <div id="article_meta">
+      <p>Category: <a href="http://blog.jimjh.com/category/software.html">Software</a></p>
+      <p>Tags:
+        <a href="http://blog.jimjh.com/tag/distributed.html">distributed</a>,        <a href="http://blog.jimjh.com/tag/devops.html">devops</a>      </p>
+    </div>
+  </article>
+
+    <footer>
+  <p><a href="http://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
+  <div id="comments">
+    <div id="respond">
+      <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              var disqus_shortname = 'jimjh';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div><!-- #respond -->
+</div><!-- #comments -->
+    </footer>
+
+    <div id="ending_message">
+      <p>
+<a href='http://jimjh.com'>Jim Lim</a> &sdot;
+<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
+&sdot;
+<a href='https://github.com/jimjh'>GitHub</a> &sdot;
+<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
+&sdot;
+<a href="http://www.ontoplist.com/" title="Online Marketing"
+target="_blank">ontoplist</a>
+ &sdot; Theme by Giulio Fidente.</p>
+    </div>
+  </main>
+</body>
+</html>

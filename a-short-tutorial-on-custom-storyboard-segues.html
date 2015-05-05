@@ -85,15 +85,15 @@ To achieve this, you need a <a href="https://developer.apple.com/library/ios/#do
 <p>Create a new Objective-C class in the StoryboardDemo2 project with the name
 <code>JHCustomSegue.m</code> and let it be a subclass of <code>UIStoryboardSegue</code>. Open up
 <code>JHCustomSegue.m</code> and add the following code:</p>
-<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">perform</span> <span class="p">{</span>
-    <span class="n">UIViewController</span> <span class="o">*</span><span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span> <span class="n">self</span><span class="p">.</span><span class="n">sourceViewController</span><span class="p">;</span>
-    <span class="n">UIViewController</span> <span class="o">*</span><span class="n">dst</span> <span class="o">=</span> <span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span> <span class="n">self</span><span class="p">.</span><span class="n">destinationViewController</span><span class="p">;</span>
-    <span class="p">[</span><span class="n">UIView</span> <span class="n">transitionWithView</span><span class="o">:</span><span class="n">src</span><span class="p">.</span><span class="n">navigationController</span><span class="p">.</span><span class="n">view</span> <span class="n">duration</span><span class="o">:</span><span class="mf">0.2</span>
-                       <span class="nl">options:</span><span class="n">UIViewAnimationOptionTransitionFlipFromLeft</span>
-                    <span class="nl">animations:</span><span class="o">^</span><span class="p">{</span>
-                        <span class="p">[</span><span class="n">src</span><span class="p">.</span><span class="n">navigationController</span> <span class="n">pushViewController</span><span class="o">:</span><span class="n">dst</span> <span class="n">animated</span><span class="o">:</span><span class="nb">NO</span><span class="p">];</span>
+<div class="highlight"><pre><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">perform</span> <span class="p">{</span>
+    <span class="bp">UIViewController</span> <span class="o">*</span><span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span> <span class="nb">self</span><span class="p">.</span><span class="n">sourceViewController</span><span class="p">;</span>
+    <span class="bp">UIViewController</span> <span class="o">*</span><span class="n">dst</span> <span class="o">=</span> <span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span> <span class="nb">self</span><span class="p">.</span><span class="n">destinationViewController</span><span class="p">;</span>
+    <span class="p">[</span><span class="bp">UIView</span> <span class="nl">transitionWithView</span><span class="p">:</span><span class="n">src</span><span class="p">.</span><span class="n">navigationController</span><span class="p">.</span><span class="n">view</span> <span class="nl">duration</span><span class="p">:</span><span class="mf">0.2</span>
+                       <span class="nl">options</span><span class="p">:</span><span class="n">UIViewAnimationOptionTransitionFlipFromLeft</span>
+                    <span class="nl">animations</span><span class="p">:</span><span class="o">^</span><span class="p">{</span>
+                        <span class="p">[</span><span class="n">src</span><span class="p">.</span><span class="n">navigationController</span> <span class="nl">pushViewController</span><span class="p">:</span><span class="n">dst</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span>
                          <span class="p">}</span>
-                    <span class="nl">completion:</span><span class="nb">NULL</span><span class="p">];</span>
+                    <span class="nl">completion</span><span class="p">:</span><span class="nb">NULL</span><span class="p">];</span>
 <span class="p">}</span>
 </pre></div>
 

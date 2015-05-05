@@ -110,9 +110,9 @@ contents:</p>
 <span class="nb">cd</span> <span class="nv">$SRC_DIR</span>
 
 <span class="nb">export</span>
-<span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$NDK_ROOT/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/:$PATH&quot;</span>
-<span class="nb">export </span><span class="nv">SYS_ROOT</span><span class="o">=</span><span class="s2">&quot;$NDK_ROOT/platforms/android-8/arch-arm/&quot;</span>
-<span class="nb">export </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-gcc --sysroot=$SYS_ROOT&quot;</span>
+<span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$NDK_ROOT</span><span class="s2">/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">export </span><span class="nv">SYS_ROOT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$NDK_ROOT</span><span class="s2">/platforms/android-8/arch-arm/&quot;</span>
+<span class="nb">export </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-gcc --sysroot=</span><span class="nv">$SYS_ROOT</span><span class="s2">&quot;</span>
 <span class="nb">export </span><span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ld&quot;</span>
 <span class="nb">export </span><span class="nv">AR</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ar&quot;</span>
 <span class="nb">export </span><span class="nv">RANLIB</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ranlib&quot;</span>
@@ -130,7 +130,7 @@ make install
 
 
 <p>At this point, your directory structure should look like the following:</p>
-<div class="highlight"><pre><span class="nt">&lt;workspace&gt;</span>/
+<div class="highlight"><pre>&lt;workspace&gt;/
     FourierTest/
         AndroidManifest.xml
         build.sh

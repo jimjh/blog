@@ -84,12 +84,12 @@ to start from <a href="http://blog.jimjh.com/stripe-ctf-2014-level-0.html">level
 <p>The general solution was to try many different git commits by altering a token/nonce in the commit message until the desired SHA1 was found.</p>
 <p>Since the repository came with an naïve miner, my first - admittedly bad - intuition was to use <a href="http://www.gnu.org/software/parallel/">GNU parallel</a> and have each miner iterate through a slice of integers. That probably brought some improvements, but not much - the given miner was slow because it used a new process to compute the SHA1 of each commit. I rewrote parts of the miner in Ruby to compute multiple hashes within the same process, which attained a 30x improvement in the hash rate and passed the level handily. The tricky part was figuring out the data format of a git commit.</p>
 <p>For future reference, a git commit looks like the following:</p>
-<div class="highlight"><pre><span class="nx">commit</span> <span class="o">&lt;</span><span class="nb">size</span><span class="o">&gt;\</span><span class="mi">0</span><span class="nx">tree</span> <span class="o">&lt;</span><span class="nx">tree</span><span class="o">&gt;</span>
-<span class="k">parent</span> <span class="o">&lt;</span><span class="k">parent</span><span class="o">&gt;</span>
-<span class="nx">author</span> <span class="o">&lt;</span><span class="nx">author</span> <span class="nx">details</span><span class="o">&gt;</span>
-<span class="nx">committer</span> <span class="o">&lt;</span><span class="nx">committer</span> <span class="nx">details</span><span class="o">&gt;</span>
+<div class="highlight"><pre>commit &lt;size&gt;\0tree &lt;tree&gt;
+parent &lt;parent&gt;
+author &lt;author details&gt;
+committer &lt;committer details&gt;
 
-<span class="o">&lt;</span><span class="nx">commit</span> <span class="nx">message</span><span class="o">&gt;</span>
+&lt;commit message&gt;
 </pre></div>
 
 
