@@ -7,7 +7,7 @@ SITENAME = u'Ampersand'
 SITEURL = ''
 FEED_DOMAIN = 'http://feeds.feedburner.com'
 
-PLUGIN_PATH = '../pelican-plugins'
+PLUGIN_PATHS = ['../pelican-plugins']
 PLUGINS = ['assets', 'sitemap']
 SITEMAP = {
     'format': 'xml',
