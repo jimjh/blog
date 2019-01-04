@@ -59,7 +59,7 @@ target="_blank">ontoplist</a>
 STATIC_PATHS = ['images', 'downloads', 'favicon.ico', 'CNAME']
 WEBASSETS    = True
 
-USER_LOGO_URL    = 'http://blog.jimjh.com/images/jimjh.png'
+USER_LOGO_URL    = 'https://blog.jimjh.com/images/jimjh.png'
 FB_ADMIN         = 'jimjh'
 MAILCHIMP_URL    = 'http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799'
 GCSE_ID          = '012036467613918901085:pygogpk_gsc'

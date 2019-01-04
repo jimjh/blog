@@ -32,7 +32,7 @@ The configuration file that worked for me is as follows:
 There is probably an easier to set this up that uses a shorter command.
 
 
-  [part 1]: http://blog.jimjh.com/deployment-is-scary-part-1.html
+  [part 1]: https://blog.jimjh.com/deployment-is-scary-part-1.html
   [faraday]: https://github.com/lostisland/faraday
   [upstart]: http://upstart.ubuntu.com/
   [health check]: https://github.com/ianheggie/health_check
