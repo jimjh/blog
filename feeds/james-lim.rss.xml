@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Ampersand</title><link>https://blog.jimjh.com/</link><description></description><lastBuildDate>Mon, 04 May 2015 00:00:00 -0700</lastBuildDate><item><title>Building Elastic Clusters</title><link>https://blog.jimjh.com/building-elastic-clusters.html</link><description>&lt;p&gt;(Authors: James Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
+<rss version="2.0"><channel><title>Ampersand - James Lim</title><link>https://blog.jimjh.com/</link><description></description><lastBuildDate>Mon, 04 May 2015 00:00:00 -0700</lastBuildDate><item><title>Building Elastic Clusters</title><link>https://blog.jimjh.com/building-elastic-clusters.html</link><description>&lt;p&gt;(Authors: James Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;One of the main advantages of using a cloud provider, such as Amazon Web
 Services (AWS), is the ability to launch new instances on demand. However, it
 also means giving up control over physical machines and their retirement

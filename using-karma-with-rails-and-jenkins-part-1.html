@@ -2,32 +2,26 @@
 <html lang="en">
 
 <head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://blog.jimjh.com/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
-
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
-  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Jim Lim">
+  <meta name="author" content="James Lim">
+  <meta name="description" content="Posts and writings by James Lim">
 
-  <meta property="og:site_name" content="Ampersand">
-  <meta property="fb:admins" content="jimjh">
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand RSS" />
 
-  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-
-  <meta name="keywords" content="rails, ruby, karma, jenkins">
-  <meta name="description" content="Using Karma with Rails and Jenkins: Part 1 by Jim Lim">
-  <meta property="og:description" content="Using Karma with Rails and Jenkins: Part 1 by Jim Lim">
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Jim Lim">
-  <meta property="og:title" content="Using Karma with Rails and Jenkins: Part 1">
-  <meta property="og:url" content="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html">
+<meta name="keywords" content="rails, ruby, karma, jenkins">
 
   <title>
-Using Karma with Rails and Jenkins: Part 1  </title>
+    Ampersand
+&ndash; Using Karma with Rails and Jenkins: Part 1  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -39,8 +33,6 @@ Using Karma with Rails and Jenkins: Part 1  </title>
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 </script>
 </head>
 
@@ -50,41 +42,35 @@ Using Karma with Rails and Jenkins: Part 1  </title>
       <a href="https://blog.jimjh.com">
         <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
       </a>
-      <h2><a href="https://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
       <p></p>
       <ul>
-        <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
-<div id="mc_embed_signup">
-  <form action="https://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-  </form>
-</div>
     </div>
   </aside>
 
   <main>
     <header>
-  <p>Posted on Mon 01 July 2013</p>
+      <p>
+      <a href="https://blog.jimjh.com">Index</a> &brvbar; <a href="https://blog.jimjh.com/archives.html">Archives</a>
+      &brvbar; <a href="http://feeds.feedburner.com/jimjh/blog">RSS</a>
+      </p>
     </header>
 
-  <article>
-    <div id="article_title">
-      <h3><a href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html">Using Karma with Rails and Jenkins: Part 1</a></h3>
-    </div>
-    <div id="article_text">
-      <p>In a recent project, I experimented with <a href="http://angularjs.org">AngularJS</a> on
+<article>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html">Using Karma with Rails and Jenkins: Part 1</a></h1>
+  </div>
+  <div class="article_text">
+    <p>In a recent project, I experimented with <a href="http://angularjs.org">AngularJS</a> on
 Rails, and managed to get <a href="http://karma-runner.github.io/0.8/index.html">Karma</a> to work nicely with Jenkins on
 <a href="http://cloudbees.com">CloudBees</a>. This post documents the steps I took. (Part 2
 will cover e2e tests, if I get that sorted out.)</p>
 <p>An example project is available on <a href="https://github.com/jimjh/karma-rails">GitHub</a>.</p>
 <h2>Setup</h2>
 <p>First, install karma locally with</p>
-<div class="highlight"><pre>$&gt; npm install karma
+<div class="highlight"><pre><span></span>$&amp;gt; npm install karma
 </pre></div>
 
 
@@ -96,8 +82,8 @@ will cover e2e tests, if I get that sorted out.)</p>
 <p>Note that these are necessary even if you are using a CDN for these libraries.
 This ensures that your unit tests pass even without network access.</p>
 <p>Next, setup the spec directories,</p>
-<div class="highlight"><pre>$&gt; mkdir -p spec/javascripts/lib/angular
-$&gt; mkdir -p spec/javascripts/unit
+<div class="highlight"><pre><span></span>$&amp;gt; mkdir -p spec/javascripts/lib/angular
+$&amp;gt; mkdir -p spec/javascripts/unit
 </pre></div>
 
 
@@ -111,7 +97,7 @@ manually synchronize <code>karma.conf.js</code> with <code>application.js</code>
 in the comments if you figure out a better way.</p>
 <h2>Testing</h2>
 <p>Save your tests in <code>spec/javascripts/unit</code>. For example,</p>
-<div class="highlight"><pre><span class="cm">/* spec/javascripts/unit/setup_spec.js */</span>
+<div class="highlight"><pre><span></span><span class="cm">/* spec/javascripts/unit/setup_spec.js */</span>
 <span class="p">;(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
@@ -126,13 +112,13 @@ in the comments if you figure out a better way.</p>
 
 
 <p>Run tests using</p>
-<div class="highlight"><pre>$&gt; karma start config/karma.conf.js
+<div class="highlight"><pre><span></span>$&amp;gt; karma start config/karma.conf.js
 </pre></div>
 
 
 <h2>Continuous Integration</h2>
 <p>To use Karma with Jenkins, update <code>karma.conf.js</code> to include</p>
-<div class="highlight"><pre>junitReporter = {
+<div class="highlight"><pre><span></span>junitReporter = {
   outputFile: &#39;spec/reports/karma-unit.xml&#39;,
   suite: &#39;unit&#39;
 };
@@ -143,47 +129,31 @@ in the comments if you figure out a better way.</p>
 <script src="https://gist.github.com/jimjh/5904659.js"></script></p>
 <p>Lastly, configure Jenkins to execute <code>script/ci</code> and access the XML report at
 <code>spec/reports/karma-unit.xml</code>.</p>
-    </div>
-    <div id="article_meta">
-      <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a></p>
-      <p>Tags:
-        <a href="https://blog.jimjh.com/tag/rails.html">rails</a>,        <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,        <a href="https://blog.jimjh.com/tag/karma.html">karma</a>,        <a href="https://blog.jimjh.com/tag/jenkins.html">jenkins</a>      </p>
-    </div>
-  </article>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Mon 01 July 2013</p>
+    <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
+ &ndash; Tags:
+      <a href="https://blog.jimjh.com/tag/rails.html">rails</a>,      <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/karma.html">karma</a>,      <a href="https://blog.jimjh.com/tag/jenkins.html">jenkins</a>    </p>
+  </div>
 
-    <footer>
-  <p><a href="https://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
-  <div id="comments">
-    <div id="respond">
-      <div id="disqus_thread"></div>
-          <script type="text/javascript">
-              var disqus_shortname = 'jimjh';
+  <div id="article_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_identifier = "using-karma-with-rails-and-jenkins-part-1.html";
+        (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = '//jimjh.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+         })();
+    </script>
+  </div>
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div><!-- #respond -->
-</div><!-- #comments -->
-    </footer>
+</article>
+
 
     <div id="ending_message">
-      <p>
-<a href='https://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
-<a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
- &sdot; Theme by Giulio Fidente.</p>
+      <p>&copy; James Lim. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
     </div>
   </main>
 </body>

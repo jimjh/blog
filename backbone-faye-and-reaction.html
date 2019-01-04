@@ -2,32 +2,26 @@
 <html lang="en">
 
 <head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://blog.jimjh.com/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
-
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
-  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Jim Lim">
+  <meta name="author" content="James Lim">
+  <meta name="description" content="Posts and writings by James Lim">
 
-  <meta property="og:site_name" content="Ampersand">
-  <meta property="fb:admins" content="jimjh">
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand RSS" />
 
-  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-
-  <meta name="keywords" content="ruby, rails, javascript, mvc">
-  <meta name="description" content="Backbone, Faye, and Reaction by Jim Lim">
-  <meta property="og:description" content="Backbone, Faye, and Reaction by Jim Lim">
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Jim Lim">
-  <meta property="og:title" content="Backbone, Faye, and Reaction">
-  <meta property="og:url" content="https://blog.jimjh.com/backbone-faye-and-reaction.html">
+<meta name="keywords" content="ruby, rails, javascript, mvc">
 
   <title>
-Backbone, Faye, and Reaction  </title>
+    Ampersand
+&ndash; Backbone, Faye, and Reaction  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -39,8 +33,6 @@ Backbone, Faye, and Reaction  </title>
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 </script>
 </head>
 
@@ -50,41 +42,35 @@ Backbone, Faye, and Reaction  </title>
       <a href="https://blog.jimjh.com">
         <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
       </a>
-      <h2><a href="https://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
       <p></p>
       <ul>
-        <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
-<div id="mc_embed_signup">
-  <form action="https://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-  </form>
-</div>
     </div>
   </aside>
 
   <main>
     <header>
-  <p>Posted on Fri 02 November 2012</p>
+      <p>
+      <a href="https://blog.jimjh.com">Index</a> &brvbar; <a href="https://blog.jimjh.com/archives.html">Archives</a>
+      &brvbar; <a href="http://feeds.feedburner.com/jimjh/blog">RSS</a>
+      </p>
     </header>
 
-  <article>
-    <div id="article_title">
-      <h3><a href="https://blog.jimjh.com/backbone-faye-and-reaction.html">Backbone, Faye, and Reaction</a></h3>
-    </div>
-    <div id="article_text">
-      <p>I was jealous of what MeteorJS did for NodeJS developers, and decided to steal
+<article>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/backbone-faye-and-reaction.html">Backbone, Faye, and Reaction</a></h1>
+  </div>
+  <div class="article_text">
+    <p>I was jealous of what MeteorJS did for NodeJS developers, and decided to steal
 some of their ideas for Rails. The result is the <a href="https://github.com/jimjh/reaction">reaction gem</a>, and
 a demo app can be downloaded from <a href="https://github.com/jimjh/reaction-todos">here</a>.</p>
 <h2>Transparent Synchronization</h2>
 <p>Using Reaction, you write your app like a usual Backbone app. However, instead
 of using <code>Backbone.Collection</code>, use <code>Reaction.Collection</code> to create a
 synchronized collection.</p>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Reaction</span><span class="p">.</span><span class="nx">Collection</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Reaction</span><span class="p">.</span><span class="nx">Collection</span><span class="p">({</span>
   <span class="nx">controller_name</span><span class="o">:</span> <span class="s1">&#39;todos&#39;</span><span class="p">,</span>
   <span class="nx">model_name</span><span class="o">:</span> <span class="s1">&#39;todo&#39;</span>
 <span class="p">});</span>
@@ -98,7 +84,7 @@ Rails app.</p>
 <p>When updates are <em>pushed</em> from the Rails server to the client, the collection is
 updated and <code>add</code>, <code>remove</code>, or <code>change</code> events are fired. For example, a view
 may react to an <code>add</code> event as follows:</p>
-<div class="highlight"><pre><span class="nx">collection</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">addOne</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">collection</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">addOne</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
 <span class="c1">// ...</span>
 <span class="nx">addOne</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="k">new</span> <span class="nx">XView</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span><span class="p">);</span>
@@ -117,47 +103,31 @@ This also allows multiple app servers to share the same push server. When these
 servers are started, a shared secret must be provided. This secret will be used
 to sign messages sent from the app servers to the push server.</p>
 <p>If you wish to learn more, head to the <a href="https://github.com/jimjh/reaction/blob/master/QUICKSTART.md">quickstart</a>.</p>
-    </div>
-    <div id="article_meta">
-      <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a></p>
-      <p>Tags:
-        <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,        <a href="https://blog.jimjh.com/tag/rails.html">rails</a>,        <a href="https://blog.jimjh.com/tag/javascript.html">javascript</a>,        <a href="https://blog.jimjh.com/tag/mvc.html">mvc</a>      </p>
-    </div>
-  </article>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Fri 02 November 2012</p>
+    <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
+ &ndash; Tags:
+      <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/rails.html">rails</a>,      <a href="https://blog.jimjh.com/tag/javascript.html">javascript</a>,      <a href="https://blog.jimjh.com/tag/mvc.html">mvc</a>    </p>
+  </div>
 
-    <footer>
-  <p><a href="https://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
-  <div id="comments">
-    <div id="respond">
-      <div id="disqus_thread"></div>
-          <script type="text/javascript">
-              var disqus_shortname = 'jimjh';
+  <div id="article_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_identifier = "backbone-faye-and-reaction.html";
+        (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = '//jimjh.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+         })();
+    </script>
+  </div>
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div><!-- #respond -->
-</div><!-- #comments -->
-    </footer>
+</article>
+
 
     <div id="ending_message">
-      <p>
-<a href='https://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
-<a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
- &sdot; Theme by Giulio Fidente.</p>
+      <p>&copy; James Lim. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
     </div>
   </main>
 </body>

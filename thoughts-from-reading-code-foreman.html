@@ -2,32 +2,26 @@
 <html lang="en">
 
 <head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://blog.jimjh.com/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
-
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
-  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Jim Lim">
+  <meta name="author" content="James Lim">
+  <meta name="description" content="Posts and writings by James Lim">
 
-  <meta property="og:site_name" content="Ampersand">
-  <meta property="fb:admins" content="jimjh">
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand RSS" />
 
-  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-
-  <meta name="keywords" content="ruby, reading">
-  <meta name="description" content="Thoughts from Reading Code - Foreman by Jim Lim">
-  <meta property="og:description" content="Thoughts from Reading Code - Foreman by Jim Lim">
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Jim Lim">
-  <meta property="og:title" content="Thoughts from Reading Code - Foreman">
-  <meta property="og:url" content="https://blog.jimjh.com/thoughts-from-reading-code-foreman.html">
+<meta name="keywords" content="ruby, reading">
 
   <title>
-Thoughts from Reading Code - Foreman  </title>
+    Ampersand
+&ndash; Thoughts from Reading Code - Foreman  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -39,8 +33,6 @@ Thoughts from Reading Code - Foreman  </title>
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 </script>
 </head>
 
@@ -50,37 +42,31 @@ Thoughts from Reading Code - Foreman  </title>
       <a href="https://blog.jimjh.com">
         <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
       </a>
-      <h2><a href="https://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
       <p></p>
       <ul>
-        <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
-<div id="mc_embed_signup">
-  <form action="https://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-  </form>
-</div>
     </div>
   </aside>
 
   <main>
     <header>
-  <p>Posted on Tue 30 July 2013</p>
+      <p>
+      <a href="https://blog.jimjh.com">Index</a> &brvbar; <a href="https://blog.jimjh.com/archives.html">Archives</a>
+      &brvbar; <a href="http://feeds.feedburner.com/jimjh/blog">RSS</a>
+      </p>
     </header>
 
-  <article>
-    <div id="article_title">
-      <h3><a href="https://blog.jimjh.com/thoughts-from-reading-code-foreman.html">Thoughts from Reading Code - Foreman</a></h3>
-    </div>
-    <div id="article_text">
-      <p>I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's <a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb">cli.rb</a>.</p>
+<article>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/thoughts-from-reading-code-foreman.html">Thoughts from Reading Code - Foreman</a></h1>
+  </div>
+  <div class="article_text">
+    <p>I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's <a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb">cli.rb</a>.</p>
 <h3>Code Style - Raising Exceptions with a Bang</h3>
 <p>You might occasionally encounter code that looks like this:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
   <span class="k">raise</span> <span class="no">MyException</span><span class="p">,</span> <span class="s1">&#39;oops&#39;</span> <span class="k">unless</span> <span class="n">some_condition</span>
   <span class="k">if</span> <span class="n">some_other_condition</span>
     <span class="nb">puts</span> <span class="s2">&quot;meaningful error message&quot;</span>
@@ -93,7 +79,7 @@ Thoughts from Reading Code - Foreman  </title>
 
 
 <p>This seems perfectly normal - <code>start</code> validates a few conditions (possibly derived from the context or environment), and decides if it is OK to continue with the operation. However, such validations get in the way of readability, and are often duplicated in other methods. To keep things SOLID and DRY, let's extract these out into private methods.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
   <span class="n">check_some_condition</span>
   <span class="n">check_some_other_condition</span>
   <span class="n">do_something_useful</span>
@@ -103,7 +89,7 @@ Thoughts from Reading Code - Foreman  </title>
 
 
 <p>Much better. The code is a lot easier to read, but the helper methods have masked their side effects. (In this case, exceptions are raised and output is printed when some conditions are not met.) This can be confusing as the code base grows and becomes more complicated. A new team member would take a longer time to go through the code and learn that the <code>check_*</code> methods have potential side effects. To fix this, let's add a <code>!</code> to the end of their names.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
   <span class="n">check_some_condition!</span>
   <span class="n">check_some_other_condition!</span>
   <span class="n">do_something_useful</span>
@@ -115,7 +101,7 @@ Thoughts from Reading Code - Foreman  </title>
 <p>With this edit, the <code>start</code> method's purpose and operations become immediately apparent.</p>
 <h3>Technique - Loading Configuration Files</h3>
 <p>Using Thor, one can easily create a command-line interface by defining options for tasks and accessing arguments via the <code>options</code> hash. For example,</p>
-<div class="highlight"><pre><span class="n">method_option</span> <span class="ss">:color</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:boolean</span>
+<div class="highlight"><pre><span></span><span class="n">method_option</span> <span class="ss">:color</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:boolean</span>
 <span class="k">def</span> <span class="nf">start</span><span class="p">()</span>
   <span class="c1"># …</span>
 <span class="k">end</span>
@@ -123,7 +109,7 @@ Thoughts from Reading Code - Foreman  </title>
 
 
 <p>adds a <code>start</code> task that accepts a <code>--color</code> option. It is often useful to allow the user to specify frequently used configuration options with a configuration file, such as <code>.rspec</code> and <code>.yardopts</code>. With Thor, the <code>options</code> getter method provides a convenient place to merge options from the configuration file and from the command-line.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">options</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">options</span>
   <span class="n">original</span> <span class="o">=</span> <span class="k">super</span>                                 <span class="c1"># get original options hash</span>
   <span class="k">return</span> <span class="n">original</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span> <span class="no">CONFIG_FILE</span>
   <span class="n">defaults</span> <span class="o">=</span> <span class="o">::</span><span class="no">YAML</span><span class="o">::</span><span class="n">load_file</span><span class="p">(</span><span class="no">CONFIG_FILE</span><span class="p">)</span> <span class="o">||</span> <span class="p">{}</span>  <span class="c1"># read from config file</span>
@@ -133,47 +119,31 @@ Thoughts from Reading Code - Foreman  </title>
 
 
 <p>Note that options provided on the command-line override the options given in the configuration file.</p>
-    </div>
-    <div id="article_meta">
-      <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a></p>
-      <p>Tags:
-        <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,        <a href="https://blog.jimjh.com/tag/reading.html">reading</a>      </p>
-    </div>
-  </article>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Tue 30 July 2013</p>
+    <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
+ &ndash; Tags:
+      <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/reading.html">reading</a>    </p>
+  </div>
 
-    <footer>
-  <p><a href="https://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
-  <div id="comments">
-    <div id="respond">
-      <div id="disqus_thread"></div>
-          <script type="text/javascript">
-              var disqus_shortname = 'jimjh';
+  <div id="article_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_identifier = "thoughts-from-reading-code-foreman.html";
+        (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = '//jimjh.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+         })();
+    </script>
+  </div>
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div><!-- #respond -->
-</div><!-- #comments -->
-    </footer>
+</article>
+
 
     <div id="ending_message">
-      <p>
-<a href='https://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
-<a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
- &sdot; Theme by Giulio Fidente.</p>
+      <p>&copy; James Lim. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
     </div>
   </main>
 </body>

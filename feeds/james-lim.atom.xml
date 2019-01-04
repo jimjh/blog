@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand</title><link href="https://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/jim-lim.atom.xml" rel="self"></link><id>https://blog.jimjh.com/</id><updated>2015-05-04T00:00:00-07:00</updated><entry><title>Building Elastic Clusters</title><link href="https://blog.jimjh.com/building-elastic-clusters.html" rel="alternate"></link><updated>2015-05-04T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2015-05-04:building-elastic-clusters.html</id><summary type="html">&lt;p&gt;(Authors: Jim Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand - James Lim</title><link href="https://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/james-lim.atom.xml" rel="self"></link><id>https://blog.jimjh.com/</id><updated>2015-05-04T00:00:00-07:00</updated><entry><title>Building Elastic Clusters</title><link href="https://blog.jimjh.com/building-elastic-clusters.html" rel="alternate"></link><published>2015-05-04T00:00:00-07:00</published><updated>2015-05-04T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2015-05-04:/building-elastic-clusters.html</id><summary type="html">&lt;p&gt;(Authors: James Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;One of the main advantages of using a cloud provider, such as Amazon Web
+Services (AWS), is the ability to launch new instances on demand. However, it
+also means giving up control over physical machines and their retirement
+schedules; the cloud provider may terminate or …&lt;/p&gt;</summary><content type="html">&lt;p&gt;(Authors: James Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;One of the main advantages of using a cloud provider, such as Amazon Web
 Services (AWS), is the ability to launch new instances on demand. However, it
 also means giving up control over physical machines and their retirement
@@ -82,47 +86,57 @@ terminations and noisy neighbors, prod us to invest time into configuration
 automation and make sure that every instance is &lt;a href="http://martinfowler.com/bliki/PhoenixServer.html"&gt;reproducible&lt;/a&gt;. Such discipline
 can be enforced by terminating instances regularly and exercising the
 automation scripts to prevent configuration drift, but that’s a topic for
-another post.&lt;/p&gt;</summary><category term="distributed"></category><category term="devops"></category></entry><entry><title>dragon - an OSS File System for Hadoop</title><link href="https://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html" rel="alternate"></link><updated>2014-10-29T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2014-10-29:dragon-an-oss-file-system-for-hadoop.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.aliyun.com/product/oss/"&gt;OSS&lt;/a&gt; is Aliyun’s offering of a distributed, highly available storage service.
+another post.&lt;/p&gt;</content><category term="distributed"></category><category term="devops"></category></entry><entry><title>dragon - an OSS File System for Hadoop</title><link href="https://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html" rel="alternate"></link><published>2014-10-29T00:00:00-07:00</published><updated>2014-10-29T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2014-10-29:/dragon-an-oss-file-system-for-hadoop.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.aliyun.com/product/oss/"&gt;OSS&lt;/a&gt; is Aliyun’s offering of a distributed, highly available storage service.
+&lt;a href="https://github.com/quixey/dragon-oss"&gt;dragon&lt;/a&gt; allows YARN applications (incl. MapReduce jobs) to read and write data
+to OSS through the HDFS API. This allows you to swap filesystems without
+modifying your YARN application, MapReduce job, Pig script, Hive script etc.&lt;/p&gt;
+&lt;p&gt;The source …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.aliyun.com/product/oss/"&gt;OSS&lt;/a&gt; is Aliyun’s offering of a distributed, highly available storage service.
 &lt;a href="https://github.com/quixey/dragon-oss"&gt;dragon&lt;/a&gt; allows YARN applications (incl. MapReduce jobs) to read and write data
 to OSS through the HDFS API. This allows you to swap filesystems without
 modifying your YARN application, MapReduce job, Pig script, Hive script etc.&lt;/p&gt;
 &lt;p&gt;The source code is available &lt;a href="https://github.com/quixey/dragon-oss"&gt;on GitHub&lt;/a&gt;.
 The dragon jar may be built using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./gradlew jar
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./gradlew jar
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;dragon’s dependencies may be downloaded using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./gradlew copyDeps
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./gradlew copyDeps
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To use dragon in your Hadoop cluster, add &lt;code&gt;dragon-*.jar&lt;/code&gt; and its dependencies
 to Hadoop’s classpath on your clusters. Then modify &lt;code&gt;core-site.xml&lt;/code&gt; to add the
 following properties:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.oss.impl&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;com.quixey.hadoop.fs.oss.OSSFileSystem&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.oss.accessKeyId&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;...&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.oss.secretAccessKey&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;value&amp;gt;&lt;/span&gt;...&lt;span class="nt"&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;fs.oss.impl&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;com.quixey.hadoop.fs.oss.OSSFileSystem&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;fs.oss.accessKeyId&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;...&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;fs.oss.secretAccessKey&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;...&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
+&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the &lt;code&gt;oss://&lt;/code&gt; scheme.&lt;/p&gt;
 &lt;p&gt;You may verify that your setup works by running the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hdfs dfs -ls oss://your-bucket/
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ hdfs dfs -ls oss://your-bucket/
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;(&lt;a href="https://github.com/quixey/dragon-oss"&gt;dragon&lt;/a&gt; is an open-source project by &lt;a href="http://www.quixey.com/"&gt;Quixey&lt;/a&gt;.)&lt;/p&gt;</summary><category term="hadoop"></category><category term="oss"></category></entry><entry><title>Stripe CTF 2014, Level 3 - Instant Code Search</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html" rel="alternate"></link><updated>2014-04-06T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2014-04-06:stripe-ctf-2014-level-3-instant-code-search.html</id><summary type="html">&lt;p&gt;The task was to write, in Scala:&lt;/p&gt;
+&lt;p&gt;(&lt;a href="https://github.com/quixey/dragon-oss"&gt;dragon&lt;/a&gt; is an open-source project by &lt;a href="http://www.quixey.com/"&gt;Quixey&lt;/a&gt;.)&lt;/p&gt;</content><category term="hadoop"></category><category term="oss"></category></entry><entry><title>Stripe CTF 2014, Level 3 - Instant Code Search</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-3-instant-code-search.html" rel="alternate"></link><published>2014-04-06T00:00:00-07:00</published><updated>2014-04-06T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2014-04-06:/stripe-ctf-2014-level-3-instant-code-search.html</id><summary type="html">&lt;p&gt;The task was to write, in Scala:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;an indexer that scans a bunch of input files, and&lt;/li&gt;
+&lt;li&gt;a searcher that takes a query string and returns a list of lines containing it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It can be solved using the following:&lt;/p&gt;
+&lt;p&gt;In the indexer, tokenize each document, and create an inverted index …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The task was to write, in Scala:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;an indexer that scans a bunch of input files, and&lt;/li&gt;
 &lt;li&gt;a searcher that takes a query string and returns a list of lines containing it&lt;/li&gt;
@@ -138,7 +152,12 @@ query string into 3-character substrings, and return the intersection of
 all sets found in the inverted index for each substring.&lt;/p&gt;
 &lt;p&gt;Alternatively, one could use a suffix tree to enable substring search.&lt;/p&gt;
 &lt;p&gt;My various solutions can be found on these github
-&lt;a href="https://github.com/jimjh/stripe-level3/branches"&gt;branches&lt;/a&gt;.&lt;/p&gt;</summary><category term="scala"></category><category term="stripe"></category></entry><entry><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html" rel="alternate"></link><updated>2014-03-30T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2014-03-30:stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</id><summary type="html">&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
+&lt;a href="https://github.com/jimjh/stripe-level3/branches"&gt;branches&lt;/a&gt;.&lt;/p&gt;</content><category term="scala"></category><category term="stripe"></category></entry><entry><title>Stripe CTF 2014, Level 2 - Defending against a DDOS attack</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html" rel="alternate"></link><published>2014-03-30T00:00:00-07:00</published><updated>2014-03-30T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2014-03-30:/stripe-ctf-2014-level-2-defending-against-a-ddos-attack.html</id><summary type="html">&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
+&lt;p&gt;In the third level of Stripe’s CTF, participants were tasked to build a proxy
+to defend a couple of backend servers against a DDOS attack. The proxy needed
+to do the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distribute requests across a …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;If your service comes under a major DDOS attack, what would you do?&lt;/p&gt;
 &lt;p&gt;In the third level of Stripe’s CTF, participants were tasked to build a proxy
 to defend a couple of backend servers against a DDOS attack. The proxy needed
 to do the following:&lt;/p&gt;
@@ -155,14 +174,17 @@ requires some trial-and-error.)&lt;/p&gt;
 &lt;p&gt;Here is a &lt;a href="https://github.com/jimjh/stripe-level2/tree/nginx"&gt;cooler solution&lt;/a&gt;
 - download and build nginx, and use it to forward requests to the backend
 servers. Finally, adjust the parameters in the nginx configuration, using the
-&lt;code&gt;limit_req&lt;/code&gt; module to handle bursts and block elephants.&lt;/p&gt;</summary><category term="nodejs"></category><category term="stripe"></category></entry><entry><title>Stripe CTF 2014, Level 1</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-1.html" rel="alternate"></link><updated>2014-03-08T00:00:00-08:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2014-03-08:stripe-ctf-2014-level-1.html</id><summary type="html">&lt;p&gt;This is the second installment of a series on Stripe's CTF 2014. You may wish
+&lt;code&gt;limit_req&lt;/code&gt; module to handle bursts and block elephants.&lt;/p&gt;</content><category term="nodejs"></category><category term="stripe"></category></entry><entry><title>Stripe CTF 2014, Level 1</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-1.html" rel="alternate"></link><published>2014-03-08T00:00:00-08:00</published><updated>2014-03-08T00:00:00-08:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2014-03-08:/stripe-ctf-2014-level-1.html</id><summary type="html">&lt;p&gt;This is the second installment of a series on Stripe's CTF 2014. You may wish
+to start from &lt;a href="https://blog.jimjh.com/stripe-ctf-2014-level-0.html"&gt;level 0&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Level 1&lt;/h3&gt;
+&lt;p&gt;Level 1 proposed a crypto-currency named Gitcoin that used Git's SHA1 hashes. The player was provided with a git repository and asked to create a commit with a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the second installment of a series on Stripe's CTF 2014. You may wish
 to start from &lt;a href="https://blog.jimjh.com/stripe-ctf-2014-level-0.html"&gt;level 0&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Level 1&lt;/h3&gt;
 &lt;p&gt;Level 1 proposed a crypto-currency named Gitcoin that used Git's SHA1 hashes. The player was provided with a git repository and asked to create a commit with a SHA1 that is lexicographically less than a given value &lt;em&gt;i.e.&lt;/em&gt; difficulty. Moreover, the commit must include an update to the ledger that awards a single Gitcoin to the player. It's a lot like Bitcoin mining, and the player's miner raced against Stripe's bot to push the commit to the remote repository.&lt;/p&gt;
 &lt;p&gt;The general solution was to try many different git commits by altering a token/nonce in the commit message until the desired SHA1 was found.&lt;/p&gt;
 &lt;p&gt;Since the repository came with an naïve miner, my first - admittedly bad - intuition was to use &lt;a href="http://www.gnu.org/software/parallel/"&gt;GNU parallel&lt;/a&gt; and have each miner iterate through a slice of integers. That probably brought some improvements, but not much - the given miner was slow because it used a new process to compute the SHA1 of each commit. I rewrote parts of the miner in Ruby to compute multiple hashes within the same process, which attained a 30x improvement in the hash rate and passed the level handily. The tricky part was figuring out the data format of a git commit.&lt;/p&gt;
 &lt;p&gt;For future reference, a git commit looks like the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;commit &amp;lt;size&amp;gt;\0tree &amp;lt;tree&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;commit &amp;lt;size&amp;gt;\0tree &amp;lt;tree&amp;gt;
 parent &amp;lt;parent&amp;gt;
 author &amp;lt;author details&amp;gt;
 committer &amp;lt;committer details&amp;gt;
@@ -172,7 +194,10 @@ committer &amp;lt;committer details&amp;gt;
 
 
 &lt;p&gt;A GPU miner would certainly be much faster. The implementation is left as an exercise for the reader.&lt;/p&gt;
-&lt;p&gt;I uploaded some of my work on &lt;a href="https://github.com/jimjh/stripe-level1"&gt;Github&lt;/a&gt;. Give it a shot.&lt;/p&gt;</summary><category term="ruby"></category><category term="stripe"></category></entry><entry><title>Stripe CTF 2014, Level 0</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-0.html" rel="alternate"></link><updated>2014-02-23T00:00:00-08:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2014-02-23:stripe-ctf-2014-level-0.html</id><summary type="html">&lt;p&gt;I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.&lt;/p&gt;
+&lt;p&gt;I uploaded some of my work on &lt;a href="https://github.com/jimjh/stripe-level1"&gt;Github&lt;/a&gt;. Give it a shot.&lt;/p&gt;</content><category term="ruby"></category><category term="stripe"></category></entry><entry><title>Stripe CTF 2014, Level 0</title><link href="https://blog.jimjh.com/stripe-ctf-2014-level-0.html" rel="alternate"></link><published>2014-02-23T00:00:00-08:00</published><updated>2014-02-23T00:00:00-08:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2014-02-23:/stripe-ctf-2014-level-0.html</id><summary type="html">&lt;p&gt;I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.&lt;/p&gt;
+&lt;h3&gt;Level 0&lt;/h3&gt;
+&lt;p&gt;The first level was a breeze, and mainly served as an introduction/tutorial
+for participating in the CTF. We were given the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I participated in a week-long CTF hosted by Stripe in Jan 2014. This series of blog posts will cover some of the problems and their solutions.&lt;/p&gt;
 &lt;h3&gt;Level 0&lt;/h3&gt;
 &lt;p&gt;The first level was a breeze, and mainly served as an introduction/tutorial
 for participating in the CTF. We were given the following code, and asked to
@@ -244,18 +269,20 @@ some ideas that might have worked:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Note that using a bloom filter is probabilistic - it could get you on the
 leader board if you pushed enough times.&lt;/p&gt;
-&lt;p&gt;I uploaded &lt;a href="https://github.com/jimjh/stripe-level0"&gt;some of my work&lt;/a&gt; to GitHub. Take a shot.&lt;/p&gt;</summary><category term="ruby"></category><category term="stripe"></category></entry><entry><title>How to Create a Websocket Server in Ruby</title><link href="https://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html" rel="alternate"></link><updated>2013-08-21T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-08-21:how-to-create-a-websocket-server-in-ruby.html</id><summary type="html">&lt;p&gt;This is a short tutorial on creating a websocket server in Ruby using James Coglan's &lt;a href="https://github.com/faye/websocket-driver-ruby"&gt;websocket driver&lt;/a&gt;. The complete example is available on &lt;a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I uploaded &lt;a href="https://github.com/jimjh/stripe-level0"&gt;some of my work&lt;/a&gt; to GitHub. Take a shot.&lt;/p&gt;</content><category term="ruby"></category><category term="stripe"></category></entry><entry><title>How to Create a Websocket Server in Ruby</title><link href="https://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html" rel="alternate"></link><published>2013-08-21T00:00:00-07:00</published><updated>2013-08-21T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-08-21:/how-to-create-a-websocket-server-in-ruby.html</id><summary type="html">&lt;p&gt;This is a short tutorial on creating a websocket server in Ruby using James Coglan's &lt;a href="https://github.com/faye/websocket-driver-ruby"&gt;websocket driver&lt;/a&gt;. The complete example is available on &lt;a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;About Websocket Driver&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="http://rubygems.org/gems/websocket-driver"&gt;websocket-driver&lt;/a&gt; gem decouples the websocket protocol from the I/O layer, providing drivers that handle the websocket procotol (handshakes, upgrades etc) on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a short tutorial on creating a websocket server in Ruby using James Coglan's &lt;a href="https://github.com/faye/websocket-driver-ruby"&gt;websocket driver&lt;/a&gt;. The complete example is available on &lt;a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;About Websocket Driver&lt;/h3&gt;
 &lt;p&gt;The &lt;a href="http://rubygems.org/gems/websocket-driver"&gt;websocket-driver&lt;/a&gt; gem decouples the websocket protocol from the I/O layer, providing drivers that handle the websocket procotol (handshakes, upgrades etc) on any compatible I/O. It can be used with Rack, EventMachine, or just plain TCP. The examples for EventMachine and Rack are available in the documentation.&lt;/p&gt;
 &lt;h4&gt;Using Plain TCP&lt;/h4&gt;
 &lt;p&gt;This echo server was adapted from code found in poltergeist. It defines an &lt;code&gt;EchoServer&lt;/code&gt; class, which is used as follows&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;EchoServer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;EchoServer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;
 &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;  &lt;span class="c1"&gt;# blocking&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Within &lt;code&gt;#listen&lt;/code&gt;, the server accepts clients connections in a continuous loop and spins off new threads to handle each client. The connected socket is passed to &lt;code&gt;WebSocket::Driver#server&lt;/code&gt;, which selects, instantiates, and returns an appropriate driver.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;WebSocket&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;WebSocket&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:connect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:close&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Connection with &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; closed.&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
@@ -269,16 +296,25 @@ leader board if you pushed enough times.&lt;/p&gt;
 
 
 &lt;p&gt;In general, data received on the socket should be passed to &lt;code&gt;driver#parse&lt;/code&gt;, and &lt;code&gt;driver#text&lt;/code&gt; or &lt;code&gt;driver#bytes&lt;/code&gt; can be used to send data to the other end. The echo server can be tested from any modern browser with the following JavaScript snippet.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;WebSocket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ws://localhost:54398/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="c1"&gt;// Log errors&lt;/span&gt;
-&lt;span class="nx"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onerror&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;WebSocket Error &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="c1"&gt;// Log messages from the server&lt;/span&gt;
-&lt;span class="nx"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onmessage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Server: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="ruby"></category></entry><entry><title>Thoughts from Reading Code - Foreman and Pipes</title><link href="https://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html" rel="alternate"></link><updated>2013-08-12T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-08-12:thoughts-from-reading-code-foreman-and-pipes.html</id><summary type="html">&lt;h3&gt;Using Pipes for Cheap IPC&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;WebSocket&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ws://localhost:54398/&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Log&lt;/span&gt; &lt;span class="nt"&gt;errors&lt;/span&gt;
+&lt;span class="nt"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;onerror&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;error&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;console.log(&amp;#39;WebSocket&lt;/span&gt; &lt;span class="err"&gt;Error&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;+&lt;/span&gt; &lt;span class="err"&gt;error)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;Log&lt;/span&gt; &lt;span class="nt"&gt;messages&lt;/span&gt; &lt;span class="nt"&gt;from&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt;
+&lt;span class="nt"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;onmessage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;e&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;console.log(&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="ruby"></category></entry><entry><title>Thoughts from Reading Code - Foreman and Pipes</title><link href="https://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html" rel="alternate"></link><published>2013-08-12T00:00:00-07:00</published><updated>2013-08-12T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-08-12:/thoughts-from-reading-code-foreman-and-pipes.html</id><summary type="html">&lt;h3&gt;Using Pipes for Cheap IPC&lt;/h3&gt;
 &lt;p&gt;A &lt;a href="https://en.wikipedia.org/wiki/Pipeline_(Unix)"&gt;UNIX pipe&lt;/a&gt; is a unidirectional interprocess communication channel with
 a read end and a write end. You have probably used pipes in the command line.
 For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git ls-files &lt;span class="p"&gt;|&lt;/span&gt; xargs grep foo
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git ls-files &lt;span class="p"&gt;|&lt;/span&gt; xargs grep foo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This executes both commands concurrently and creates a pipe for interprocess
+communication …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Using Pipes for Cheap IPC&lt;/h3&gt;
+&lt;p&gt;A &lt;a href="https://en.wikipedia.org/wiki/Pipeline_(Unix)"&gt;UNIX pipe&lt;/a&gt; is a unidirectional interprocess communication channel with
+a read end and a write end. You have probably used pipes in the command line.
+For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git ls-files &lt;span class="p"&gt;|&lt;/span&gt; xargs grep foo
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -287,7 +323,7 @@ communication. The output from &lt;code&gt;git ls-files&lt;/code&gt; is redirect
 the pipe, and the input to &lt;code&gt;xargs grep foo&lt;/code&gt; is redirected from the read end.&lt;/p&gt;
 &lt;p&gt;Within foreman, pipes are used to aggregate output from the child process it
 manages. A simplified structure of the code is as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# single process example&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# single process example&lt;/span&gt;
 &lt;span class="n"&gt;process&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_process&lt;/span&gt;
 &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;writer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_pipe&lt;/span&gt;
 
@@ -307,7 +343,7 @@ handlers. The former also costs more memory, since it uses a whole stack for
 each thread. (For a more detailed comparison of these strategies, please refer
 to &lt;a href="http://www.kegel.com/c10k.html#strategies"&gt;The C10K problem&lt;/a&gt;.)&lt;/p&gt;
 &lt;p&gt;Inside &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/engine.rb"&gt;Foreman::Engine&lt;/a&gt;, &lt;code&gt;select&lt;/code&gt; is used in the following way:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kp"&gt;loop&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kp"&gt;loop&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# block until a fd is ready&lt;/span&gt;
   &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eof?&lt;/span&gt;
@@ -326,10 +362,10 @@ to &lt;a href="http://www.kegel.com/c10k.html#strategies"&gt;The C10K problem&lt
 all child processes when one of them is received. However, it's difficult to
 write reentrant signal handlers in Ruby, since developers do not have complete
 control over which C functions are called. Thus, it's usually recommended to
-&lt;a href="https://blog.rubybestpractices.com/posts/ewong/016-Implementing-Signal-Handlers.html"&gt;defer signal handling&lt;/a&gt; by pushing signals onto a queue and handling
+&lt;a href="http://blog.rubybestpractices.com/posts/ewong/016-Implementing-Signal-Handlers.html"&gt;defer signal handling&lt;/a&gt; by pushing signals onto a queue and handling
 them sequentially. For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# push signals onto a queue&lt;/span&gt;
-&lt;span class="nb"&gt;trap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;INT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;some_queue&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="ss"&gt;:INT&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# push signals onto a queue&lt;/span&gt;
+&lt;span class="nb"&gt;trap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;INT&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;some_queue&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="ss"&gt;:INT&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 
 &lt;span class="no"&gt;Thread&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;process_queue&lt;/span&gt;
@@ -347,7 +383,7 @@ these, Foreman uses the self-pipe trick.&lt;/p&gt;
 &lt;p&gt;A self-pipe is a pipe that is not shared outside the process that created the
 pipe. In the scenario described above, Foreman creates a self-pipe and adds it
 to the list of inputs that &lt;code&gt;select&lt;/code&gt; waits on.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;self_pipe_read&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;self_pipe_read&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -357,7 +393,7 @@ the write end of the self-pipe, causing &lt;code&gt;select&lt;/code&gt; to retur
 the readers, or if it was interrupted for another reason. For Foreman, it needs
 to check if there are pending signals in the queue that needs to be handled.&lt;/p&gt;
 &lt;p&gt;This kills two birds with one stone.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="no"&gt;Thread&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="no"&gt;Thread&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="kp"&gt;loop&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
     &lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;IO&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;self_pipe_read&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="vi"&gt;@readers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;process_queue&lt;/span&gt;
@@ -370,10 +406,14 @@ to check if there are pending signals in the queue that needs to be handled.&lt;
     &lt;span class="k"&gt;end&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="ruby"></category><category term="reading"></category></entry><entry><title>Thoughts from Reading Code - Foreman</title><link href="https://blog.jimjh.com/thoughts-from-reading-code-foreman.html" rel="alternate"></link><updated>2013-07-30T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-30:thoughts-from-reading-code-foreman.html</id><summary type="html">&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="ruby"></category><category term="reading"></category></entry><entry><title>Thoughts from Reading Code - Foreman</title><link href="https://blog.jimjh.com/thoughts-from-reading-code-foreman.html" rel="alternate"></link><published>2013-07-30T00:00:00-07:00</published><updated>2013-07-30T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-30:/thoughts-from-reading-code-foreman.html</id><summary type="html">&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Code Style - Raising Exceptions with a Bang&lt;/h3&gt;
 &lt;p&gt;You might occasionally encounter code that looks like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;raise …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I read a lot of open source code in my free time to make myself a better engineer. Here are some of my notes from reading foreman's &lt;a href="https://github.com/ddollar/foreman/blob/master/lib/foreman/cli.rb"&gt;cli.rb&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Code Style - Raising Exceptions with a Bang&lt;/h3&gt;
+&lt;p&gt;You might occasionally encounter code that looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="no"&gt;MyException&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;oops&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="n"&gt;some_condition&lt;/span&gt;
   &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;some_other_condition&lt;/span&gt;
     &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;meaningful error message&amp;quot;&lt;/span&gt;
@@ -386,7 +426,7 @@ to check if there are pending signals in the queue that needs to be handled.&lt;
 
 
 &lt;p&gt;This seems perfectly normal - &lt;code&gt;start&lt;/code&gt; validates a few conditions (possibly derived from the context or environment), and decides if it is OK to continue with the operation. However, such validations get in the way of readability, and are often duplicated in other methods. To keep things SOLID and DRY, let's extract these out into private methods.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="n"&gt;check_some_condition&lt;/span&gt;
   &lt;span class="n"&gt;check_some_other_condition&lt;/span&gt;
   &lt;span class="n"&gt;do_something_useful&lt;/span&gt;
@@ -396,7 +436,7 @@ to check if there are pending signals in the queue that needs to be handled.&lt;
 
 
 &lt;p&gt;Much better. The code is a lot easier to read, but the helper methods have masked their side effects. (In this case, exceptions are raised and output is printed when some conditions are not met.) This can be confusing as the code base grows and becomes more complicated. A new team member would take a longer time to go through the code and learn that the &lt;code&gt;check_*&lt;/code&gt; methods have potential side effects. To fix this, let's add a &lt;code&gt;!&lt;/code&gt; to the end of their names.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="n"&gt;check_some_condition!&lt;/span&gt;
   &lt;span class="n"&gt;check_some_other_condition!&lt;/span&gt;
   &lt;span class="n"&gt;do_something_useful&lt;/span&gt;
@@ -408,7 +448,7 @@ to check if there are pending signals in the queue that needs to be handled.&lt;
 &lt;p&gt;With this edit, the &lt;code&gt;start&lt;/code&gt; method's purpose and operations become immediately apparent.&lt;/p&gt;
 &lt;h3&gt;Technique - Loading Configuration Files&lt;/h3&gt;
 &lt;p&gt;Using Thor, one can easily create a command-line interface by defining options for tasks and accessing arguments via the &lt;code&gt;options&lt;/code&gt; hash. For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;method_option&lt;/span&gt; &lt;span class="ss"&gt;:color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;:boolean&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;method_option&lt;/span&gt; &lt;span class="ss"&gt;:color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;:boolean&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="c1"&gt;# …&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
@@ -416,7 +456,7 @@ to check if there are pending signals in the queue that needs to be handled.&lt;
 
 
 &lt;p&gt;adds a &lt;code&gt;start&lt;/code&gt; task that accepts a &lt;code&gt;--color&lt;/code&gt; option. It is often useful to allow the user to specify frequently used configuration options with a configuration file, such as &lt;code&gt;.rspec&lt;/code&gt; and &lt;code&gt;.yardopts&lt;/code&gt;. With Thor, the &lt;code&gt;options&lt;/code&gt; getter method provides a convenient place to merge options from the configuration file and from the command-line.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;options&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;options&lt;/span&gt;
   &lt;span class="n"&gt;original&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;super&lt;/span&gt;                                 &lt;span class="c1"&gt;# get original options hash&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;original&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists?&lt;/span&gt; &lt;span class="no"&gt;CONFIG_FILE&lt;/span&gt;
   &lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;YAML&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;load_file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;CONFIG_FILE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;  &lt;span class="c1"&gt;# read from config file&lt;/span&gt;
@@ -425,13 +465,18 @@ to check if there are pending signals in the queue that needs to be handled.&lt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Note that options provided on the command-line override the options given in the configuration file.&lt;/p&gt;</summary><category term="ruby"></category><category term="reading"></category></entry><entry><title>Introducing Verbal, a Ruby Gem</title><link href="https://blog.jimjh.com/introducing-verbal-a-ruby-gem.html" rel="alternate"></link><updated>2013-07-27T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-27:introducing-verbal-a-ruby-gem.html</id><summary type="html">&lt;p&gt;I recently released &lt;a href="https://rubygems.org/gems/verbal"&gt;Verbal&lt;/a&gt;, a ruby gem that provides a fluent
+&lt;p&gt;Note that options provided on the command-line override the options given in the configuration file.&lt;/p&gt;</content><category term="ruby"></category><category term="reading"></category></entry><entry><title>Introducing Verbal, a Ruby Gem</title><link href="https://blog.jimjh.com/introducing-verbal-a-ruby-gem.html" rel="alternate"></link><published>2013-07-27T00:00:00-07:00</published><updated>2013-07-27T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-27:/introducing-verbal-a-ruby-gem.html</id><summary type="html">&lt;p&gt;I recently released &lt;a href="https://rubygems.org/gems/verbal"&gt;Verbal&lt;/a&gt;, a ruby gem that provides a fluent
+DSL for creating regular expressions. It's a fork of jehna's popular
+&lt;a href="https://github.com/jehna/VerbalExpressions"&gt;VerbalExpressions&lt;/a&gt; javascript library. Detailed documentation and code
+examples are available at &lt;a href="http://rubydoc.info/gems/verbal/Verbal"&gt;rubydoc.info&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To create a regular expression that matches &lt;code&gt;http&lt;/code&gt;, &lt;code&gt;https&lt;/code&gt;, &lt;code&gt;ftp&lt;/code&gt;, and &lt;code&gt;sftp&lt;/code&gt;,
+one can use …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I recently released &lt;a href="https://rubygems.org/gems/verbal"&gt;Verbal&lt;/a&gt;, a ruby gem that provides a fluent
 DSL for creating regular expressions. It's a fork of jehna's popular
 &lt;a href="https://github.com/jehna/VerbalExpressions"&gt;VerbalExpressions&lt;/a&gt; javascript library. Detailed documentation and code
 examples are available at &lt;a href="http://rubydoc.info/gems/verbal/Verbal"&gt;rubydoc.info&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To create a regular expression that matches &lt;code&gt;http&lt;/code&gt;, &lt;code&gt;https&lt;/code&gt;, &lt;code&gt;ftp&lt;/code&gt;, and &lt;code&gt;sftp&lt;/code&gt;,
 one can use Verbal as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http&amp;#39;&lt;/span&gt;
   &lt;span class="n"&gt;maybe&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;
   &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;://&amp;#39;&lt;/span&gt;
@@ -443,22 +488,22 @@ one can use Verbal as follows:&lt;/p&gt;
 
 
 &lt;p&gt;Note that &lt;code&gt;verbal&lt;/code&gt; just a regular expression.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; 0&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;amp;gt; 0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Capturing groups may be specified using &lt;code&gt;capture&lt;/code&gt;. For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;verbal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;capture&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;anything&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
   &lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="sr"&gt;/\sby\s/&lt;/span&gt;
   &lt;span class="n"&gt;capture&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;anything&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;verbal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;this is it by michael jackson&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; &amp;quot;this is it&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;amp;gt; &amp;quot;this is it&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;More examples can be found in the &lt;a href="https://github.com/jimjh/verbal/tree/master/spec"&gt;RSpec specs&lt;/a&gt;.&lt;/p&gt;</summary><category term="ruby"></category></entry><entry><title>Event Tracking with Google Analytics and LaunchRock</title><link href="https://blog.jimjh.com/event-tracking-with-google-analytics-and-launchrock.html" rel="alternate"></link><updated>2013-07-19T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-19:event-tracking-with-google-analytics-and-launchrock.html</id><summary type="html">&lt;p&gt;It's easy to create a landing page with LaunchRock, but getting meaningful analytics out of it is more difficult. For example, I still have not figured out a way to run a Google Analytics experiment on LaunchRock - using custom Javascript code in LaunchRock sometimes crashes the previewer, forcing me to reset my project.&lt;/p&gt;
+&lt;p&gt;More examples can be found in the &lt;a href="https://github.com/jimjh/verbal/tree/master/spec"&gt;RSpec specs&lt;/a&gt;.&lt;/p&gt;</content><category term="ruby"></category></entry><entry><title>Event Tracking with Google Analytics and LaunchRock</title><link href="https://blog.jimjh.com/event-tracking-with-google-analytics-and-launchrock.html" rel="alternate"></link><published>2013-07-19T00:00:00-07:00</published><updated>2013-07-19T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-19:/event-tracking-with-google-analytics-and-launchrock.html</id><summary type="html">&lt;p&gt;It's easy to create a landing page with LaunchRock, but getting meaningful analytics out of it is more difficult. For example, I still have not figured out a way to run a Google Analytics experiment on LaunchRock - using custom Javascript code in LaunchRock sometimes crashes the previewer, forcing me to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;It's easy to create a landing page with LaunchRock, but getting meaningful analytics out of it is more difficult. For example, I still have not figured out a way to run a Google Analytics experiment on LaunchRock - using custom Javascript code in LaunchRock sometimes crashes the previewer, forcing me to reset my project.&lt;/p&gt;
 &lt;h2&gt;Event Tracking&lt;/h2&gt;
 &lt;p&gt;Anyway, back to event tracking. Open up the advanced editor, and use the following gist&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/6039414.js"&gt;&lt;/script&gt;
@@ -469,7 +514,12 @@ one can use Verbal as follows:&lt;/p&gt;
 &lt;li&gt;This tracks the keypresses and button clicks, but does not actually know if the user really signed up. For example, the user could have given an invalid email address.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To test this, watch the &lt;em&gt;Realtime&lt;/em&gt; dashboard in your Analytics account while you create a few fake signups on your landing page. The events count should increase for the &lt;em&gt;Sign Up&lt;/em&gt; action of the &lt;em&gt;Users&lt;/em&gt; category.&lt;/p&gt;
-&lt;p&gt;Once event tracking is in place, it is simple to create a goal for the event and link it to your Adwords campaign.&lt;/p&gt;</summary><category term="javascript"></category><category term="analytics"></category></entry><entry><title>Making Conditional Requests with Peter Murach's gem</title><link href="https://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html" rel="alternate"></link><updated>2013-07-19T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-19:making-conditional-requests-with-peter-murachs-gem.html</id><summary type="html">&lt;p&gt;GitHub imposes a rate limit on API requests, and encourages developers to use &lt;a href="http://developer.github.com/v3/#conditional-requests"&gt;conditional requests&lt;/a&gt;. Here is how to do that using Peter's popular &lt;a href="https://github.com/peter-murach/github"&gt;github api gem&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once event tracking is in place, it is simple to create a goal for the event and link it to your Adwords campaign.&lt;/p&gt;</content><category term="javascript"></category><category term="analytics"></category></entry><entry><title>Making Conditional Requests with Peter Murach's gem</title><link href="https://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html" rel="alternate"></link><published>2013-07-19T00:00:00-07:00</published><updated>2013-07-19T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-19:/making-conditional-requests-with-peter-murachs-gem.html</id><summary type="html">&lt;p&gt;GitHub imposes a rate limit on API requests, and encourages developers to use &lt;a href="http://developer.github.com/v3/#conditional-requests"&gt;conditional requests&lt;/a&gt;. Here is how to do that using Peter's popular &lt;a href="https://github.com/peter-murach/github"&gt;github api gem&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Method A - Faraday HTTP Cache w. ActiveSupport::Cache&lt;/h2&gt;
+&lt;p&gt;This uses the &lt;a href="https://github.com/plataformatec/faraday-http-cache"&gt;faraday-http-cache gem&lt;/a&gt;, which takes care of expiration, etags, and response statuses.&lt;/p&gt;
+&lt;script src="https://gist.github.com/jimjh/5961836.js"&gt;&lt;/script&gt;
+
+&lt;h2&gt;Method …&lt;/h2&gt;</summary><content type="html">&lt;p&gt;GitHub imposes a rate limit on API requests, and encourages developers to use &lt;a href="http://developer.github.com/v3/#conditional-requests"&gt;conditional requests&lt;/a&gt;. Here is how to do that using Peter's popular &lt;a href="https://github.com/peter-murach/github"&gt;github api gem&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Method A - Faraday HTTP Cache w. ActiveSupport::Cache&lt;/h2&gt;
 &lt;p&gt;This uses the &lt;a href="https://github.com/plataformatec/faraday-http-cache"&gt;faraday-http-cache gem&lt;/a&gt;, which takes care of expiration, etags, and response statuses.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5961836.js"&gt;&lt;/script&gt;
@@ -477,9 +527,14 @@ one can use Verbal as follows:&lt;/p&gt;
 &lt;h2&gt;Method B - Faraday HTTP Cache w. Moneta&lt;/h2&gt;
 &lt;script src="https://gist.github.com/jimjh/5985170.js"&gt;&lt;/script&gt;
 
-&lt;p&gt;More details are available in this &lt;a href="https://github.com/peter-murach/github/issues/112#issuecomment-20882465"&gt;issue&lt;/a&gt;.&lt;/p&gt;</summary><category term="ruby"></category><category term="github api"></category></entry><entry><title>jQuery Plugin - Box Lid Menu</title><link href="https://blog.jimjh.com/jquery-plugin-box-lid-menu.html" rel="alternate"></link><updated>2013-07-11T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-11:jquery-plugin-box-lid-menu.html</id><summary type="html">&lt;p&gt;Smashing Magazine wrote &lt;a href="http://www.smashingmagazine.com/2013/07/11/innovative-navigation-designs/"&gt;a piece&lt;/a&gt; about &lt;a href="http://www.toybox.co.nz/"&gt;Toybox&lt;/a&gt;'s navigation menu today, describing the user experience as "peeking behind the page or the lid of a toybox". I really liked the design, took a shot at creating a &lt;a href="https://github.com/jimjh/box-lid/"&gt;jQuery plugin&lt;/a&gt; to replicate the effect. Here is a &lt;a href="https://jimjh.com/box-lid/"&gt;demo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;More details are available in this &lt;a href="https://github.com/peter-murach/github/issues/112#issuecomment-20882465"&gt;issue&lt;/a&gt;.&lt;/p&gt;</content><category term="ruby"></category><category term="github api"></category></entry><entry><title>jQuery Plugin - Box Lid Menu</title><link href="https://blog.jimjh.com/jquery-plugin-box-lid-menu.html" rel="alternate"></link><published>2013-07-11T00:00:00-07:00</published><updated>2013-07-11T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-11:/jquery-plugin-box-lid-menu.html</id><summary type="html">&lt;p&gt;Smashing Magazine wrote &lt;a href="http://www.smashingmagazine.com/2013/07/11/innovative-navigation-designs/"&gt;a piece&lt;/a&gt; about &lt;a href="http://www.toybox.co.nz/"&gt;Toybox&lt;/a&gt;'s navigation menu today, describing the user experience as "peeking behind the page or the lid of a toybox". I really liked the design, took a shot at creating a &lt;a href="https://github.com/jimjh/box-lid/"&gt;jQuery plugin&lt;/a&gt; to replicate the effect. Here is a &lt;a href="https://jimjh.com/box-lid/"&gt;demo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Most of the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Smashing Magazine wrote &lt;a href="http://www.smashingmagazine.com/2013/07/11/innovative-navigation-designs/"&gt;a piece&lt;/a&gt; about &lt;a href="http://www.toybox.co.nz/"&gt;Toybox&lt;/a&gt;'s navigation menu today, describing the user experience as "peeking behind the page or the lid of a toybox". I really liked the design, took a shot at creating a &lt;a href="https://github.com/jimjh/box-lid/"&gt;jQuery plugin&lt;/a&gt; to replicate the effect. Here is a &lt;a href="https://jimjh.com/box-lid/"&gt;demo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Most of the work is done in CSS3, and Javascript is only used to toggle the menu. When a user hovers her mouse over the menu bar, a script adds the &lt;code&gt;.box-lid-open&lt;/code&gt; class to the root element which triggers the CSS3 transitions.&lt;/p&gt;
-&lt;p&gt;The skewing effect is achieved with &lt;code&gt;perspective&lt;/code&gt;, &lt;code&gt;perspective-origin&lt;/code&gt;, and a &lt;code&gt;rotateY&lt;/code&gt; transformation. Credit goes to &lt;a href="http://bby.net.nz/"&gt;BBY&lt;/a&gt;.&lt;/p&gt;</summary><category term="javascript"></category><category term="jquery"></category><category term="css"></category></entry><entry><title>A Short Tutorial on Custom Storyboard Segues</title><link href="https://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html" rel="alternate"></link><updated>2013-07-01T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:a-short-tutorial-on-custom-storyboard-segues.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The skewing effect is achieved with &lt;code&gt;perspective&lt;/code&gt;, &lt;code&gt;perspective-origin&lt;/code&gt;, and a &lt;code&gt;rotateY&lt;/code&gt; transformation. Credit goes to &lt;a href="http://bby.net.nz/"&gt;BBY&lt;/a&gt;.&lt;/p&gt;</content><category term="javascript"></category><category term="jquery"></category><category term="css"></category></entry><entry><title>A Short Tutorial on Custom Storyboard Segues</title><link href="https://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html" rel="alternate"></link><published>2013-07-01T00:00:00-07:00</published><updated>2013-07-01T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:/a-short-tutorial-on-custom-storyboard-segues.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;We will use the &lt;a href="http://www.cmumobileapps.com/2011/10/25/a-really-short-tutorial-on-storyboards/"&gt;last tutorial&lt;/a&gt; as a base to learn how to use custom segues.&lt;/p&gt;
+&lt;p&gt;Suppose you don't want to &lt;em&gt;push&lt;/em&gt; between view controllers. In particular,
+suppose you want first view controller to &lt;em&gt;flip&lt;/em&gt; to the second view controller.
+To achieve …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;We will use the &lt;a href="http://www.cmumobileapps.com/2011/10/25/a-really-short-tutorial-on-storyboards/"&gt;last tutorial&lt;/a&gt; as a base to learn how to use custom segues.&lt;/p&gt;
 &lt;p&gt;Suppose you don't want to &lt;em&gt;push&lt;/em&gt; between view controllers. In particular,
 suppose you want first view controller to &lt;em&gt;flip&lt;/em&gt; to the second view controller.
@@ -487,7 +542,7 @@ To achieve this, you need a &lt;a href="https://developer.apple.com/library/ios/
 &lt;p&gt;Create a new Objective-C class in the StoryboardDemo2 project with the name
 &lt;code&gt;JHCustomSegue.m&lt;/code&gt; and let it be a subclass of &lt;code&gt;UIStoryboardSegue&lt;/code&gt;. Open up
 &lt;code&gt;JHCustomSegue.m&lt;/code&gt; and add the following code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nf"&gt;perform&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nf"&gt;perform&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="bp"&gt;UIViewController&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;UIViewController&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sourceViewController&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="bp"&gt;UIViewController&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;dst&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;UIViewController&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;destinationViewController&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;UIView&lt;/span&gt; &lt;span class="nl"&gt;transitionWithView&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;navigationController&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;view&lt;/span&gt; &lt;span class="nl"&gt;duration&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;
@@ -503,13 +558,17 @@ To achieve this, you need a &lt;a href="https://developer.apple.com/library/ios/
 &lt;p&gt;Next, open up the storyboard in XCode and click on the &lt;em&gt;segue&lt;/em&gt;. In other words,
 click on the arrow pointing from the first view controller to the second view
 controller.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Segue" src="https://blog.jimjh.com/images/2013/07/01/braces.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Segue" src="https://blog.jimjh.com/images/2013/07/01/braces.png"&gt;&lt;/p&gt;
 &lt;p&gt;Hit &lt;code&gt;Alt+Cmd+0&lt;/code&gt; to open up the Utilities pane. Navigate to the Attributes
 Inspector, choose &lt;code&gt;Custom&lt;/code&gt; for &lt;em&gt;Style&lt;/em&gt; and input &lt;code&gt;JHCustomSegue&lt;/code&gt; for &lt;em&gt;Segue Class&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Inspector" src="https://blog.jimjh.com/images/2013/07/01/inspector.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inspector" src="https://blog.jimjh.com/images/2013/07/01/inspector.png"&gt;&lt;/p&gt;
 &lt;p&gt;Now, run your app in the simulator. You should be able to flip from the first
 view controller to the second by tapping on the button at the top right-hand
-corner.&lt;/p&gt;</summary><category term="ios"></category><category term="storyboards"></category><category term="segues"></category></entry><entry><title>Compiling open source libraries with Android NDK: Part 2</title><link href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html" rel="alternate"></link><updated>2013-07-01T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:compiling-open-source-libraries-with-android-ndk-part-2.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
+corner.&lt;/p&gt;</content><category term="ios"></category><category term="storyboards"></category><category term="segues"></category></entry><entry><title>Compiling open source libraries with Android NDK: Part 2</title><link href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html" rel="alternate"></link><published>2013-07-01T00:00:00-07:00</published><updated>2013-07-01T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:/compiling-open-source-libraries-with-android-ndk-part-2.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;For the second part of this series, we will deal with the compiling of open
+source libraries that have several makefiles.&lt;/p&gt;
+&lt;p&gt;Android NDK r5 added support for prebuilt libraries and also included
+standalone toolchains that could be used to compile open-source libraries …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;For the second part of this series, we will deal with the compiling of open
 source libraries that have several makefiles.&lt;/p&gt;
 &lt;p&gt;Android NDK r5 added support for prebuilt libraries and also included
@@ -531,10 +590,10 @@ that you have just created.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Inside the project directory, create a new &lt;code&gt;build.sh&lt;/code&gt; file with the following
 contents:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
-&lt;span class="c"&gt;# FourierTest/build.sh&lt;/span&gt;
-&lt;span class="c"&gt;# Compiles fftw3 for Android&lt;/span&gt;
-&lt;span class="c"&gt;# Make sure you have NDK_ROOT defined in .bashrc or .bash_profile&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="c1"&gt;# FourierTest/build.sh&lt;/span&gt;
+&lt;span class="c1"&gt;# Compiles fftw3 for Android&lt;/span&gt;
+&lt;span class="c1"&gt;# Make sure you have NDK_ROOT defined in .bashrc or .bash_profile&lt;/span&gt;
 
 &lt;span class="nv"&gt;INSTALL_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`pwd`/jni/fftw3&amp;quot;&lt;/span&gt;
 &lt;span class="nv"&gt;SRC_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`pwd`/../fftw-3.2.2&amp;quot;&lt;/span&gt;
@@ -543,12 +602,12 @@ contents:&lt;/p&gt;
 
 &lt;span class="nb"&gt;export&lt;/span&gt;
 &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$NDK_ROOT&lt;/span&gt;&lt;span class="s2"&gt;/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/:&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;SYS_ROOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$NDK_ROOT&lt;/span&gt;&lt;span class="s2"&gt;/platforms/android-8/arch-arm/&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-gcc --sysroot=&lt;/span&gt;&lt;span class="nv"&gt;$SYS_ROOT&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-ld&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;AR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-ar&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;RANLIB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-ranlib&amp;quot;&lt;/span&gt;
-&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;STRIP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-strip&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;SYS_ROOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$NDK_ROOT&lt;/span&gt;&lt;span class="s2"&gt;/platforms/android-8/arch-arm/&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-gcc --sysroot=&lt;/span&gt;&lt;span class="nv"&gt;$SYS_ROOT&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;LD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-ld&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;AR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-ar&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;RANLIB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-ranlib&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;STRIP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;arm-linux-androideabi-strip&amp;quot;&lt;/span&gt;
 
 mkdir -p &lt;span class="nv"&gt;$INSTALL_DIR&lt;/span&gt;
 ./configure --host&lt;span class="o"&gt;=&lt;/span&gt;arm-eabi --build&lt;span class="o"&gt;=&lt;/span&gt;i386-apple-darwin10.8.0
@@ -557,12 +616,12 @@ mkdir -p &lt;span class="nv"&gt;$INSTALL_DIR&lt;/span&gt;
 make
 make install
 
-&lt;span class="nb"&gt;exit &lt;/span&gt;0
+&lt;span class="nb"&gt;exit&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;At this point, your directory structure should look like the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;lt;workspace&amp;gt;/
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;lt;workspace&amp;amp;gt;/
     FourierTest/
         AndroidManifest.xml
         build.sh
@@ -592,7 +651,7 @@ we are cross-compiling using a i386 architecture for an ARM architecture.&lt;/li
 &lt;/li&gt;
 &lt;li&gt;Run &lt;code&gt;build.sh&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;The compiled library will be installed in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;. To use this
-library, create the following &lt;code&gt;Android.mk&lt;/code&gt; file in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;:&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# FourierTest/jni/fftw3/Android.mk&lt;/span&gt;
+library, create the following &lt;code&gt;Android.mk&lt;/code&gt; file in &lt;code&gt;FourierTest/jni/fftw3&lt;/code&gt;:&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# FourierTest/jni/fftw3/Android.mk&lt;/span&gt;
 &lt;span class="nv"&gt;LOCAL_PATH&lt;/span&gt; &lt;span class="o"&gt;:=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;call my-dir&lt;span class="k"&gt;)&lt;/span&gt;
 
 &lt;span class="cp"&gt;include $(CLEAR_VARS)&lt;/span&gt;
@@ -607,7 +666,12 @@ library, create the following &lt;code&gt;Android.mk&lt;/code&gt; file in &lt;co
 
 
 &lt;/li&gt;
-&lt;/ol&gt;</summary><category term="android"></category><category term="ndk"></category></entry><entry><title>Implementing a Singleton in iOS</title><link href="https://blog.jimjh.com/implementing-a-singleton-in-ios.html" rel="alternate"></link><updated>2013-07-01T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:implementing-a-singleton-in-ios.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><category term="android"></category><category term="ndk"></category></entry><entry><title>Implementing a Singleton in iOS</title><link href="https://blog.jimjh.com/implementing-a-singleton-in-ios.html" rel="alternate"></link><published>2013-07-01T00:00:00-07:00</published><updated>2013-07-01T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:/implementing-a-singleton-in-ios.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;While I was at Apple’s Cocoa Camp over summer, one of the speakers talked
+rather passionately about the proper, thread-safe way to implement a singleton
+in iOS, which I thought deserves more attention than it currently does on the
+&lt;a href="https://encrypted.google.com/search?q=ios+singleton&amp;amp;ie=utf-8&amp;amp;oe=utf-8&amp;amp;aq=t"&gt;Web&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;The …&lt;/h2&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;This is a repost from my old blog.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;While I was at Apple’s Cocoa Camp over summer, one of the speakers talked
 rather passionately about the proper, thread-safe way to implement a singleton
 in iOS, which I thought deserves more attention than it currently does on the
@@ -615,7 +679,7 @@ in iOS, which I thought deserves more attention than it currently does on the
 &lt;h2&gt;The Common Way&lt;/h2&gt;
 &lt;p&gt;According to the &lt;a href="http://www.johnwordsworth.com/2010/04/iphone-code-snippet-the-singleton-pattern/"&gt;first result&lt;/a&gt; on my Google search, a singleton should
 be implemented as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;SingletonClass&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sharedInstance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;SingletonClass&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sharedInstance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Get the shared instance and create it if necessary.&lt;/span&gt;
 &lt;span class="p"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SingletonClass&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="nf"&gt;sharedInstance&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -633,15 +697,15 @@ be implemented as follows:&lt;/p&gt;
 &lt;p&gt;GCD provides a neat API that makes concurrency programming in Cocoa convenient.
 To implement a thread-safe singleton in Cocoa, all you need to do is the
 following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;MyObject&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;singleton&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;MyObject&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;singleton&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="p"&gt;+(&lt;/span&gt;&lt;span class="n"&gt;MyObject&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nf"&gt;sharedInstance&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
 
     &lt;span class="n"&gt;NSLog&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;@&amp;quot;sharedInstance called.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;nil&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;singleton&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;singleton&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;dispatch_once_t&lt;/span&gt; &lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;        &lt;span class="c1"&gt;// lock&lt;/span&gt;
-    &lt;span class="n"&gt;dispatch_once&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;             &lt;span class="c1"&gt;// this code is at most once&lt;/span&gt;
+    &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;dispatch_once_t&lt;/span&gt; &lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;        &lt;span class="c1"&gt;// lock&lt;/span&gt;
+    &lt;span class="n"&gt;dispatch_once&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;amp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;             &lt;span class="c1"&gt;// this code is at most once&lt;/span&gt;
         &lt;span class="n"&gt;singleton&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;MyObject&lt;/span&gt; &lt;span class="n"&gt;alloc&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
     &lt;span class="p"&gt;});&lt;/span&gt;
 
@@ -663,7 +727,7 @@ pass the block as an argument to &lt;code&gt;dispatch_once&lt;/code&gt;. (Here's
 on &lt;a href="http://pragmaticstudio.com/blog/2010/7/28/ios4-blocks-1"&gt;blocks&lt;/a&gt;.)&lt;/p&gt;
 &lt;p&gt;This implementation ensures that singleton is never executed more than once
 even when multiple threads access &lt;code&gt;sharedInstance&lt;/code&gt; concurrently:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;dispatch_queue_t&lt;/span&gt; &lt;span class="n"&gt;queue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dispatch_get_global_queue&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DISPATCH_QUEUE_PRIORITY_DEFAULT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0U&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dispatch_queue_t&lt;/span&gt; &lt;span class="n"&gt;queue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dispatch_get_global_queue&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DISPATCH_QUEUE_PRIORITY_DEFAULT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0U&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
 &lt;span class="n"&gt;dispatch_apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;queue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
   &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MyObject&lt;/span&gt; &lt;span class="n"&gt;sharedInstance&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
@@ -672,7 +736,7 @@ even when multiple threads access &lt;code&gt;sharedInstance&lt;/code&gt; concur
 
 
 &lt;p&gt;The above code results in the following output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;2011-09-05 10:12:05.961 SingletonTest[1602:10c03] sharedInstance called.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2011-09-05 10:12:05.961 SingletonTest[1602:10c03] sharedInstance called.
 2011-09-05 10:12:05.961 SingletonTest[1602:12603] sharedInstance called.
 2011-09-05 10:12:05.961 SingletonTest[1602:ef03] sharedInstance called.
 2011-09-05 10:12:05.961 SingletonTest[1602:12703] sharedInstance called.
@@ -683,14 +747,20 @@ even when multiple threads access &lt;code&gt;sharedInstance&lt;/code&gt; concur
 2011-09-05 10:12:05.966 SingletonTest[1602:12603] sharedInstance called.
 2011-09-05 10:12:05.969 SingletonTest[1602:10c03] sharedInstance called.
 2011-09-05 10:12:05.969 SingletonTest[1602:ef03] sharedInstance called.
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="cocoa"></category><category term="ios"></category></entry><entry><title>Using Karma with Rails and Jenkins: Part 1</title><link href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html" rel="alternate"></link><updated>2013-07-01T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:using-karma-with-rails-and-jenkins-part-1.html</id><summary type="html">&lt;p&gt;In a recent project, I experimented with &lt;a href="http://angularjs.org"&gt;AngularJS&lt;/a&gt; on
+&lt;/pre&gt;&lt;/div&gt;</content><category term="cocoa"></category><category term="ios"></category></entry><entry><title>Using Karma with Rails and Jenkins: Part 1</title><link href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html" rel="alternate"></link><published>2013-07-01T00:00:00-07:00</published><updated>2013-07-01T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-07-01:/using-karma-with-rails-and-jenkins-part-1.html</id><summary type="html">&lt;p&gt;In a recent project, I experimented with &lt;a href="http://angularjs.org"&gt;AngularJS&lt;/a&gt; on
+Rails, and managed to get &lt;a href="http://karma-runner.github.io/0.8/index.html"&gt;Karma&lt;/a&gt; to work nicely with Jenkins on
+&lt;a href="http://cloudbees.com"&gt;CloudBees&lt;/a&gt;. This post documents the steps I took. (Part 2
+will cover e2e tests, if I get that sorted out.)&lt;/p&gt;
+&lt;p&gt;An example project is available on &lt;a href="https://github.com/jimjh/karma-rails"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Setup&lt;/h2&gt;
+&lt;p&gt;First …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In a recent project, I experimented with &lt;a href="http://angularjs.org"&gt;AngularJS&lt;/a&gt; on
 Rails, and managed to get &lt;a href="http://karma-runner.github.io/0.8/index.html"&gt;Karma&lt;/a&gt; to work nicely with Jenkins on
 &lt;a href="http://cloudbees.com"&gt;CloudBees&lt;/a&gt;. This post documents the steps I took. (Part 2
 will cover e2e tests, if I get that sorted out.)&lt;/p&gt;
 &lt;p&gt;An example project is available on &lt;a href="https://github.com/jimjh/karma-rails"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Setup&lt;/h2&gt;
 &lt;p&gt;First, install karma locally with&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; npm install karma
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;amp;gt; npm install karma
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -702,8 +772,8 @@ will cover e2e tests, if I get that sorted out.)&lt;/p&gt;
 &lt;p&gt;Note that these are necessary even if you are using a CDN for these libraries.
 This ensures that your unit tests pass even without network access.&lt;/p&gt;
 &lt;p&gt;Next, setup the spec directories,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; mkdir -p spec/javascripts/lib/angular
-$&amp;gt; mkdir -p spec/javascripts/unit
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;amp;gt; mkdir -p spec/javascripts/lib/angular
+$&amp;amp;gt; mkdir -p spec/javascripts/unit
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -717,7 +787,7 @@ manually synchronize &lt;code&gt;karma.conf.js&lt;/code&gt; with &lt;code&gt;app
 in the comments if you figure out a better way.&lt;/p&gt;
 &lt;h2&gt;Testing&lt;/h2&gt;
 &lt;p&gt;Save your tests in &lt;code&gt;spec/javascripts/unit&lt;/code&gt;. For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* spec/javascripts/unit/setup_spec.js */&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/* spec/javascripts/unit/setup_spec.js */&lt;/span&gt;
 &lt;span class="p"&gt;;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="s1"&gt;&amp;#39;use strict&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
@@ -732,13 +802,13 @@ in the comments if you figure out a better way.&lt;/p&gt;
 
 
 &lt;p&gt;Run tests using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; karma start config/karma.conf.js
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;amp;gt; karma start config/karma.conf.js
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Continuous Integration&lt;/h2&gt;
 &lt;p&gt;To use Karma with Jenkins, update &lt;code&gt;karma.conf.js&lt;/code&gt; to include&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;junitReporter = {
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;junitReporter = {
   outputFile: &amp;#39;spec/reports/karma-unit.xml&amp;#39;,
   suite: &amp;#39;unit&amp;#39;
 };
@@ -748,10 +818,14 @@ in the comments if you figure out a better way.&lt;/p&gt;
 &lt;p&gt;Write a script for jenkins at &lt;code&gt;script/ci&lt;/code&gt;:
 &lt;script src="https://gist.github.com/jimjh/5904659.js"&gt;&lt;/script&gt;&lt;/p&gt;
 &lt;p&gt;Lastly, configure Jenkins to execute &lt;code&gt;script/ci&lt;/code&gt; and access the XML report at
-&lt;code&gt;spec/reports/karma-unit.xml&lt;/code&gt;.&lt;/p&gt;</summary><category term="rails"></category><category term="ruby"></category><category term="karma"></category><category term="jenkins"></category></entry><entry><title>Playing with Stripe CTF</title><link href="https://blog.jimjh.com/playing-with-stripe-ctf.html" rel="alternate"></link><updated>2013-06-21T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-06-21:playing-with-stripe-ctf.html</id><summary type="html">&lt;p&gt;I was playing around with Stripe's &lt;a href="https://github.com/stripe-ctf/stripe-ctf-2.0"&gt;source code&lt;/a&gt; for last year's CTF,
+&lt;code&gt;spec/reports/karma-unit.xml&lt;/code&gt;.&lt;/p&gt;</content><category term="rails"></category><category term="ruby"></category><category term="karma"></category><category term="jenkins"></category></entry><entry><title>Playing with Stripe CTF</title><link href="https://blog.jimjh.com/playing-with-stripe-ctf.html" rel="alternate"></link><published>2013-06-21T00:00:00-07:00</published><updated>2013-06-21T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-06-21:/playing-with-stripe-ctf.html</id><summary type="html">&lt;p&gt;I was playing around with Stripe's &lt;a href="https://github.com/stripe-ctf/stripe-ctf-2.0"&gt;source code&lt;/a&gt; for last year's CTF,
 and from what I could see online, most people solved Level 4 by using XSS in
 the password field. But look at the following line in &lt;code&gt;srv.rb&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w+$/&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w+$/&lt;/span&gt;
+  &lt;span class="n"&gt;ie&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Invalid username. Usernames must match /^\w …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I was playing around with Stripe's &lt;a href="https://github.com/stripe-ctf/stripe-ctf-2.0"&gt;source code&lt;/a&gt; for last year's CTF,
+and from what I could see online, most people solved Level 4 by using XSS in
+the password field. But look at the following line in &lt;code&gt;srv.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w+$/&lt;/span&gt;
   &lt;span class="n"&gt;ie&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Invalid username. Usernames must match /^\w+$/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:register&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -760,18 +834,18 @@ the password field. But look at the following line in &lt;code&gt;srv.rb&lt;/cod
 &lt;p&gt;Turns out there is a hole here as well due to the way Ruby treats the &lt;code&gt;^&lt;/code&gt; and
 &lt;code&gt;$&lt;/code&gt; metacharacters. According to the &lt;a href="http://www.ruby-doc.org/core-1.9.2/Regexp.html#label-Anchors"&gt;documentation&lt;/a&gt;, the &lt;code&gt;^&lt;/code&gt; anchor
 matches the beginning of a &lt;em&gt;line&lt;/em&gt;, instead of the entire string. Thus&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;match&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;script&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w$/&lt;/span&gt;     &lt;span class="c1"&gt;# doesn&amp;#39;t print anything&lt;/span&gt;
-&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;match&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;x&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w$/&lt;/span&gt;  &lt;span class="c1"&gt;#&amp;gt;&amp;gt; match&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;match&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;lt;script&amp;amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w$/&lt;/span&gt;     &lt;span class="c1"&gt;# doesn&amp;#39;t print anything&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;match&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;lt;script&amp;amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;x&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=~&lt;/span&gt; &lt;span class="sr"&gt;/^\w$/&lt;/span&gt;  &lt;span class="c1"&gt;#&amp;amp;gt;&amp;amp;gt; match&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This allows us to use the &lt;code&gt;username&lt;/code&gt; field as an attack vector.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;xss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;-&lt;/span&gt;&lt;span class="no"&gt;eos&lt;/span&gt;
-&lt;span class="sh"&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-&lt;span class="sh"&gt;$.post(&amp;#39;/transfer&amp;#39;, { to: &amp;#39;me&amp;#39;, amount: &amp;#39;10&amp;#39; });&lt;/span&gt;
-&lt;span class="sh"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class="sh"&gt;x&lt;/span&gt;
-&lt;span class="no"&gt;eos&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;xss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;eos&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="vg"&gt;$.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/transfer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;to&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;me&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;10&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;span class="n"&gt;eos&lt;/span&gt;
 &lt;span class="no"&gt;Net&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post_form&lt;/span&gt; &lt;span class="n"&gt;uri&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;username&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;xss&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;x&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -780,15 +854,18 @@ matches the beginning of a &lt;em&gt;line&lt;/em&gt;, instead of the entire stri
 line in ruby.&lt;/p&gt;
 &lt;h3&gt;References&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://blog.ioactive.com/2012/08/stripe-ctf-20-write-up.html#level4"&gt;IOActive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://blog.spiderlabs.com/2012/08/stripe-ctf-walkthrough.html"&gt;SpiderLabs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="ruby"></category><category term="security"></category></entry><entry><title>Experimenting with Git Hooks</title><link href="https://blog.jimjh.com/experimenting-with-git-hooks.html" rel="alternate"></link><updated>2013-06-17T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-06-17:experimenting-with-git-hooks.html</id><summary type="html">&lt;p&gt;I have been trying to follow a more disciplined approach to branching in my
+&lt;li&gt;&lt;a href="http://blog.ioactive.com/2012/08/stripe-ctf-20-write-up.html#level4"&gt;IOActive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.spiderlabs.com/2012/08/stripe-ctf-walkthrough.html"&gt;SpiderLabs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="ruby"></category><category term="security"></category></entry><entry><title>Experimenting with Git Hooks</title><link href="https://blog.jimjh.com/experimenting-with-git-hooks.html" rel="alternate"></link><published>2013-06-17T00:00:00-07:00</published><updated>2013-06-17T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-06-17:/experimenting-with-git-hooks.html</id><summary type="html">&lt;p&gt;I have been trying to follow a more disciplined approach to branching in my
+projects to allow easier tracking and regression. For example, I learnt that
+it's a good idea to prefix branch names with category tokens, such as
+&lt;code&gt;feature/&lt;/code&gt;, &lt;code&gt;bug/&lt;/code&gt;, or &lt;code&gt;chore/&lt;/code&gt;. This allows us to use wildcards when …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have been trying to follow a more disciplined approach to branching in my
 projects to allow easier tracking and regression. For example, I learnt that
 it's a good idea to prefix branch names with category tokens, such as
 &lt;code&gt;feature/&lt;/code&gt;, &lt;code&gt;bug/&lt;/code&gt;, or &lt;code&gt;chore/&lt;/code&gt;. This allows us to use wildcards when listing
 branches:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; git branch --list bug/*
-$&amp;gt; git branch --list feature/*
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;amp;gt; git branch --list bug/*
+$&amp;amp;gt; git branch --list feature/*
 feature/X49972617
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -797,12 +874,15 @@ feature/X49972617
 use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5798168.js"&gt;&lt;/script&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;$&amp;gt; git commit
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&amp;amp;gt; git commit
 [#49972617]
 # Please enter the commit message for your changes. Lines starting
 # with &amp;#39;#&amp;#39; will be ignored, and an empty message aborts the commit.
 # On branch feature/X49972617
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="git"></category></entry><entry><title>Deployment is Scary - Part 2</title><link href="https://blog.jimjh.com/deployment-is-scary-part-2.html" rel="alternate"></link><updated>2013-05-24T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-05-24:deployment-is-scary-part-2.html</id><summary type="html">&lt;p&gt;The is the second installation of a series of posts about my deployment experiences with Enteract. Part 1 is available &lt;a href="https://blog.jimjh.com/deployment-is-scary-part-1.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="bash"></category><category term="git"></category></entry><entry><title>Deployment is Scary - Part 2</title><link href="https://blog.jimjh.com/deployment-is-scary-part-2.html" rel="alternate"></link><published>2013-05-24T00:00:00-07:00</published><updated>2013-05-24T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-05-24:/deployment-is-scary-part-2.html</id><summary type="html">&lt;p&gt;The is the second installation of a series of posts about my deployment experiences with Enteract. Part 1 is available &lt;a href="https://blog.jimjh.com/deployment-is-scary-part-1.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this post, I will focus on our use of &lt;a href="https://github.com/lostisland/faraday"&gt;Faraday&lt;/a&gt; and &lt;a href="http://upstart.ubuntu.com/"&gt;Upstart&lt;/a&gt; for some simple monitoring.&lt;/p&gt;
+&lt;h2&gt;Faraday&lt;/h2&gt;
+&lt;p&gt;We wanted a tool to monitor the web application and notify …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The is the second installation of a series of posts about my deployment experiences with Enteract. Part 1 is available &lt;a href="https://blog.jimjh.com/deployment-is-scary-part-1.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this post, I will focus on our use of &lt;a href="https://github.com/lostisland/faraday"&gt;Faraday&lt;/a&gt; and &lt;a href="http://upstart.ubuntu.com/"&gt;Upstart&lt;/a&gt; for some simple monitoring.&lt;/p&gt;
 &lt;h2&gt;Faraday&lt;/h2&gt;
 &lt;p&gt;We wanted a tool to monitor the web application and notify a member of the team should the web application be unreachable or defaced. The first requirement was relatively simple, and can be easily satisfied by using Amazon's Elastic Load Balancer with the &lt;a href="https://github.com/ianheggie/health_check"&gt;health check&lt;/a&gt; gem for Rails.&lt;/p&gt;
@@ -821,10 +901,10 @@ use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&
 &lt;p&gt;The configuration file that worked for me is as follows:&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5646473.js"&gt;&lt;/script&gt;
 
-&lt;p&gt;There is probably an easier to set this up that uses a shorter command.&lt;/p&gt;</summary><category term="ruby"></category><category term="rails"></category></entry><entry><title>Predicting User Ratings on Yelp</title><link href="https://blog.jimjh.com/predicting-user-ratings-on-yelp.html" rel="alternate"></link><updated>2013-05-14T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-05-14:predicting-user-ratings-on-yelp.html</id><summary type="html">&lt;p&gt;Several weeks ago, Yelp launched a &lt;a href="https://www.yelp.com/dataset_challenge/dataset"&gt;dataset challenge&lt;/a&gt; and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my &lt;a href="https://blog.jimjh.com/downloads/2013/05/12/netflix.pdf"&gt;Netflix project&lt;/a&gt;  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a &lt;a href="https://github.com/jimjh/yelp-dataset-challenge"&gt;git repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is probably an easier to set this up that uses a shorter command.&lt;/p&gt;</content><category term="ruby"></category><category term="rails"></category></entry><entry><title>Predicting User Ratings on Yelp</title><link href="https://blog.jimjh.com/predicting-user-ratings-on-yelp.html" rel="alternate"></link><published>2013-05-14T00:00:00-07:00</published><updated>2013-05-14T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-05-14:/predicting-user-ratings-on-yelp.html</id><summary type="html">&lt;p&gt;Several weeks ago, Yelp launched a &lt;a href="https://www.yelp.com/dataset_challenge/dataset"&gt;dataset challenge&lt;/a&gt; and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my &lt;a href="https://blog.jimjh.com/downloads/2013/05/12/netflix.pdf"&gt;Netflix project&lt;/a&gt;  was versatile enough …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Several weeks ago, Yelp launched a &lt;a href="https://www.yelp.com/dataset_challenge/dataset"&gt;dataset challenge&lt;/a&gt; and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my &lt;a href="https://blog.jimjh.com/downloads/2013/05/12/netflix.pdf"&gt;Netflix project&lt;/a&gt;  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a &lt;a href="https://github.com/jimjh/yelp-dataset-challenge"&gt;git repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Transforming the Data&lt;/h2&gt;
 &lt;p&gt;The dataset arrived in a tarball that unpacks into a directory of JSON files. Each JSON file could be imported into MongoDB relatively easily with the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mongoimport&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="n"&gt;yelp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;collection&lt;/span&gt; &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;mongoimport&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="n"&gt;yelp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;collection&lt;/span&gt; &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -863,29 +943,33 @@ use a simple hook to prepend all of my commit messages with the story ID.&lt;/p&
 &lt;li&gt;Take into account known features and estimate user preferences for these.&lt;/li&gt;
 &lt;li&gt;Use a clustering algorithm on the locations of the businesses, since a user's preference for a business is likely to be affected by its location.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I will post updates here if I figure out what is going wrong.&lt;/p&gt;</summary><category term="machine learning"></category><category term="matlab"></category><category term="yelp"></category></entry><entry><title>Deployment is Scary - Part 1</title><link href="https://blog.jimjh.com/deployment-is-scary-part-1.html" rel="alternate"></link><updated>2013-05-12T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-05-12:deployment-is-scary-part-1.html</id><summary type="html">&lt;p&gt;As part of a class project, I was given the opportunity to field a Rails application at &lt;a href="http://www.contrib.andrew.cmu.edu/~sc0v/"&gt;Spring Carnival&lt;/a&gt;, an annual event held by Carnegie Mellon University (official &lt;a href="http://www.hss.cmu.edu/pressreleases/pressreleases/IScarnivalcontest.html"&gt;press release&lt;/a&gt;.) Here, I will describe a subset of the risk mitigation strategies that we used to avoid hacking and maximize uptime.&lt;/p&gt;
+&lt;p&gt;I will post updates here if I figure out what is going wrong.&lt;/p&gt;</content><category term="machine learning"></category><category term="matlab"></category><category term="yelp"></category></entry><entry><title>Deployment is Scary - Part 1</title><link href="https://blog.jimjh.com/deployment-is-scary-part-1.html" rel="alternate"></link><published>2013-05-12T00:00:00-07:00</published><updated>2013-05-12T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-05-12:/deployment-is-scary-part-1.html</id><summary type="html">&lt;p&gt;As part of a class project, I was given the opportunity to field a Rails application at &lt;a href="http://www.contrib.andrew.cmu.edu/~sc0v/"&gt;Spring Carnival&lt;/a&gt;, an annual event held by Carnegie Mellon University (official &lt;a href="http://www.hss.cmu.edu/pressreleases/pressreleases/IScarnivalcontest.html"&gt;press release&lt;/a&gt;.) Here, I will describe a subset of the risk mitigation strategies that we used to avoid hacking and maximize uptime …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As part of a class project, I was given the opportunity to field a Rails application at &lt;a href="http://www.contrib.andrew.cmu.edu/~sc0v/"&gt;Spring Carnival&lt;/a&gt;, an annual event held by Carnegie Mellon University (official &lt;a href="http://www.hss.cmu.edu/pressreleases/pressreleases/IScarnivalcontest.html"&gt;press release&lt;/a&gt;.) Here, I will describe a subset of the risk mitigation strategies that we used to avoid hacking and maximize uptime.&lt;/p&gt;
 &lt;p&gt;In the first part of this series, I will focus on our use of JMeter for some simple load testing.&lt;/p&gt;
 &lt;h2&gt;Amazon Elastic Beanstalk&lt;/h2&gt;
 &lt;p&gt;The application was deployed on Amazon's &lt;a href="http://aws.amazon.com/elasticbeanstalk/"&gt;Elastic Beanstalk&lt;/a&gt;, which has auto-scaling built in. However, this also meant that the application could have several web servers working off a single &lt;a href="http://aws.amazon.com/rds/"&gt;RDS&lt;/a&gt; server, which could cause some performance issues. Our goals for load testing were two-fold: first, we wished to ascertain the effectiveness of our auto-scaling policies; second, we wanted to ensure that the response times were reasonable even at twice the maximum expected load.&lt;/p&gt;
 &lt;h2&gt;JMeter&lt;/h2&gt;
 &lt;p&gt;JMeter was not the simplest tool for load testing, but developers (and ops engineers) seemed to agree that it was amongst the most powerful. The &lt;a href="http://jmeter.apache.org/usermanual/build-web-test-plan.html"&gt;user manual&lt;/a&gt; provides detailed instructions for building a web test plan. In addition to a thread group and a config element for HTTP request defaults, we also added a HTTP cookie manager for maintaining sessions. The following screenshot captures the hierarchy of our setup.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="https://blog.jimjh.com/images/2013/05/12/jmeter-tree.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="https://blog.jimjh.com/images/2013/05/12/jmeter-tree.png"&gt;&lt;/p&gt;
 &lt;h3&gt;Extract CSRF Token&lt;/h3&gt;
 &lt;p&gt;Before our test user could login, it had to find the CSRF token on the page and submit that along with its credentials for Rails to accept the request. To do this, we added a HTTP Request to our thread group (or, more accurately, a request &lt;em&gt;sampler&lt;/em&gt;). This sampler issues GET requests to &lt;code&gt;/users/sign_in&lt;/code&gt;, and, using a Regular Expression Extractor (available under &lt;em&gt;Post Processors&lt;/em&gt;), searches for the CSRF token with the following regex&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;input name=&amp;quot;authenticity_token&amp;quot; type=&amp;quot;hidden&amp;quot; value=&amp;quot;(.*?)&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;input name=&amp;quot;authenticity_token&amp;quot; type=&amp;quot;hidden&amp;quot; value=&amp;quot;(.*?)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The matched token is stored in the &lt;code&gt;LOGIN_AUTH_TOKEN&lt;/code&gt; variable for JMeter to use in subsequent requests.&lt;/p&gt;
 &lt;h3&gt;Authenticate User&lt;/h3&gt;
 &lt;p&gt;Next, we added another request sampler that issues POST requests to &lt;code&gt;/users/sign_in&lt;/code&gt; with the user's email, password, and the CSRF token from the previous step. (I forgot to encode the CSRF token and spent a great amount of time wondering why Rails occasionally rejected requests from this sampler.) The following screenshot showed our configuration.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="https://blog.jimjh.com/images/2013/05/12/jmeter-login.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="https://blog.jimjh.com/images/2013/05/12/jmeter-login.png"&gt;&lt;/p&gt;
 &lt;h3&gt;Do Something&lt;/h3&gt;
 &lt;p&gt;Finally, we added request samplers to perform some action on the application. In my case, I was mainly worried about I/O performance, and thus added actions that would force read/writes to the database. Note that if some of these actions require CSRF tokens, in which case one could use the CSRF extraction described above and a HTTP Header Manager to include the &lt;code&gt;X-CSRF&lt;/code&gt; header in the request. We also found it useful to include a response assertion to verify the status code of the response.&lt;/p&gt;
 &lt;h3&gt;Measure Response Times&lt;/h3&gt;
 &lt;p&gt;After some tinkering (such as using &lt;a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations"&gt;eager loading&lt;/a&gt; to reduce the number of database calls), we managed to improve the application's performance to (what I thought was) a reasonable level.&lt;/p&gt;
 &lt;p&gt;The entire JMX file is available &lt;a href="https://blog.jimjh.com/downloads/2013/05/12/enteract.jmx"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="https://blog.jimjh.com/images/2013/05/12/load-test.png" /&gt;&lt;/p&gt;</summary><category term="ruby"></category><category term="rails"></category></entry><entry><title>Numbering the Last Line of Align* in LaTex</title><link href="https://blog.jimjh.com/numbering-the-last-line-of-align-in-latex.html" rel="alternate"></link><updated>2013-03-30T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-03-30:numbering-the-last-line-of-align-in-latex.html</id><summary type="html">&lt;p&gt;On numerous occasions, I find myself trying to number the last line (and &lt;em&gt;only&lt;/em&gt;
+&lt;p&gt;&lt;img alt="image" src="https://blog.jimjh.com/images/2013/05/12/load-test.png"&gt;&lt;/p&gt;</content><category term="ruby"></category><category term="rails"></category></entry><entry><title>Numbering the Last Line of Align* in LaTex</title><link href="https://blog.jimjh.com/numbering-the-last-line-of-align-in-latex.html" rel="alternate"></link><published>2013-03-30T00:00:00-07:00</published><updated>2013-03-30T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-03-30:/numbering-the-last-line-of-align-in-latex.html</id><summary type="html">&lt;p&gt;On numerous occasions, I find myself trying to number the last line (and &lt;em&gt;only&lt;/em&gt;
+the last line!) of a long series of derivations in an &lt;code&gt;align*&lt;/code&gt; environment. I
+usually switch to the &lt;code&gt;align&lt;/code&gt; environment and use &lt;code&gt;\notag&lt;/code&gt; to turn off the
+number on each line except the last.&lt;/p&gt;
+&lt;p&gt;There is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;On numerous occasions, I find myself trying to number the last line (and &lt;em&gt;only&lt;/em&gt;
 the last line!) of a long series of derivations in an &lt;code&gt;align*&lt;/code&gt; environment. I
 usually switch to the &lt;code&gt;align&lt;/code&gt; environment and use &lt;code&gt;\notag&lt;/code&gt; to turn off the
 number on each line except the last.&lt;/p&gt;
@@ -893,14 +977,20 @@ number on each line except the last.&lt;/p&gt;
 &lt;script src="https://gist.github.com/anonymous/5276841.js"&gt;&lt;/script&gt;
 
 &lt;p&gt;By using &lt;code&gt;equation&lt;/code&gt; and &lt;code&gt;aligned&lt;/code&gt;, we get an environment similar to &lt;code&gt;align*&lt;/code&gt;
-that only numbers the last line.&lt;/p&gt;</summary><category term="latex"></category></entry><entry><title>Some Custom Matchers for RSpec with Shoulda</title><link href="https://blog.jimjh.com/some-custom-matchers-for-rspec-with-shoulda.html" rel="alternate"></link><updated>2013-03-28T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-03-28:some-custom-matchers-for-rspec-with-shoulda.html</id><summary type="html">&lt;h3&gt;It should have a valid factory&lt;/h3&gt;
+that only numbers the last line.&lt;/p&gt;</content><category term="latex"></category></entry><entry><title>Some Custom Matchers for RSpec with Shoulda</title><link href="https://blog.jimjh.com/some-custom-matchers-for-rspec-with-shoulda.html" rel="alternate"></link><published>2013-03-28T00:00:00-07:00</published><updated>2013-03-28T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-03-28:/some-custom-matchers-for-rspec-with-shoulda.html</id><summary type="html">&lt;h3&gt;It should have a valid factory&lt;/h3&gt;
+&lt;p&gt;I use &lt;a href="https://github.com/thoughtbot/factory_girl"&gt;Factory Girl&lt;/a&gt; in my tests, and I have found it useful to
+check that I have valid factories for each model in my tests/specs. Here is a
+matcher you can use for that purpose.&lt;/p&gt;
+&lt;script src="https://gist.github.com/jimjh/5263666.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Add this file to &lt;code&gt;spec/support&lt;/code&gt;. Then …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;It should have a valid factory&lt;/h3&gt;
 &lt;p&gt;I use &lt;a href="https://github.com/thoughtbot/factory_girl"&gt;Factory Girl&lt;/a&gt; in my tests, and I have found it useful to
 check that I have valid factories for each model in my tests/specs. Here is a
 matcher you can use for that purpose.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5263666.js"&gt;&lt;/script&gt;
 
 &lt;p&gt;Add this file to &lt;code&gt;spec/support&lt;/code&gt;. Then in your specs, just use&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="no"&gt;User&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="no"&gt;User&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;should&lt;/span&gt; &lt;span class="n"&gt;have_a_valid_factory&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -914,10 +1004,14 @@ is a matcher for &lt;code&gt;validates_existence_of&lt;/code&gt;.&lt;/p&gt;
 &lt;script src="https://gist.github.com/jimjh/5230194.js"&gt;&lt;/script&gt;
 
 &lt;p&gt;In your specs, just use&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="no"&gt;Membership&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="no"&gt;Membership&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
   &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;should&lt;/span&gt; &lt;span class="n"&gt;validate_existence_of&lt;/span&gt; &lt;span class="ss"&gt;:user&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="ruby"></category><category term="rspec"></category><category term="shoulda"></category><category term="factory_girl"></category></entry><entry><title>Deploying a Thrift Server with Capistrano</title><link href="https://blog.jimjh.com/deploying-a-thrift-server-with-capistrano.html" rel="alternate"></link><updated>2013-03-20T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2013-03-20:deploying-a-thrift-server-with-capistrano.html</id><summary type="html">&lt;p&gt;At the time of writing, I couldn't find an existing &lt;a href="http://capistranorb.com/"&gt;Capistrano&lt;/a&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="ruby"></category><category term="rspec"></category><category term="shoulda"></category><category term="factory_girl"></category></entry><entry><title>Deploying a Thrift Server with Capistrano</title><link href="https://blog.jimjh.com/deploying-a-thrift-server-with-capistrano.html" rel="alternate"></link><published>2013-03-20T00:00:00-07:00</published><updated>2013-03-20T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2013-03-20:/deploying-a-thrift-server-with-capistrano.html</id><summary type="html">&lt;p&gt;At the time of writing, I couldn't find an existing &lt;a href="http://capistranorb.com/"&gt;Capistrano&lt;/a&gt;
+recipe for deploying &lt;a href="http://thrift.apache.org/"&gt;thrift&lt;/a&gt; servers. So &lt;a href="https://github.com/jimjh/capistrano-thrift-example"&gt;here&lt;/a&gt; is an example
+that works with ubuntu.&lt;/p&gt;
+&lt;p&gt;Before you use the recipe, don't forget to update the configuration options to
+match your server setup. At the very least, you will need to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the time of writing, I couldn't find an existing &lt;a href="http://capistranorb.com/"&gt;Capistrano&lt;/a&gt;
 recipe for deploying &lt;a href="http://thrift.apache.org/"&gt;thrift&lt;/a&gt; servers. So &lt;a href="https://github.com/jimjh/capistrano-thrift-example"&gt;here&lt;/a&gt; is an example
 that works with ubuntu.&lt;/p&gt;
 &lt;p&gt;Before you use the recipe, don't forget to update the configuration options to
@@ -936,8 +1030,8 @@ to be a sudoer, but &lt;code&gt;:super_user&lt;/code&gt; must be. This is arrang
 security purposes, since the server process will be owned by &lt;code&gt;:user&lt;/code&gt;. The super
 user is used to create the Upstart job.&lt;/p&gt;
 &lt;p&gt;Finally, execute&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cap deploy:setup
-&lt;span class="nv"&gt;$ &lt;/span&gt;cap deploy
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ cap deploy:setup
+$ cap deploy
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -949,21 +1043,27 @@ thrift server. You can use other monitoring tools if you like. Just update the
 &lt;code&gt;deploy:setup&lt;/code&gt; task appropriately.&lt;/p&gt;
 &lt;h2&gt;Thor&lt;/h2&gt;
 &lt;p&gt;To play with the Thrift server, launch it as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;bin/my-application server
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bundle &lt;span class="nb"&gt;exec&lt;/span&gt; bin/my-application server
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Then create a new client as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;bin/my-application client
-&amp;gt; ping
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ bundle &lt;span class="nb"&gt;exec&lt;/span&gt; bin/my-application client
+&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; ping
 pong!
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="ruby"></category><category term="thrift"></category><category term="capistrano"></category></entry><entry><title>Monopoly Heat Map</title><link href="https://blog.jimjh.com/monopoly-heat-map.html" rel="alternate"></link><updated>2012-11-19T00:00:00-08:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2012-11-19:monopoly-heat-map.html</id><summary type="html">&lt;p&gt;I am working on a Monopoly manual for my professional writing class, and did a
+&lt;/pre&gt;&lt;/div&gt;</content><category term="ruby"></category><category term="thrift"></category><category term="capistrano"></category></entry><entry><title>Monopoly Heat Map</title><link href="https://blog.jimjh.com/monopoly-heat-map.html" rel="alternate"></link><published>2012-11-19T00:00:00-08:00</published><updated>2012-11-19T00:00:00-08:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2012-11-19:/monopoly-heat-map.html</id><summary type="html">&lt;p&gt;I am working on a Monopoly manual for my professional writing class, and did a
 heat map showing the relative probabilities of landing on each square of the
 Monopoly board. It's done using canvas on HTML5.&lt;/p&gt;
 &lt;p&gt;Here is a preview:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Monopoly Heat Map" src="https://blog.jimjh.com/images/2012/11/heatmap.png" title="Monopoly Heat Map" /&gt;&lt;/p&gt;
-&lt;p&gt;Check it out &lt;a href="https://jimjh.com/monopoly-heatmap/"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary><category term="monopoly"></category><category term="heatmap"></category><category term="visualization"></category></entry><entry><title>Passwordless Kerberized SSH for CMU's UNIX machines</title><link href="https://blog.jimjh.com/passwordless-kerberized-ssh-for-cmus-unix-machines.html" rel="alternate"></link><updated>2012-11-08T00:00:00-08:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2012-11-08:passwordless-kerberized-ssh-for-cmus-unix-machines.html</id><summary type="html">&lt;p&gt;If you use SSH frequently to access &lt;code&gt;unix.andrew.cmu.edu&lt;/code&gt;, you must have tried at some point to set up &lt;a href="http://osxdaily.com/2012/05/25/how-to-set-up-a-password-less-ssh-login/"&gt;passwordless login&lt;/a&gt; using public/private keys. That didn't work for me, and when I did &lt;code&gt;ssh -vv unix.andrew.cmu.edu&lt;/code&gt;, it always failed at&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;debug2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;did&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;disable&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;
+&lt;p&gt;&lt;img alt="Monopoly Heat Map" src="https://blog.jimjh.com/images/2012/11/heatmap.png" title="Monopoly Heat Map"&gt;&lt;/p&gt;
+&lt;p&gt;Check it out &lt;a href="https://jimjh.com/monopoly-heatmap/"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am working on a Monopoly manual for my professional writing class, and did a
+heat map showing the relative probabilities of landing on each square of the
+Monopoly board. It's done using canvas on HTML5.&lt;/p&gt;
+&lt;p&gt;Here is a preview:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Monopoly Heat Map" src="https://blog.jimjh.com/images/2012/11/heatmap.png" title="Monopoly Heat Map"&gt;&lt;/p&gt;
+&lt;p&gt;Check it out &lt;a href="https://jimjh.com/monopoly-heatmap/"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="monopoly"></category><category term="heatmap"></category><category term="visualization"></category></entry><entry><title>Passwordless Kerberized SSH for CMU's UNIX machines</title><link href="https://blog.jimjh.com/passwordless-kerberized-ssh-for-cmus-unix-machines.html" rel="alternate"></link><published>2012-11-08T00:00:00-08:00</published><updated>2012-11-08T00:00:00-08:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2012-11-08:/passwordless-kerberized-ssh-for-cmus-unix-machines.html</id><summary type="html">&lt;p&gt;If you use SSH frequently to access &lt;code&gt;unix.andrew.cmu.edu&lt;/code&gt;, you must have tried at some point to set up &lt;a href="http://osxdaily.com/2012/05/25/how-to-set-up-a-password-less-ssh-login/"&gt;passwordless login&lt;/a&gt; using public/private keys. That didn't work for me, and when I did &lt;code&gt;ssh -vv unix.andrew.cmu.edu&lt;/code&gt;, it always failed at&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;debug2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;did&lt;/span&gt; &lt;span class="n"&gt;not …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;If you use SSH frequently to access &lt;code&gt;unix.andrew.cmu.edu&lt;/code&gt;, you must have tried at some point to set up &lt;a href="http://osxdaily.com/2012/05/25/how-to-set-up-a-password-less-ssh-login/"&gt;passwordless login&lt;/a&gt; using public/private keys. That didn't work for me, and when I did &lt;code&gt;ssh -vv unix.andrew.cmu.edu&lt;/code&gt;, it always failed at&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;debug2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;we&lt;/span&gt; &lt;span class="n"&gt;did&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;send&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;disable&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -977,7 +1077,7 @@ configure a similar setup on Linux.&lt;/strong&gt;&lt;/p&gt;
 &lt;li&gt;Setup a default SSH user for the &lt;code&gt;unix.andrew.cmu.edu&lt;/code&gt; domain, by ensuring that there is a file at &lt;code&gt;~/.ssh/config&lt;/code&gt; that contains the following:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;code&gt;~/.ssh/config&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;Host&lt;/span&gt; unix.andrew.cmu.edu
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;Host&lt;/span&gt; unix.andrew.cmu.edu
     &lt;span class="nb"&gt;User&lt;/span&gt; your_andrew_ID
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -985,30 +1085,30 @@ configure a similar setup on Linux.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;Configure Kerberos&lt;/h2&gt;
 &lt;p&gt;Instead of using public/private keys for passwordless login, we will use kerberos tickets.&lt;/p&gt;
 &lt;p&gt;First, copy the configuration file from the UNIX machines to your local machine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&amp;gt;&lt;/span&gt; scp unix.andrew.cmu.edu:/etc/krb5.conf krb5.conf
-&lt;span class="nv"&gt;$&amp;gt;&lt;/span&gt; sudo mv krb5.conf /etc/krb5.conf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; scp unix.andrew.cmu.edu:/etc/krb5.conf krb5.conf
+$&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; sudo mv krb5.conf /etc/krb5.conf
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Next, try to obtain a kerberos ticket for your andrew account, then try to login.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&amp;gt;&lt;/span&gt; kinit my_andrew_id@ANDREW.CMU.EDU
-&lt;span class="c"&gt;# enter your password when prompted ...&lt;/span&gt;
-&lt;span class="nv"&gt;$&amp;gt;&lt;/span&gt; ssh unix.andrew.cmu.edu
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; kinit my_andrew_id@ANDREW.CMU.EDU
+&lt;span class="c1"&gt;# enter your password when prompted ...&lt;/span&gt;
+$&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; ssh unix.andrew.cmu.edu
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The last step should succeed without asking you for your password.&lt;/p&gt;
 &lt;h2&gt;Renew Daily&lt;/h2&gt;
 &lt;p&gt;Once you have completed the above configuration, at the start of each day, issue the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&amp;gt;&lt;/span&gt; kinit my_andrew_id@ANDREW.CMU.EDU
-&lt;span class="c"&gt;# enter your password when prompted ...&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; kinit my_andrew_id@ANDREW.CMU.EDU
+&lt;span class="c1"&gt;# enter your password when prompted ...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And you should be able to ssh into &lt;code&gt;unix.andrew.cmu.edu&lt;/code&gt; for the rest of the day without a password. The tickets expire after 11 hours.&lt;/p&gt;
 &lt;h2&gt;Store Password in Keychain Access&lt;/h2&gt;
 &lt;p&gt;If you like, you can keep your password in keychain access by using the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&amp;gt;&lt;/span&gt; security add-generic-password -a &lt;span class="s2"&gt;&amp;quot;my_andrew_id&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;gt&lt;span class="p"&gt;;&lt;/span&gt; security add-generic-password -a &lt;span class="s2"&gt;&amp;quot;my_andrew_id&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
     -s &lt;span class="s2"&gt;&amp;quot;ANDREW.CMU.EDU&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
     -w &lt;span class="s2"&gt;&amp;quot;mypasswd&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
     -c &lt;span class="s2"&gt;&amp;quot;aapl&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
@@ -1021,14 +1121,18 @@ configure a similar setup on Linux.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;Done!&lt;/h2&gt;
 &lt;p&gt;Now you can &lt;code&gt;git pull&lt;/code&gt; and &lt;code&gt;git push&lt;/code&gt; like a pro without that pesky password prompt.&lt;/p&gt;
 &lt;h2&gt;Advanced: Auto-Renewal&lt;/h2&gt;
-&lt;p&gt;There might be a way for you to &lt;a href="http://www.linuxquestions.org/questions/linux-software-2/automatic-renewal-of-kerberos-tickets-792305/"&gt;automatically renew&lt;/a&gt; kerberos tickets when they expire. It's not too annoying for me to enter my password once a day, so I will leave that to you.&lt;/p&gt;</summary><category term="ssh"></category><category term="kerberos"></category><category term="unix"></category><category term="cmu"></category></entry><entry><title>Backbone, Faye, and Reaction</title><link href="https://blog.jimjh.com/backbone-faye-and-reaction.html" rel="alternate"></link><updated>2012-11-02T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2012-11-02:backbone-faye-and-reaction.html</id><summary type="html">&lt;p&gt;I was jealous of what MeteorJS did for NodeJS developers, and decided to steal
+&lt;p&gt;There might be a way for you to &lt;a href="http://www.linuxquestions.org/questions/linux-software-2/automatic-renewal-of-kerberos-tickets-792305/"&gt;automatically renew&lt;/a&gt; kerberos tickets when they expire. It's not too annoying for me to enter my password once a day, so I will leave that to you.&lt;/p&gt;</content><category term="ssh"></category><category term="kerberos"></category><category term="unix"></category><category term="cmu"></category></entry><entry><title>Backbone, Faye, and Reaction</title><link href="https://blog.jimjh.com/backbone-faye-and-reaction.html" rel="alternate"></link><published>2012-11-02T00:00:00-07:00</published><updated>2012-11-02T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2012-11-02:/backbone-faye-and-reaction.html</id><summary type="html">&lt;p&gt;I was jealous of what MeteorJS did for NodeJS developers, and decided to steal
+some of their ideas for Rails. The result is the &lt;a href="https://github.com/jimjh/reaction"&gt;reaction gem&lt;/a&gt;, and
+a demo app can be downloaded from &lt;a href="https://github.com/jimjh/reaction-todos"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Transparent Synchronization&lt;/h2&gt;
+&lt;p&gt;Using Reaction, you write your app like a usual Backbone app. However, instead …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was jealous of what MeteorJS did for NodeJS developers, and decided to steal
 some of their ideas for Rails. The result is the &lt;a href="https://github.com/jimjh/reaction"&gt;reaction gem&lt;/a&gt;, and
 a demo app can be downloaded from &lt;a href="https://github.com/jimjh/reaction-todos"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Transparent Synchronization&lt;/h2&gt;
 &lt;p&gt;Using Reaction, you write your app like a usual Backbone app. However, instead
 of using &lt;code&gt;Backbone.Collection&lt;/code&gt;, use &lt;code&gt;Reaction.Collection&lt;/code&gt; to create a
 synchronized collection.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;collection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Reaction&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Collection&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;collection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Reaction&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Collection&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
   &lt;span class="nx"&gt;controller_name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;todos&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
   &lt;span class="nx"&gt;model_name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;todo&amp;#39;&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
@@ -1042,7 +1146,7 @@ Rails app.&lt;/p&gt;
 &lt;p&gt;When updates are &lt;em&gt;pushed&lt;/em&gt; from the Rails server to the client, the collection is
 updated and &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;remove&lt;/code&gt;, or &lt;code&gt;change&lt;/code&gt; events are fired. For example, a view
 may react to an &lt;code&gt;add&lt;/code&gt; event as follows:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;collection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;add&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addOne&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;collection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;add&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addOne&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="c1"&gt;// ...&lt;/span&gt;
 &lt;span class="nx"&gt;addOne&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;x&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;XView&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -1060,6 +1164,8 @@ re-created from the cache, showing the user a decent (but outdated) interface.&l
 This also allows multiple app servers to share the same push server. When these
 servers are started, a shared secret must be provided. This secret will be used
 to sign messages sent from the app servers to the push server.&lt;/p&gt;
-&lt;p&gt;If you wish to learn more, head to the &lt;a href="https://github.com/jimjh/reaction/blob/master/QUICKSTART.md"&gt;quickstart&lt;/a&gt;.&lt;/p&gt;</summary><category term="ruby"></category><category term="rails"></category><category term="javascript"></category><category term="mvc"></category></entry><entry><title>Hello world</title><link href="https://blog.jimjh.com/hello-world.html" rel="alternate"></link><updated>2012-10-24T00:00:00-07:00</updated><author><name>Jim Lim</name></author><id>tag:blog.jimjh.com,2012-10-24:hello-world.html</id><summary type="html">&lt;p&gt;This is my first blog post using Pelican.&lt;/p&gt;
+&lt;p&gt;If you wish to learn more, head to the &lt;a href="https://github.com/jimjh/reaction/blob/master/QUICKSTART.md"&gt;quickstart&lt;/a&gt;.&lt;/p&gt;</content><category term="ruby"></category><category term="rails"></category><category term="javascript"></category><category term="mvc"></category></entry><entry><title>Hello world</title><link href="https://blog.jimjh.com/hello-world.html" rel="alternate"></link><published>2012-10-24T00:00:00-07:00</published><updated>2012-10-24T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2012-10-24:/hello-world.html</id><summary type="html">&lt;p&gt;This is my first blog post using Pelican.&lt;/p&gt;
 &lt;p&gt;I first tried using Wordpress, then migrated to Tumblr. Hope this works better!
-Old posts are still accessible at &lt;a href="http://jim-lim.tumblr.com"&gt;tumblr&lt;/a&gt;. This one is starting anew.&lt;/p&gt;</summary><category term="blogging"></category><category term="test"></category></entry></feed>
+Old posts are still accessible at &lt;a href="http://jim-lim.tumblr.com"&gt;tumblr&lt;/a&gt;. This one is starting anew.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my first blog post using Pelican.&lt;/p&gt;
+&lt;p&gt;I first tried using Wordpress, then migrated to Tumblr. Hope this works better!
+Old posts are still accessible at &lt;a href="http://jim-lim.tumblr.com"&gt;tumblr&lt;/a&gt;. This one is starting anew.&lt;/p&gt;</content><category term="blogging"></category><category term="test"></category></entry></feed>

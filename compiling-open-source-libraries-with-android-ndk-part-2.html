@@ -2,32 +2,26 @@
 <html lang="en">
 
 <head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://blog.jimjh.com/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
-
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
-  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Jim Lim">
+  <meta name="author" content="James Lim">
+  <meta name="description" content="Posts and writings by James Lim">
 
-  <meta property="og:site_name" content="Ampersand">
-  <meta property="fb:admins" content="jimjh">
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand RSS" />
 
-  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-
-  <meta name="keywords" content="android, ndk">
-  <meta name="description" content="Compiling open source libraries with Android NDK: Part 2 by Jim Lim">
-  <meta property="og:description" content="Compiling open source libraries with Android NDK: Part 2 by Jim Lim">
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Jim Lim">
-  <meta property="og:title" content="Compiling open source libraries with Android NDK: Part 2">
-  <meta property="og:url" content="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">
+<meta name="keywords" content="android, ndk">
 
   <title>
-Compiling open source libraries with Android NDK: Part 2  </title>
+    Ampersand
+&ndash; Compiling open source libraries with Android NDK: Part 2  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -39,8 +33,6 @@ Compiling open source libraries with Android NDK: Part 2  </title>
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 </script>
 </head>
 
@@ -50,34 +42,28 @@ Compiling open source libraries with Android NDK: Part 2  </title>
       <a href="https://blog.jimjh.com">
         <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
       </a>
-      <h2><a href="https://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
       <p></p>
       <ul>
-        <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
-<div id="mc_embed_signup">
-  <form action="https://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-  </form>
-</div>
     </div>
   </aside>
 
   <main>
     <header>
-  <p>Posted on Mon 01 July 2013</p>
+      <p>
+      <a href="https://blog.jimjh.com">Index</a> &brvbar; <a href="https://blog.jimjh.com/archives.html">Archives</a>
+      &brvbar; <a href="http://feeds.feedburner.com/jimjh/blog">RSS</a>
+      </p>
     </header>
 
-  <article>
-    <div id="article_title">
-      <h3><a href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h3>
-    </div>
-    <div id="article_text">
-      <p><em>This is a repost from my old blog.</em></p>
+<article>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h1>
+  </div>
+  <div class="article_text">
+    <p><em>This is a repost from my old blog.</em></p>
 <p>For the second part of this series, we will deal with the compiling of open
 source libraries that have several makefiles.</p>
 <p>Android NDK r5 added support for prebuilt libraries and also included
@@ -99,10 +85,10 @@ that you have just created.</li>
 <li>
 <p>Inside the project directory, create a new <code>build.sh</code> file with the following
 contents:</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
-<span class="c"># FourierTest/build.sh</span>
-<span class="c"># Compiles fftw3 for Android</span>
-<span class="c"># Make sure you have NDK_ROOT defined in .bashrc or .bash_profile</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1"># FourierTest/build.sh</span>
+<span class="c1"># Compiles fftw3 for Android</span>
+<span class="c1"># Make sure you have NDK_ROOT defined in .bashrc or .bash_profile</span>
 
 <span class="nv">INSTALL_DIR</span><span class="o">=</span><span class="s2">&quot;`pwd`/jni/fftw3&quot;</span>
 <span class="nv">SRC_DIR</span><span class="o">=</span><span class="s2">&quot;`pwd`/../fftw-3.2.2&quot;</span>
@@ -111,12 +97,12 @@ contents:</p>
 
 <span class="nb">export</span>
 <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$NDK_ROOT</span><span class="s2">/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-<span class="nb">export </span><span class="nv">SYS_ROOT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$NDK_ROOT</span><span class="s2">/platforms/android-8/arch-arm/&quot;</span>
-<span class="nb">export </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-gcc --sysroot=</span><span class="nv">$SYS_ROOT</span><span class="s2">&quot;</span>
-<span class="nb">export </span><span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ld&quot;</span>
-<span class="nb">export </span><span class="nv">AR</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ar&quot;</span>
-<span class="nb">export </span><span class="nv">RANLIB</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ranlib&quot;</span>
-<span class="nb">export </span><span class="nv">STRIP</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-strip&quot;</span>
+<span class="nb">export</span> <span class="nv">SYS_ROOT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$NDK_ROOT</span><span class="s2">/platforms/android-8/arch-arm/&quot;</span>
+<span class="nb">export</span> <span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-gcc --sysroot=</span><span class="nv">$SYS_ROOT</span><span class="s2">&quot;</span>
+<span class="nb">export</span> <span class="nv">LD</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ld&quot;</span>
+<span class="nb">export</span> <span class="nv">AR</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ar&quot;</span>
+<span class="nb">export</span> <span class="nv">RANLIB</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-ranlib&quot;</span>
+<span class="nb">export</span> <span class="nv">STRIP</span><span class="o">=</span><span class="s2">&quot;arm-linux-androideabi-strip&quot;</span>
 
 mkdir -p <span class="nv">$INSTALL_DIR</span>
 ./configure --host<span class="o">=</span>arm-eabi --build<span class="o">=</span>i386-apple-darwin10.8.0
@@ -125,12 +111,12 @@ mkdir -p <span class="nv">$INSTALL_DIR</span>
 make
 make install
 
-<span class="nb">exit </span>0
+<span class="nb">exit</span> <span class="m">0</span>
 </pre></div>
 
 
 <p>At this point, your directory structure should look like the following:</p>
-<div class="highlight"><pre>&lt;workspace&gt;/
+<div class="highlight"><pre><span></span>&amp;lt;workspace&amp;gt;/
     FourierTest/
         AndroidManifest.xml
         build.sh
@@ -160,7 +146,7 @@ we are cross-compiling using a i386 architecture for an ARM architecture.</li>
 </li>
 <li>Run <code>build.sh</code></li>
 <li>The compiled library will be installed in <code>FourierTest/jni/fftw3</code>. To use this
-library, create the following <code>Android.mk</code> file in <code>FourierTest/jni/fftw3</code>:<div class="highlight"><pre><span class="c"># FourierTest/jni/fftw3/Android.mk</span>
+library, create the following <code>Android.mk</code> file in <code>FourierTest/jni/fftw3</code>:<div class="highlight"><pre><span></span><span class="c"># FourierTest/jni/fftw3/Android.mk</span>
 <span class="nv">LOCAL_PATH</span> <span class="o">:=</span> <span class="k">$(</span>call my-dir<span class="k">)</span>
 
 <span class="cp">include $(CLEAR_VARS)</span>
@@ -176,47 +162,31 @@ library, create the following <code>Android.mk</code> file in <code>FourierTest/
 
 </li>
 </ol>
-    </div>
-    <div id="article_meta">
-      <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a></p>
-      <p>Tags:
-        <a href="https://blog.jimjh.com/tag/android.html">android</a>,        <a href="https://blog.jimjh.com/tag/ndk.html">ndk</a>      </p>
-    </div>
-  </article>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Mon 01 July 2013</p>
+    <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
+ &ndash; Tags:
+      <a href="https://blog.jimjh.com/tag/android.html">android</a>,      <a href="https://blog.jimjh.com/tag/ndk.html">ndk</a>    </p>
+  </div>
 
-    <footer>
-  <p><a href="https://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
-  <div id="comments">
-    <div id="respond">
-      <div id="disqus_thread"></div>
-          <script type="text/javascript">
-              var disqus_shortname = 'jimjh';
+  <div id="article_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_identifier = "compiling-open-source-libraries-with-android-ndk-part-2.html";
+        (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = '//jimjh.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+         })();
+    </script>
+  </div>
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div><!-- #respond -->
-</div><!-- #comments -->
-    </footer>
+</article>
+
 
     <div id="ending_message">
-      <p>
-<a href='https://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
-<a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
- &sdot; Theme by Giulio Fidente.</p>
+      <p>&copy; James Lim. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
     </div>
   </main>
 </body>

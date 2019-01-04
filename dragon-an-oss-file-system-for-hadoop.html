@@ -2,32 +2,26 @@
 <html lang="en">
 
 <head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://blog.jimjh.com/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
-
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
-  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Jim Lim">
+  <meta name="author" content="James Lim">
+  <meta name="description" content="Posts and writings by James Lim">
 
-  <meta property="og:site_name" content="Ampersand">
-  <meta property="fb:admins" content="jimjh">
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand RSS" />
 
-  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-
-  <meta name="keywords" content="hadoop, oss">
-  <meta name="description" content="dragon - an OSS File System for Hadoop by Jim Lim">
-  <meta property="og:description" content="dragon - an OSS File System for Hadoop by Jim Lim">
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Jim Lim">
-  <meta property="og:title" content="dragon - an OSS File System for Hadoop">
-  <meta property="og:url" content="https://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html">
+<meta name="keywords" content="hadoop, oss">
 
   <title>
-dragon - an OSS File System for Hadoop  </title>
+    Ampersand
+&ndash; dragon - an OSS File System for Hadoop  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -39,8 +33,6 @@ dragon - an OSS File System for Hadoop  </title>
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 </script>
 </head>
 
@@ -50,115 +42,93 @@ dragon - an OSS File System for Hadoop  </title>
       <a href="https://blog.jimjh.com">
         <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
       </a>
-      <h2><a href="https://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
       <p></p>
       <ul>
-        <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
-<div id="mc_embed_signup">
-  <form action="https://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-  </form>
-</div>
     </div>
   </aside>
 
   <main>
     <header>
-  <p>Posted on Wed 29 October 2014</p>
+      <p>
+      <a href="https://blog.jimjh.com">Index</a> &brvbar; <a href="https://blog.jimjh.com/archives.html">Archives</a>
+      &brvbar; <a href="http://feeds.feedburner.com/jimjh/blog">RSS</a>
+      </p>
     </header>
 
-  <article>
-    <div id="article_title">
-      <h3><a href="https://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html">dragon - an OSS File System for Hadoop</a></h3>
-    </div>
-    <div id="article_text">
-      <p><a href="http://www.aliyun.com/product/oss/">OSS</a> is Aliyun’s offering of a distributed, highly available storage service.
+<article>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/dragon-an-oss-file-system-for-hadoop.html">dragon - an OSS File System for Hadoop</a></h1>
+  </div>
+  <div class="article_text">
+    <p><a href="http://www.aliyun.com/product/oss/">OSS</a> is Aliyun’s offering of a distributed, highly available storage service.
 <a href="https://github.com/quixey/dragon-oss">dragon</a> allows YARN applications (incl. MapReduce jobs) to read and write data
 to OSS through the HDFS API. This allows you to swap filesystems without
 modifying your YARN application, MapReduce job, Pig script, Hive script etc.</p>
 <p>The source code is available <a href="https://github.com/quixey/dragon-oss">on GitHub</a>.
 The dragon jar may be built using</p>
-<div class="highlight"><pre><span class="nv">$ </span>./gradlew jar
+<div class="highlight"><pre><span></span>$ ./gradlew jar
 </pre></div>
 
 
 <p>dragon’s dependencies may be downloaded using</p>
-<div class="highlight"><pre><span class="nv">$ </span>./gradlew copyDeps
+<div class="highlight"><pre><span></span>$ ./gradlew copyDeps
 </pre></div>
 
 
 <p>To use dragon in your Hadoop cluster, add <code>dragon-*.jar</code> and its dependencies
 to Hadoop’s classpath on your clusters. Then modify <code>core-site.xml</code> to add the
 following properties:</p>
-<div class="highlight"><pre><span class="nt">&lt;property&gt;</span>
-    <span class="nt">&lt;name&gt;</span>fs.oss.impl<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;value&gt;</span>com.quixey.hadoop.fs.oss.OSSFileSystem<span class="nt">&lt;/value&gt;</span>
-<span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;property&gt;</span>
-    <span class="nt">&lt;name&gt;</span>fs.oss.accessKeyId<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;value&gt;</span>...<span class="nt">&lt;/value&gt;</span>
-<span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;property&gt;</span>
-    <span class="nt">&lt;name&gt;</span>fs.oss.secretAccessKey<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;value&gt;</span>...<span class="nt">&lt;/value&gt;</span>
-<span class="nt">&lt;/property&gt;</span>
+<div class="highlight"><pre><span></span><span class="ni">&amp;lt;</span>property<span class="ni">&amp;gt;</span>
+    <span class="ni">&amp;lt;</span>name<span class="ni">&amp;gt;</span>fs.oss.impl<span class="ni">&amp;lt;</span>/name<span class="ni">&amp;gt;</span>
+    <span class="ni">&amp;lt;</span>value<span class="ni">&amp;gt;</span>com.quixey.hadoop.fs.oss.OSSFileSystem<span class="ni">&amp;lt;</span>/value<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>/property<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>property<span class="ni">&amp;gt;</span>
+    <span class="ni">&amp;lt;</span>name<span class="ni">&amp;gt;</span>fs.oss.accessKeyId<span class="ni">&amp;lt;</span>/name<span class="ni">&amp;gt;</span>
+    <span class="ni">&amp;lt;</span>value<span class="ni">&amp;gt;</span>...<span class="ni">&amp;lt;</span>/value<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>/property<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>property<span class="ni">&amp;gt;</span>
+    <span class="ni">&amp;lt;</span>name<span class="ni">&amp;gt;</span>fs.oss.secretAccessKey<span class="ni">&amp;lt;</span>/name<span class="ni">&amp;gt;</span>
+    <span class="ni">&amp;lt;</span>value<span class="ni">&amp;gt;</span>...<span class="ni">&amp;lt;</span>/value<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>/property<span class="ni">&amp;gt;</span>
 </pre></div>
 
 
 <p>This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the <code>oss://</code> scheme.</p>
 <p>You may verify that your setup works by running the following command:</p>
-<div class="highlight"><pre><span class="nv">$ </span>hdfs dfs -ls oss://your-bucket/
+<div class="highlight"><pre><span></span>$ hdfs dfs -ls oss://your-bucket/
 </pre></div>
 
 
 <p>(<a href="https://github.com/quixey/dragon-oss">dragon</a> is an open-source project by <a href="http://www.quixey.com/">Quixey</a>.)</p>
-    </div>
-    <div id="article_meta">
-      <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a></p>
-      <p>Tags:
-        <a href="https://blog.jimjh.com/tag/hadoop.html">hadoop</a>,        <a href="https://blog.jimjh.com/tag/oss.html">oss</a>      </p>
-    </div>
-  </article>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Wed 29 October 2014</p>
+    <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
+ &ndash; Tags:
+      <a href="https://blog.jimjh.com/tag/hadoop.html">hadoop</a>,      <a href="https://blog.jimjh.com/tag/oss.html">oss</a>    </p>
+  </div>
 
-    <footer>
-  <p><a href="https://blog.jimjh.com/" class="button_accent">&larr; Back to Index</a></p>
-  <div id="comments">
-    <div id="respond">
-      <div id="disqus_thread"></div>
-          <script type="text/javascript">
-              var disqus_shortname = 'jimjh';
+  <div id="article_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_identifier = "dragon-an-oss-file-system-for-hadoop.html";
+        (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = '//jimjh.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+         })();
+    </script>
+  </div>
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div><!-- #respond -->
-</div><!-- #comments -->
-    </footer>
+</article>
+
 
     <div id="ending_message">
-      <p>
-<a href='https://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
-<a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
- &sdot; Theme by Giulio Fidente.</p>
+      <p>&copy; James Lim. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
     </div>
   </main>
 </body>

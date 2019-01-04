@@ -2,30 +2,25 @@
 <html lang="en">
 
 <head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://blog.jimjh.com/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://blog.jimjh.com/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
 
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://blog.jimjh.com/theme/css/style.min.css?3afacc2d">
-
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono'>
-  <link rel='stylesheet' type='text/css' href='http://cdn-images.mailchimp.com/embedcode/slim-081711.css'>
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Jim Lim">
+  <meta name="author" content="James Lim">
+  <meta name="description" content="Posts and writings by James Lim">
 
-  <meta property="og:site_name" content="Ampersand">
-  <meta property="fb:admins" content="jimjh">
+  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand RSS" />
 
-  <link href="http://feeds.feedburner.com/jimjh/blog" type="application/rss+xml" rel="alternate" title="Ampersand Full RSS Feed" />
-
-  <meta name="description" content="Posts and Writings by Jim Lim on category/software">
-  <meta property="og:description" content="Posts and Writings by Jim Lim on category/software">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Category: Software">
-  <meta property="og:url" content="https://blog.jimjh.com/category/software.html">
 
   <title>
-Category: Software  </title>
+    Ampersand
+&ndash; Category: Software  </title>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -37,8 +32,6 @@ Category: Software  </title>
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-  setTimeout("_gaq.push(['_trackEvent', '15_seconds', 'read'])", 15000);
 </script>
 </head>
 
@@ -48,181 +41,158 @@ Category: Software  </title>
       <a href="https://blog.jimjh.com">
         <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
       </a>
-      <h2><a href="https://blog.jimjh.com">Jim Lim</a></h2>
+      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
       <p></p>
       <ul>
-        <li>
-          <a href="http://feeds.feedburner.com/jimjh/blog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml">RSS</a>
-        </li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
-<div id="mc_embed_signup">
-  <form action="https://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-  </form>
-</div>
     </div>
   </aside>
 
   <main>
     <header>
-<p>Category: Software
-</p>
+      <p>
+      <a href="https://blog.jimjh.com">Index</a> &brvbar; <a href="https://blog.jimjh.com/archives.html">Archives</a>
+      &brvbar; <a href="http://feeds.feedburner.com/jimjh/blog">RSS</a>
+&gt; Category: Software
+      </p>
     </header>
 
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html">Making Conditional Requests with Peter Murach's gem</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html">Making Conditional Requests with Peter Murach's gem</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p>GitHub imposes a rate limit on API requests, and encourages developers to use <a href="http://developer.github.com/v3/#conditional-requests">conditional requests</a>. Here is how to do that using Peter's popular <a href="https://github.com/peter-murach/github">github api gem</a>.</p>
 <h2>Method A - Faraday HTTP Cache w. ActiveSupport::Cache</h2>
-<p>This uses the <a href="https://github.com/plataformatec/faraday-http-cache">faraday-http-cache gem</a>, which takes care of expiration, etags, and response statuses ...</p>
-    <a href='https://blog.jimjh.com/making-conditional-requests-with-peter-murachs-gem.html'>More</a>
+<p>This uses the <a href="https://github.com/plataformatec/faraday-http-cache">faraday-http-cache gem</a>, which takes care of expiration, etags, and response statuses.</p>
+<script src="https://gist.github.com/jimjh/5961836.js"></script>
+
+<h2>Method …</h2>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/jquery-plugin-box-lid-menu.html">jQuery Plugin - Box Lid Menu</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/jquery-plugin-box-lid-menu.html">jQuery Plugin - Box Lid Menu</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p>Smashing Magazine wrote <a href="http://www.smashingmagazine.com/2013/07/11/innovative-navigation-designs/">a piece</a> about <a href="http://www.toybox.co.nz/">Toybox</a>'s navigation menu today, describing the user experience as "peeking behind the page or the lid of a toybox". I really liked the design, took a shot at creating a <a href="https://github.com/jimjh/box-lid/">jQuery plugin</a> to replicate the effect. Here is a <a href="https://jimjh.com/box-lid/">demo</a>.</p>
-<p>Most of the ...</p>
-    <a href='https://blog.jimjh.com/jquery-plugin-box-lid-menu.html'>More</a>
+<p>Most of the …</p>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html">A Short Tutorial on Custom Storyboard Segues</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html">A Short Tutorial on Custom Storyboard Segues</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p><em>This is a repost from my old blog.</em></p>
 <p>We will use the <a href="http://www.cmumobileapps.com/2011/10/25/a-really-short-tutorial-on-storyboards/">last tutorial</a> as a base to learn how to use custom segues.</p>
 <p>Suppose you don't want to <em>push</em> between view controllers. In particular,
 suppose you want first view controller to <em>flip</em> to the second view controller.
-To ...</p>
-    <a href='https://blog.jimjh.com/a-short-tutorial-on-custom-storyboard-segues.html'>More</a>
+To achieve …</p>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p><em>This is a repost from my old blog.</em></p>
 <p>For the second part of this series, we will deal with the compiling of open
 source libraries that have several makefiles.</p>
 <p>Android NDK r5 added support for prebuilt libraries and also included
-standalone toolchains that could be used to compile open-source libraries ...</p>
-    <a href='https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html'>More</a>
+standalone toolchains that could be used to compile open-source libraries …</p>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/implementing-a-singleton-in-ios.html">Implementing a Singleton in iOS</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/implementing-a-singleton-in-ios.html">Implementing a Singleton in iOS</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p><em>This is a repost from my old blog.</em></p>
 <p>While I was at Apple’s Cocoa Camp over summer, one of the speakers talked
 rather passionately about the proper, thread-safe way to implement a singleton
 in iOS, which I thought deserves more attention than it currently does on the
 <a href="https://encrypted.google.com/search?q=ios+singleton&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t">Web</a>.</p>
-<h2>The ...</h2>
-    <a href='https://blog.jimjh.com/implementing-a-singleton-in-ios.html'>More</a>
+<h2>The …</h2>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html">Using Karma with Rails and Jenkins: Part 1</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html">Using Karma with Rails and Jenkins: Part 1</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p>In a recent project, I experimented with <a href="http://angularjs.org">AngularJS</a> on
 Rails, and managed to get <a href="http://karma-runner.github.io/0.8/index.html">Karma</a> to work nicely with Jenkins on
 <a href="http://cloudbees.com">CloudBees</a>. This post documents the steps I took. (Part 2
 will cover e2e tests, if I get that sorted out.)</p>
 <p>An example project is available on <a href="https://github.com/jimjh/karma-rails">GitHub</a>.</p>
 <h2>Setup</h2>
-<p>First ...</p>
-    <a href='https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html'>More</a>
+<p>First …</p>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/playing-with-stripe-ctf.html">Playing with Stripe CTF</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/playing-with-stripe-ctf.html">Playing with Stripe CTF</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p>I was playing around with Stripe's <a href="https://github.com/stripe-ctf/stripe-ctf-2.0">source code</a> for last year's CTF,
 and from what I could see online, most people solved Level 4 by using XSS in
 the password field. But look at the following line in <code>srv.rb</code>:</p>
-<div class="highlight"><pre><span class="k">unless</span> <span class="n">username</span> <span class="o">=~</span> <span class="sr">/^\w+$/</span>
-  <span class="n">ie</span><span class="p">(</span><span class="s2">&quot;Invalid username. Usernames must ...</span></pre></div>
-    <a href='https://blog.jimjh.com/playing-with-stripe-ctf.html'>More</a>
+<div class="highlight"><pre><span></span><span class="k">unless</span> <span class="n">username</span> <span class="o">=~</span> <span class="sr">/^\w+$/</span>
+  <span class="n">ie</span><span class="p">(</span><span class="s2">&quot;Invalid username. Usernames must match /^\w …</span></pre></div>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/experimenting-with-git-hooks.html">Experimenting with Git Hooks</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/experimenting-with-git-hooks.html">Experimenting with Git Hooks</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p>I have been trying to follow a more disciplined approach to branching in my
 projects to allow easier tracking and regression. For example, I learnt that
 it's a good idea to prefix branch names with category tokens, such as
-<code>feature/</code>, <code>bug/</code>, or <code>chore/</code>. This allows us to use wildcards ...</p>
-    <a href='https://blog.jimjh.com/experimenting-with-git-hooks.html'>More</a>
+<code>feature/</code>, <code>bug/</code>, or <code>chore/</code>. This allows us to use wildcards when …</p>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/deployment-is-scary-part-2.html">Deployment is Scary - Part 2</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/deployment-is-scary-part-2.html">Deployment is Scary - Part 2</a></h1>
   </div>
-  <div id="article_text">
+  <div class="article_text">
     <p>The is the second installation of a series of posts about my deployment experiences with Enteract. Part 1 is available <a href="https://blog.jimjh.com/deployment-is-scary-part-1.html">here</a>.</p>
 <p>In this post, I will focus on our use of <a href="https://github.com/lostisland/faraday">Faraday</a> and <a href="http://upstart.ubuntu.com/">Upstart</a> for some simple monitoring.</p>
 <h2>Faraday</h2>
-<p>We wanted a tool to monitor the web application and notify ...</p>
-    <a href='https://blog.jimjh.com/deployment-is-scary-part-2.html'>More</a>
+<p>We wanted a tool to monitor the web application and notify …</p>
   </div>
 </article>
 <hr />
 <article>
-  <div id="article_title">
-    <h3><a href="https://blog.jimjh.com/predicting-user-ratings-on-yelp.html">Predicting User Ratings on Yelp</a></h3>
+  <div class="article_title">
+    <h1><a href="https://blog.jimjh.com/predicting-user-ratings-on-yelp.html">Predicting User Ratings on Yelp</a></h1>
   </div>
-  <div id="article_text">
-    <p>Several weeks ago, Yelp launched a <a href="https://www.yelp.com/dataset_challenge/dataset">dataset challenge</a> and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my <a href="https://blog.jimjh.com/downloads/2013/05/12/netflix.pdf">Netflix project</a>  was versatile enough ...</p>
-    <a href='https://blog.jimjh.com/predicting-user-ratings-on-yelp.html'>More</a>
+  <div class="article_text">
+    <p>Several weeks ago, Yelp launched a <a href="https://www.yelp.com/dataset_challenge/dataset">dataset challenge</a> and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my <a href="https://blog.jimjh.com/downloads/2013/05/12/netflix.pdf">Netflix project</a>  was versatile enough …</p>
   </div>
 </article>
 
-    <footer>
-<p id="paginator">
+<footer>
+<div id="paginator">
 <a href="https://blog.jimjh.com/category/software3.html" class="button_accent">&larr; Older Posts</a>
 
 <a href="https://blog.jimjh.com/category/software.html" class="button_accent">Newer Posts &rarr;</a>
-</p>
-    </footer>
+</div>
+</footer>
 
     <div id="ending_message">
-      <p>
-<a href='https://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
-<a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
- &sdot; Theme by Giulio Fidente.</p>
+      <p>&copy; James Lim. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
     </div>
   </main>
 </body>
