@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Jim Lim'
+AUTHOR = u'James Lim'
 SITENAME = u'Ampersand'
 SITEURL = ''
 FEED_DOMAIN = 'http://feeds.feedburner.com'
@@ -35,7 +35,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 LINKS = (
-    ('Profile', 'http://jimjh.com'),
+    ('Profile', 'https://jimjh.com'),
 )
 
 DEFAULT_PAGINATION = 10
@@ -45,15 +45,10 @@ REVERSE_ARCHIVE_ORDER = True
 RELATIVE_URLS = True
 
 FOOTER_TEXT   = """
-<a href='http://jimjh.com'>Jim Lim</a> &sdot;
-<a href='https://plus.google.com/111805949132881507016' rel='author'>G+</a>
-&sdot;
+<a href='https://jimjh.com'>James Lim</a> &sdot;
 <a href='https://github.com/jimjh'>GitHub</a> &sdot;
-<a href='http://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
-<a href='http://stackoverflow.com/users/473709/jim-lim'>StackOverflow</a>
-&sdot;
-<a href="http://www.ontoplist.com/" title="Online Marketing"
-target="_blank">ontoplist</a>
+<a href='https://www.linkedin.com/in/jimjh'>LinkedIn</a> &sdot;
+<a href='https://stackoverflow.com/users/473709/james-lim'>StackOverflow</a>
 """
 
 STATIC_PATHS = ['images', 'downloads', 'favicon.ico', 'CNAME']
@@ -61,5 +56,4 @@ WEBASSETS    = True
 
 USER_LOGO_URL    = 'https://blog.jimjh.com/images/jimjh.png'
 FB_ADMIN         = 'jimjh'
-MAILCHIMP_URL    = 'http://jimjh.us7.list-manage.com/subscribe/post?u=384f06163c70729da8e51b396&amp;id=162cf33799'
 GCSE_ID          = '012036467613918901085:pygogpk_gsc'

@@ -13,5 +13,5 @@ The skewing effect is achieved with `perspective`, `perspective-origin`, and a `
   [smashing]: http://www.smashingmagazine.com/2013/07/11/innovative-navigation-designs/
   [plugin]: https://github.com/jimjh/box-lid/
   [toybox]: http://www.toybox.co.nz/
-  [demo]: http://jimjh.com/box-lid/
+  [demo]: https://jimjh.com/box-lid/
   [bby]: http://bby.net.nz/
