@@ -3,7 +3,7 @@ Title: Building Elastic Clusters
 Category: Software
 Tags: distributed, devops
 
-(Authors: Jim Lim, [Adam Gray])
+(Authors: James Lim, [Adam Gray])
 
 One of the main advantages of using a cloud provider, such as Amazon Web
 Services (AWS), is the ability to launch new instances on demand. However, it
