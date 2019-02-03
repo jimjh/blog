@@ -23,19 +23,9 @@ To use dragon in your Hadoop cluster, add `dragon-*.jar` and its dependencies
 to Hadoop’s classpath on your clusters. Then modify `core-site.xml` to add the
 following properties:
 
-    :::xml
-    <property>
-        <name>fs.oss.impl</name>
-        <value>com.quixey.hadoop.fs.oss.OSSFileSystem</value>
-    </property>
-    <property>
-        <name>fs.oss.accessKeyId</name>
-        <value>...</value>
-    </property>
-    <property>
-        <name>fs.oss.secretAccessKey</name>
-        <value>...</value>
-    </property>
+- `fs.oss.impl`: `com.quixey.hadoop.fs.oss.OSSFileSystem`
+- `fs.oss.accessKeyId`: `...`
+- `fs.oss.secretAccessKey`: `...`
 
 This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the `oss://` scheme.
