@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand - James Lim</title><link href="https://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/james-lim.atom.xml" rel="self"></link><id>https://blog.jimjh.com/</id><updated>2019-02-02T00:00:00-08:00</updated><entry><title>Moved</title><link href="https://blog.jimjh.com/moved.html" rel="alternate"></link><published>2019-02-02T00:00:00-08:00</published><updated>2019-02-02T00:00:00-08:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2019-02-02:/moved.html</id><summary type="html">&lt;p&gt;New posts will be at https://medium.com/@jimjh&lt;/p&gt;</summary><content type="html">&lt;p&gt;New posts will be at https://medium.com/@jimjh&lt;/p&gt;</content></entry><entry><title>Building Elastic Clusters</title><link href="https://blog.jimjh.com/building-elastic-clusters.html" rel="alternate"></link><published>2015-05-04T00:00:00-07:00</published><updated>2015-05-04T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2015-05-04:/building-elastic-clusters.html</id><summary type="html">&lt;p&gt;(Authors: James Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ampersand - James Lim</title><link href="https://blog.jimjh.com/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/james-lim.atom.xml" rel="self"></link><id>https://blog.jimjh.com/</id><updated>2019-02-02T00:00:00-08:00</updated><entry><title>Moved</title><link href="https://blog.jimjh.com/moved.html" rel="alternate"></link><published>2019-02-02T00:00:00-08:00</published><updated>2019-02-02T00:00:00-08:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2019-02-02:/moved.html</id><summary type="html">&lt;p&gt;New posts will be at &lt;a href="https://medium.com/@jimjh"&gt;https://medium.com/@jimjh&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;New posts will be at &lt;a href="https://medium.com/@jimjh"&gt;https://medium.com/@jimjh&lt;/a&gt;&lt;/p&gt;</content></entry><entry><title>Building Elastic Clusters</title><link href="https://blog.jimjh.com/building-elastic-clusters.html" rel="alternate"></link><published>2015-05-04T00:00:00-07:00</published><updated>2015-05-04T00:00:00-07:00</updated><author><name>James Lim</name></author><id>tag:blog.jimjh.com,2015-05-04:/building-elastic-clusters.html</id><summary type="html">&lt;p&gt;(Authors: James Lim, &lt;a href="http://addumb.com/"&gt;Adam Gray&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;One of the main advantages of using a cloud provider, such as Amazon Web
 Services (AWS), is the ability to launch new instances on demand. However, it
 also means giving up control over physical machines and their retirement
@@ -108,21 +108,11 @@ The dragon jar may be built using&lt;/p&gt;
 &lt;p&gt;To use dragon in your Hadoop cluster, add &lt;code&gt;dragon-*.jar&lt;/code&gt; and its dependencies
 to Hadoop’s classpath on your clusters. Then modify &lt;code&gt;core-site.xml&lt;/code&gt; to add the
 following properties:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;fs.oss.impl&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;com.quixey.hadoop.fs.oss.OSSFileSystem&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;fs.oss.accessKeyId&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;...&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;fs.oss.secretAccessKey&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/name&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-    &lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;...&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/value&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-&lt;span class="ni"&gt;&amp;amp;lt;&lt;/span&gt;/property&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fs.oss.impl&lt;/code&gt;: &lt;code&gt;com.quixey.hadoop.fs.oss.OSSFileSystem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fs.oss.accessKeyId&lt;/code&gt;: &lt;code&gt;...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fs.oss.secretAccessKey&lt;/code&gt;: &lt;code&gt;...&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the &lt;code&gt;oss://&lt;/code&gt; scheme.&lt;/p&gt;
 &lt;p&gt;You may verify that your setup works by running the following command:&lt;/p&gt;

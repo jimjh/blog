@@ -81,21 +81,11 @@ The dragon jar may be built using</p>
 <p>To use dragon in your Hadoop cluster, add <code>dragon-*.jar</code> and its dependencies
 to Hadoop’s classpath on your clusters. Then modify <code>core-site.xml</code> to add the
 following properties:</p>
-<div class="highlight"><pre><span></span><span class="ni">&amp;lt;</span>property<span class="ni">&amp;gt;</span>
-    <span class="ni">&amp;lt;</span>name<span class="ni">&amp;gt;</span>fs.oss.impl<span class="ni">&amp;lt;</span>/name<span class="ni">&amp;gt;</span>
-    <span class="ni">&amp;lt;</span>value<span class="ni">&amp;gt;</span>com.quixey.hadoop.fs.oss.OSSFileSystem<span class="ni">&amp;lt;</span>/value<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>/property<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>property<span class="ni">&amp;gt;</span>
-    <span class="ni">&amp;lt;</span>name<span class="ni">&amp;gt;</span>fs.oss.accessKeyId<span class="ni">&amp;lt;</span>/name<span class="ni">&amp;gt;</span>
-    <span class="ni">&amp;lt;</span>value<span class="ni">&amp;gt;</span>...<span class="ni">&amp;lt;</span>/value<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>/property<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>property<span class="ni">&amp;gt;</span>
-    <span class="ni">&amp;lt;</span>name<span class="ni">&amp;gt;</span>fs.oss.secretAccessKey<span class="ni">&amp;lt;</span>/name<span class="ni">&amp;gt;</span>
-    <span class="ni">&amp;lt;</span>value<span class="ni">&amp;gt;</span>...<span class="ni">&amp;lt;</span>/value<span class="ni">&amp;gt;</span>
-<span class="ni">&amp;lt;</span>/property<span class="ni">&amp;gt;</span>
-</pre></div>
-
-
+<ul>
+<li><code>fs.oss.impl</code>: <code>com.quixey.hadoop.fs.oss.OSSFileSystem</code></li>
+<li><code>fs.oss.accessKeyId</code>: <code>...</code></li>
+<li><code>fs.oss.secretAccessKey</code>: <code>...</code></li>
+</ul>
 <p>This tells the Hadoop clients to use the dragon implementation of HDFS for all
 URIs with the <code>oss://</code> scheme.</p>
 <p>You may verify that your setup works by running the following command:</p>
