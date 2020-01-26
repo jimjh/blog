@@ -1,11 +1,18 @@
+### Installing
+
+This is in maintenance mode.
 
 ```bash
-$ git clone git@github.com:jimjh/blog.git
-$ git clone git@github.com:jimjh/pelican-svbhack.git
-$ pelican-themes -i pelican-svbhack
+$ git clone git@github.com:gfidente/pelican-svbhack.git
 $ git clone git@github.com:getpelican/pelican-plugins.git
-$ pip install pelican webassets cssmin markdown
-$ sudo npm install less -g
-$ sudo ln -s /usr/local/share/npm/bin/lessc /usr/local/bin/lessc
+$ git clone git@github.com:jimjh/blog.git
+$ cd blog  # setup virtualenv however you like
+$ pip install -r requirements.txt
+$ pelican-themes -i ../pelican-svbhack
 ```
 
+### Generating
+
+```bash
+$ make html
+```

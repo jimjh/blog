@@ -58,5 +58,5 @@ I will post updates here if I figure out what is going wrong.
 
 
   [yelp]: https://www.yelp.com/dataset_challenge/dataset
-  [netflix]: |filename|/downloads/2013/05/12/netflix.pdf
+  [netflix]: |static|/downloads/2013/05/12/netflix.pdf
   [github]: https://github.com/jimjh/yelp-dataset-challenge
