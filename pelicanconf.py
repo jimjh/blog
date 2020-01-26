@@ -35,11 +35,15 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 LINKS = (
-    ('Profile', 'https://jimjh.com'),
+    ('Medium', 'https://medium.com/@jimjh'),
+    ('Profile', 'https://jimjh.com')
 )
 
 DEFAULT_PAGINATION = 10
 REVERSE_ARCHIVE_ORDER = True
+DISPLAY_CATEGORIES_ON_MENU = False
+HIDE_USER_LOGO = True
+TAGLINE = "Moved to Medium in 2019."
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
