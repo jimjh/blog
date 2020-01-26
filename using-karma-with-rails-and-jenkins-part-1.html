@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -62,6 +60,9 @@
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/using-karma-with-rails-and-jenkins-part-1.html">Using Karma with Rails and Jenkins: Part 1</a></h1>
   </div>
+  <div class="article_meta">
+    <p>Posted on: Mon 01 July 2013</p>
+  </div>
   <div class="article_text">
     <p>In a recent project, I experimented with <a href="http://angularjs.org">AngularJS</a> on
 Rails, and managed to get <a href="http://karma-runner.github.io/0.8/index.html">Karma</a> to work nicely with Jenkins on
@@ -70,7 +71,7 @@ will cover e2e tests, if I get that sorted out.)</p>
 <p>An example project is available on <a href="https://github.com/jimjh/karma-rails">GitHub</a>.</p>
 <h2>Setup</h2>
 <p>First, install karma locally with</p>
-<div class="highlight"><pre><span></span>$&amp;gt; npm install karma
+<div class="highlight"><pre><span></span><span class="err">$&gt; npm install karma</span>
 </pre></div>
 
 
@@ -82,8 +83,8 @@ will cover e2e tests, if I get that sorted out.)</p>
 <p>Note that these are necessary even if you are using a CDN for these libraries.
 This ensures that your unit tests pass even without network access.</p>
 <p>Next, setup the spec directories,</p>
-<div class="highlight"><pre><span></span>$&amp;gt; mkdir -p spec/javascripts/lib/angular
-$&amp;gt; mkdir -p spec/javascripts/unit
+<div class="highlight"><pre><span></span><span class="err">$&gt; mkdir -p spec/javascripts/lib/angular</span>
+<span class="err">$&gt; mkdir -p spec/javascripts/unit</span>
 </pre></div>
 
 
@@ -112,16 +113,16 @@ in the comments if you figure out a better way.</p>
 
 
 <p>Run tests using</p>
-<div class="highlight"><pre><span></span>$&amp;gt; karma start config/karma.conf.js
+<div class="highlight"><pre><span></span><span class="err">$&gt; karma start config/karma.conf.js</span>
 </pre></div>
 
 
 <h2>Continuous Integration</h2>
 <p>To use Karma with Jenkins, update <code>karma.conf.js</code> to include</p>
-<div class="highlight"><pre><span></span>junitReporter = {
-  outputFile: &#39;spec/reports/karma-unit.xml&#39;,
-  suite: &#39;unit&#39;
-};
+<div class="highlight"><pre><span></span><span class="err">junitReporter = {</span>
+<span class="err">  outputFile: &#39;spec/reports/karma-unit.xml&#39;,</span>
+<span class="err">  suite: &#39;unit&#39;</span>
+<span class="err">};</span>
 </pre></div>
 
 
@@ -131,7 +132,6 @@ in the comments if you figure out a better way.</p>
 <code>spec/reports/karma-unit.xml</code>.</p>
   </div>
   <div class="article_meta">
-    <p>Posted on: Mon 01 July 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/rails.html">rails</a>,      <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/karma.html">karma</a>,      <a href="https://blog.jimjh.com/tag/jenkins.html">jenkins</a>    </p>

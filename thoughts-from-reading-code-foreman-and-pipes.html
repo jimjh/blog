@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -61,6 +59,9 @@
 <article>
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/thoughts-from-reading-code-foreman-and-pipes.html">Thoughts from Reading Code - Foreman and Pipes</a></h1>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Mon 12 August 2013</p>
   </div>
   <div class="article_text">
     <h3>Using Pipes for Cheap IPC</h3>
@@ -118,7 +119,7 @@ control over which C functions are called. Thus, it's usually recommended to
 <a href="http://blog.rubybestpractices.com/posts/ewong/016-Implementing-Signal-Handlers.html">defer signal handling</a> by pushing signals onto a queue and handling
 them sequentially. For example,</p>
 <div class="highlight"><pre><span></span><span class="c1"># push signals onto a queue</span>
-<span class="nb">trap</span><span class="p">(</span><span class="s1">&#39;INT&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="n">some_queue</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="ss">:INT</span> <span class="p">}</span>
+<span class="nb">trap</span><span class="p">(</span><span class="s1">&#39;INT&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="n">some_queue</span> <span class="o">&lt;&lt;</span> <span class="ss">:INT</span> <span class="p">}</span>
 
 <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
   <span class="n">process_queue</span>
@@ -162,7 +163,6 @@ to check if there are pending signals in the queue that needs to be handled.</p>
 </pre></div>
   </div>
   <div class="article_meta">
-    <p>Posted on: Mon 12 August 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/reading.html">reading</a>    </p>

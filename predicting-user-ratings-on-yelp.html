@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -62,11 +60,14 @@
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/predicting-user-ratings-on-yelp.html">Predicting User Ratings on Yelp</a></h1>
   </div>
+  <div class="article_meta">
+    <p>Posted on: Tue 14 May 2013</p>
+  </div>
   <div class="article_text">
     <p>Several weeks ago, Yelp launched a <a href="https://www.yelp.com/dataset_challenge/dataset">dataset challenge</a> and released data on their users and businesses in Phoenix, AZ. The challenge shared some similarities with the Netflix Prize, and I was curious to see if the Alternating Least Squares algorithm that I used for my <a href="https://blog.jimjh.com/downloads/2013/05/12/netflix.pdf">Netflix project</a>  was versatile enough to be used for predicting business ratings on Yelp. The results were disappointing, but I shall document the process here for my own reference. All of the code used is available in a <a href="https://github.com/jimjh/yelp-dataset-challenge">git repository</a>.</p>
 <h2>Transforming the Data</h2>
 <p>The dataset arrived in a tarball that unpacks into a directory of JSON files. Each JSON file could be imported into MongoDB relatively easily with the following command:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">mongoimport</span> <span class="o">--</span><span class="n">db</span> <span class="n">yelp</span> <span class="o">--</span><span class="n">collection</span> <span class="n">reviews</span> <span class="o">--</span><span class="n">drop</span> <span class="o">--</span><span class="nb">file</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">filename</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="o">&gt;</span> <span class="n">mongoimport</span> <span class="o">--</span><span class="n">db</span> <span class="n">yelp</span> <span class="o">--</span><span class="n">collection</span> <span class="n">reviews</span> <span class="o">--</span><span class="n">drop</span> <span class="o">--</span><span class="nb">file</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
 </pre></div>
 
 
@@ -108,7 +109,6 @@
 <p>I will post updates here if I figure out what is going wrong.</p>
   </div>
   <div class="article_meta">
-    <p>Posted on: Tue 14 May 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/machine-learning.html">machine learning</a>,      <a href="https://blog.jimjh.com/tag/matlab.html">matlab</a>,      <a href="https://blog.jimjh.com/tag/yelp.html">yelp</a>    </p>

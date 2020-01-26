@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -61,6 +59,9 @@
 <article>
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/implementing-a-singleton-in-ios.html">Implementing a Singleton in iOS</a></h1>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Mon 01 July 2013</p>
   </div>
   <div class="article_text">
     <p><em>This is a repost from my old blog.</em></p>
@@ -97,7 +98,7 @@ following:</p>
 
     <span class="k">if</span> <span class="p">(</span><span class="nb">nil</span> <span class="o">!=</span> <span class="n">singleton</span><span class="p">)</span> <span class="k">return</span> <span class="n">singleton</span><span class="p">;</span>
     <span class="k">static</span> <span class="n">dispatch_once_t</span> <span class="n">pred</span><span class="p">;</span>        <span class="c1">// lock</span>
-    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">pred</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>             <span class="c1">// this code is at most once</span>
+    <span class="n">dispatch_once</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pred</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>             <span class="c1">// this code is at most once</span>
         <span class="n">singleton</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MyObject</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
     <span class="p">});</span>
 
@@ -128,21 +129,20 @@ even when multiple threads access <code>sharedInstance</code> concurrently:</p>
 
 
 <p>The above code results in the following output:</p>
-<div class="highlight"><pre><span></span>2011-09-05 10:12:05.961 SingletonTest[1602:10c03] sharedInstance called.
-2011-09-05 10:12:05.961 SingletonTest[1602:12603] sharedInstance called.
-2011-09-05 10:12:05.961 SingletonTest[1602:ef03] sharedInstance called.
-2011-09-05 10:12:05.961 SingletonTest[1602:12703] sharedInstance called.
-2011-09-05 10:12:05.966 SingletonTest[1602:10c03] init called.
-2011-09-05 10:12:05.966 SingletonTest[1602:ef03] sharedInstance called.
-2011-09-05 10:12:05.966 SingletonTest[1602:10c03] sharedInstance called.
-2011-09-05 10:12:05.966 SingletonTest[1602:12703] sharedInstance called.
-2011-09-05 10:12:05.966 SingletonTest[1602:12603] sharedInstance called.
-2011-09-05 10:12:05.969 SingletonTest[1602:10c03] sharedInstance called.
-2011-09-05 10:12:05.969 SingletonTest[1602:ef03] sharedInstance called.
+<div class="highlight"><pre><span></span><span class="err">2011-09-05 10:12:05.961 SingletonTest[1602:10c03] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.961 SingletonTest[1602:12603] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.961 SingletonTest[1602:ef03] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.961 SingletonTest[1602:12703] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.966 SingletonTest[1602:10c03] init called.</span>
+<span class="err">2011-09-05 10:12:05.966 SingletonTest[1602:ef03] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.966 SingletonTest[1602:10c03] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.966 SingletonTest[1602:12703] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.966 SingletonTest[1602:12603] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.969 SingletonTest[1602:10c03] sharedInstance called.</span>
+<span class="err">2011-09-05 10:12:05.969 SingletonTest[1602:ef03] sharedInstance called.</span>
 </pre></div>
   </div>
   <div class="article_meta">
-    <p>Posted on: Mon 01 July 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/cocoa.html">cocoa</a>,      <a href="https://blog.jimjh.com/tag/ios.html">ios</a>    </p>

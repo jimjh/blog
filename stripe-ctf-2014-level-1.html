@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -62,6 +60,9 @@
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/stripe-ctf-2014-level-1.html">Stripe CTF 2014, Level 1</a></h1>
   </div>
+  <div class="article_meta">
+    <p>Posted on: Sat 08 March 2014</p>
+  </div>
   <div class="article_text">
     <p>This is the second installment of a series on Stripe's CTF 2014. You may wish
 to start from <a href="https://blog.jimjh.com/stripe-ctf-2014-level-0.html">level 0</a>.</p>
@@ -70,12 +71,12 @@ to start from <a href="https://blog.jimjh.com/stripe-ctf-2014-level-0.html">leve
 <p>The general solution was to try many different git commits by altering a token/nonce in the commit message until the desired SHA1 was found.</p>
 <p>Since the repository came with an naïve miner, my first - admittedly bad - intuition was to use <a href="http://www.gnu.org/software/parallel/">GNU parallel</a> and have each miner iterate through a slice of integers. That probably brought some improvements, but not much - the given miner was slow because it used a new process to compute the SHA1 of each commit. I rewrote parts of the miner in Ruby to compute multiple hashes within the same process, which attained a 30x improvement in the hash rate and passed the level handily. The tricky part was figuring out the data format of a git commit.</p>
 <p>For future reference, a git commit looks like the following:</p>
-<div class="highlight"><pre><span></span>commit &lt;size&gt;\0tree &lt;tree&gt;
-parent &lt;parent&gt;
-author &lt;author details&gt;
-committer &lt;committer details&gt;
+<div class="highlight"><pre><span></span><span class="k">commit</span> <span class="o">&lt;</span><span class="k">size</span><span class="o">&gt;</span><span class="err">\</span><span class="mi">0</span><span class="n">tree</span> <span class="o">&lt;</span><span class="n">tree</span><span class="o">&gt;</span>
+<span class="n">parent</span> <span class="o">&lt;</span><span class="n">parent</span><span class="o">&gt;</span>
+<span class="n">author</span> <span class="o">&lt;</span><span class="n">author</span> <span class="n">details</span><span class="o">&gt;</span>
+<span class="n">committer</span> <span class="o">&lt;</span><span class="n">committer</span> <span class="n">details</span><span class="o">&gt;</span>
 
-&lt;commit message&gt;
+<span class="o">&lt;</span><span class="k">commit</span> <span class="n">message</span><span class="o">&gt;</span>
 </pre></div>
 
 
@@ -83,7 +84,6 @@ committer &lt;committer details&gt;
 <p>I uploaded some of my work on <a href="https://github.com/jimjh/stripe-level1">Github</a>. Give it a shot.</p>
   </div>
   <div class="article_meta">
-    <p>Posted on: Sat 08 March 2014</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/stripe.html">stripe</a>    </p>

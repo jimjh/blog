@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -61,6 +59,9 @@
 <article>
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/compiling-open-source-libraries-with-android-ndk-part-2.html">Compiling open source libraries with Android NDK: Part 2</a></h1>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Mon 01 July 2013</p>
   </div>
   <div class="article_text">
     <p><em>This is a repost from my old blog.</em></p>
@@ -116,15 +117,15 @@ make install
 
 
 <p>At this point, your directory structure should look like the following:</p>
-<div class="highlight"><pre><span></span>&amp;lt;workspace&amp;gt;/
-    FourierTest/
-        AndroidManifest.xml
-        build.sh
-        ...
-        src/
-    fftw-3.2.2/
-        configure
-        ...
+<div class="highlight"><pre><span></span><span class="err">&lt;workspace&gt;/</span>
+<span class="err">    FourierTest/</span>
+<span class="err">        AndroidManifest.xml</span>
+<span class="err">        build.sh</span>
+<span class="err">        ...</span>
+<span class="err">        src/</span>
+<span class="err">    fftw-3.2.2/</span>
+<span class="err">        configure</span>
+<span class="err">        ...</span>
 </pre></div>
 
 
@@ -164,7 +165,6 @@ library, create the following <code>Android.mk</code> file in <code>FourierTest/
 </ol>
   </div>
   <div class="article_meta">
-    <p>Posted on: Mon 01 July 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/android.html">android</a>,      <a href="https://blog.jimjh.com/tag/ndk.html">ndk</a>    </p>

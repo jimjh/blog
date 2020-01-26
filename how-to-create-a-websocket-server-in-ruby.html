@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -61,6 +59,9 @@
 <article>
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/how-to-create-a-websocket-server-in-ruby.html">How to Create a Websocket Server in Ruby</a></h1>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Wed 21 August 2013</p>
   </div>
   <div class="article_text">
     <p>This is a short tutorial on creating a websocket server in Ruby using James Coglan's <a href="https://github.com/faye/websocket-driver-ruby">websocket driver</a>. The complete example is available on <a href="https://github.com/jimjh/echo-websocket/blob/master/server.rb">github</a>.</p>
@@ -88,15 +89,14 @@
 
 
 <p>In general, data received on the socket should be passed to <code>driver#parse</code>, and <code>driver#text</code> or <code>driver#bytes</code> can be used to send data to the other end. The echo server can be tested from any modern browser with the following JavaScript snippet.</p>
-<div class="highlight"><pre><span></span><span class="nt">connection</span> <span class="o">=</span> <span class="nt">new</span> <span class="nt">WebSocket</span><span class="o">(</span><span class="s1">&#39;ws://localhost:54398/&#39;</span><span class="o">);</span>
-<span class="o">//</span> <span class="nt">Log</span> <span class="nt">errors</span>
-<span class="nt">connection</span><span class="p">.</span><span class="nc">onerror</span> <span class="o">=</span> <span class="nt">function</span> <span class="o">(</span><span class="nt">error</span><span class="o">)</span> <span class="p">{</span> <span class="err">console.log(&#39;WebSocket</span> <span class="err">Error</span> <span class="err">&#39;</span> <span class="err">+</span> <span class="err">error)</span><span class="p">;</span> <span class="p">}</span><span class="o">;</span>
-<span class="o">//</span> <span class="nt">Log</span> <span class="nt">messages</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">server</span>
-<span class="nt">connection</span><span class="p">.</span><span class="nc">onmessage</span> <span class="o">=</span> <span class="nt">function</span> <span class="o">(</span><span class="nt">e</span><span class="o">)</span> <span class="p">{</span> <span class="err">console.log(&#39;</span><span class="n">Server</span><span class="p">:</span> <span class="err">&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">data</span><span class="p">);</span> <span class="p">}</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><span class="err">connection = new WebSocket(&#39;ws://localhost:54398/&#39;);</span>
+<span class="err">// Log errors</span>
+<span class="err">connection.onerror = function (error) { console.log(&#39;WebSocket Error &#39; + error); };</span>
+<span class="err">// Log messages from the server</span>
+<span class="err">connection.onmessage = function (e) { console.log(&#39;Server: &#39; + e.data); };</span>
 </pre></div>
   </div>
   <div class="article_meta">
-    <p>Posted on: Wed 21 August 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>    </p>

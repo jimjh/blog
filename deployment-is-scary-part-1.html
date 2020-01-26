@@ -39,12 +39,10 @@
 <body>
   <aside>
     <div id="user_meta">
-      <a href="https://blog.jimjh.com">
-        <img src="https://blog.jimjh.com/images/jimjh.png" alt="logo">
-      </a>
-      <h2><a href="https://blog.jimjh.com">James Lim</a></h2>
-      <p></p>
+      <h2><a href="https://blog.jimjh.com">Ampersand</a></h2>
+      <p>Moved to Medium in 2019.</p>
       <ul>
+        <li><a href="https://medium.com/@jimjh" target="_blank">Medium</a></li>
         <li><a href="https://jimjh.com" target="_blank">Profile</a></li>
       </ul>
     </div>
@@ -62,6 +60,9 @@
   <div class="article_title">
     <h1><a href="https://blog.jimjh.com/deployment-is-scary-part-1.html">Deployment is Scary - Part 1</a></h1>
   </div>
+  <div class="article_meta">
+    <p>Posted on: Sun 12 May 2013</p>
+  </div>
   <div class="article_text">
     <p>As part of a class project, I was given the opportunity to field a Rails application at <a href="http://www.contrib.andrew.cmu.edu/~sc0v/">Spring Carnival</a>, an annual event held by Carnegie Mellon University (official <a href="http://www.hss.cmu.edu/pressreleases/pressreleases/IScarnivalcontest.html">press release</a>.) Here, I will describe a subset of the risk mitigation strategies that we used to avoid hacking and maximize uptime.</p>
 <p>In the first part of this series, I will focus on our use of JMeter for some simple load testing.</p>
@@ -72,7 +73,7 @@
 <p><img alt="image" src="https://blog.jimjh.com/images/2013/05/12/jmeter-tree.png"></p>
 <h3>Extract CSRF Token</h3>
 <p>Before our test user could login, it had to find the CSRF token on the page and submit that along with its credentials for Rails to accept the request. To do this, we added a HTTP Request to our thread group (or, more accurately, a request <em>sampler</em>). This sampler issues GET requests to <code>/users/sign_in</code>, and, using a Regular Expression Extractor (available under <em>Post Processors</em>), searches for the CSRF token with the following regex</p>
-<div class="highlight"><pre><span></span>input name=&quot;authenticity_token&quot; type=&quot;hidden&quot; value=&quot;(.*?)&quot;
+<div class="highlight"><pre><span></span><span class="err">input name=&quot;authenticity_token&quot; type=&quot;hidden&quot; value=&quot;(.*?)&quot;</span>
 </pre></div>
 
 
@@ -88,7 +89,6 @@
 <p><img alt="image" src="https://blog.jimjh.com/images/2013/05/12/load-test.png"></p>
   </div>
   <div class="article_meta">
-    <p>Posted on: Sun 12 May 2013</p>
     <p>Category: <a href="https://blog.jimjh.com/category/software.html">Software</a>
  &ndash; Tags:
       <a href="https://blog.jimjh.com/tag/ruby.html">ruby</a>,      <a href="https://blog.jimjh.com/tag/rails.html">rails</a>    </p>
