@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'James Lim'
 SITENAME = u'Ampersand'
 SITEURL = 'https://blog.jimjh.com'
-FEED_DOMAIN = 'http://feeds.feedburner.com'
+FEED_DOMAIN = 'https://feeds.feedburner.com'
 
 PLUGIN_PATHS = ['../pelican-plugins']
 PLUGINS = ['assets', 'sitemap']
