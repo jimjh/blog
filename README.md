@@ -1,6 +1,6 @@
 ### Installing
 
-This is in maintenance mode.
+This is in maintenance mode. Uses Python 3.
 
 ```bash
 $ git clone git@github.com:gfidente/pelican-svbhack.git
@@ -15,4 +15,10 @@ $ pelican-themes -i ../pelican-svbhack
 
 ```bash
 $ make html
+```
+
+### Publishing
+
+```bash
+$ make github
 ```
